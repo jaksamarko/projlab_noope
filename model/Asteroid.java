@@ -1,4 +1,5 @@
 package model;
+///FUCK YOU TESZT
 
 public class Asteroid {
 	private int layers;
