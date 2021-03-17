@@ -13,7 +13,7 @@ public class Bag
 		
 		Boolean done = true;
 		
-		Reflector.RequestBool("kerlek");
+		Reflector.RequestBool("kerlek írj valamit");
 		
 		Reflector.Return();
 	}

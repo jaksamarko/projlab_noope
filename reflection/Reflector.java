@@ -56,6 +56,19 @@ public class Reflector
 		return (Boolean.parseBoolean(re));
 	}
 	
+	public static int RequestInt(String requestText)
+	{
+		System.out.print(instance.getStackIndentation()+requestText+"\n"+instance.getStackIndentation());
+		BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));   
+		String re = "";
+		try {
+			re = obj.readLine();
+		} catch (IOException e) {
+			System.out.println("io problem");
+			e.printStackTrace();}
+		return (Integer.parseInt(re));
+	}
+	
 //----------------------------------------------
 	private static Reflector instance = null;
 	
