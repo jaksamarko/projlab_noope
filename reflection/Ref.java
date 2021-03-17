@@ -6,43 +6,40 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Ref
+public class Ref //singleton, nem kell init-elni
 {
-	public static void Reset()
-	{
-		instance = new Ref(); 
-	}
-	
+	//Meg kell hívni, ha új objektum-ot hozol létre. (utána)
 	public static void Created(Object object, String name)
 	{
 		if(instance == null) Reset();
 		instance.o_addObject(object, name);
 	}
-	
+	//Meg kell hívni minden metódushíváskor (elötte)
 	public static void Call(Object called, String func, Object arg)
 	{
 		if(instance == null) Reset();
 		instance.o_call(called, func, arg);
 	}
-	
+	//Meg kell hívni minden void metódus végén, és a teljes algirtumus végén is.
 	public static void Return()
 	{
 		if(instance == null) Reset();
 		instance.o_Return();
 	}
-	
+	//Meg kell hívni, ha a metódus objektum típussal tér vissza
 	public static void Return(Object object)
 	{
 		if(instance == null) Reset();
 		instance.o_Return(object);
 	}
-	
+	//Meg kell hívni, hogyha a metódus primitívvel tér vissza
 	public static void Return(String name, String value)
 	{
 		if(instance == null) Reset();
 		instance.o_Return(name, value);
 	}
-	
+	//Az argumentumban megadott szöveget kiírja a konzolra és vár válaszra majd azt visszadja a vissza térési értékként
+	//Azért csináltam, mert figyelembe tartja az indentálást
 	public static boolean RequestBool(String requestText)
 	{
 		System.out.print(instance.getStackIndentation()+requestText+"\n"+instance.getStackIndentation());
@@ -55,7 +52,7 @@ public class Ref
 			e.printStackTrace();}
 		return (Boolean.parseBoolean(re));
 	}
-	
+	//Ugyanaz Int-re
 	public static int RequestInt(String requestText)
 	{
 		System.out.print(instance.getStackIndentation()+requestText+"\n"+instance.getStackIndentation());
@@ -68,7 +65,13 @@ public class Ref
 			e.printStackTrace();}
 		return (Integer.parseInt(re));
 	}
+	//Újra indítja az egész singleton-t
+	public static void Reset()
+	{
+		instance = new Ref(); 
+	}
 	
+	//Innentöl lefele a nem fontos
 //----------------------------------------------
 	private static Ref instance = null;
 	
