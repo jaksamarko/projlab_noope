@@ -1,5 +1,5 @@
 package model;
 
-public abstract class Travelable {
-	public abstract void ReceiveUnit(Unit unit);
+public interface Travelable {
+	public void ReceiveUnit(Unit unit);
 }

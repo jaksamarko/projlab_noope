@@ -4,13 +4,13 @@ public class Ball
 {
 	public void Squish()
 	{
-		Reflector.Return("isSquished", "True");
+		Ref.Return("isSquished", "True");
 	}
 	
 	public void SetBag(Bag bag)
 	{
-		Reflector.call(this, "Squish", new Object[0]);
+		Ref.Call(this, "Squish", null);
 		Squish();
-		Reflector.Return(this);
+		Ref.Return(this);
 	}
 }

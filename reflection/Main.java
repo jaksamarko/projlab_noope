@@ -6,7 +6,7 @@ public class Main
 	{
 		
 		
-		Reflector.Reset();
+		Ref.Reset();
 		
 		String startText = "";
 		startText+="Válasz teszt programot:"
@@ -26,17 +26,21 @@ public class Main
 		+ "\n13. Körvégi napsütés hatása Jégre"
 		+ "\n14. Körvégi napsütés hatása Urániumra, úgy ,hogy Settler van az aszteroidán"
 		+ "\n15. Körvégi napsütés hatása Urániumra, úgy, hogy Robot van az aszteroidán";
-		int inp = Reflector.RequestInt(startText);
+		int inp = Ref.RequestInt(startText);
 		if(inp == 0)
 		{
 			Ball ball = new Ball();
-			Reflector.addObject(ball, "ball");
+			Ref.Created(ball, "ball");
 			Bag bag = new Bag();
-			Reflector.addObject(bag, "bag");
+			Ref.Created(bag, "bag");
 		
 			
-			Reflector.call(bag, "addBall", new Object[]{ball});
+			Ref.Call(bag, "addBall", ball);
 			bag.addBall(ball);
+		}
+		if(inp == 1)
+		{
+			TestPrograms.SettlerTravelAsteroid();
 		}
     }
 }

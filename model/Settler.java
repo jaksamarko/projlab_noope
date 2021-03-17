@@ -1,7 +1,16 @@
 package model;
 
+import reflection.*;
+
 public class Settler extends Unit {
 	private Inventory inventory;
+	
+	public Settler()
+	{
+		inventory = new Inventory();
+		Ref.Created(inventory, "inventory");
+	}
+	
 	public void CreatePortal() {
 	}
 	
@@ -20,6 +29,7 @@ public class Settler extends Unit {
 		
 	}
 	
-	public void Exploded() {
+	public void Exploded()
+	{
 	}
 }

@@ -1,7 +1,8 @@
 package model;
 ///FUCK YOU TESZT
+import reflection.*;
 
-public class Asteroid {
+public class Asteroid implements Travelable {
 	private int layers;
 	public Portal portal;
 	public Resource resource;
@@ -12,7 +13,16 @@ public class Asteroid {
 		return false;
 	}
 	
-	private void AddUnit(Unit unit) {
+	public void AddUnit(Unit unit)
+	{
+		units = unit;
+		Ref.Return();
+	}
+	
+	public void addNeighbor(Travelable travelable)
+	{
+		this.neighbors = travelable;
+		Ref.Return();
 	}
 	
 	public boolean BuildPortal(Inventory inventory) {
@@ -37,6 +47,14 @@ public class Asteroid {
 	}
 	
 	public boolean IsNeighboor(Travelable travelable) {
+		
+		if(travelable == neighbors)
+		{
+			Ref.Return("result", "true");
+			return true;
+		}
+		
+		Ref.Return("result", "false");
 		return false;
 	}
 	
@@ -44,8 +62,15 @@ public class Asteroid {
 		return resource;
 	}
 	
-	public boolean ReceiveUnit(Unit unit) {
-		return false;
+	public void ReceiveUnit(Unit unit) 
+	{
+		Ref.Call(this, "AddUnit", unit);
+		AddUnit(unit);
+		
+		Ref.Call(unit, "SetAsteroid", this);
+		unit.SetAsteroid(this);
+		
+		Ref.Return();
 	}
 	
 	public boolean RemoveLayer() {
@@ -62,7 +87,10 @@ public class Asteroid {
 	public void SetPortal(Portal portal) {
 	}
 	
-	private void SetResource(Resource resource) {
+	public void SetResource(Resource resource)
+	{
+		this.resource = resource;
+		Ref.Return();
 	}
 	
 	public void Sunstorm() {

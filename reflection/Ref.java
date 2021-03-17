@@ -6,23 +6,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Reflector
+public class Ref
 {
 	public static void Reset()
 	{
-		instance = new Reflector(); 
+		instance = new Ref(); 
 	}
 	
-	public static void addObject(Object object, String name)
+	public static void Created(Object object, String name)
 	{
 		if(instance == null) Reset();
 		instance.o_addObject(object, name);
 	}
 	
-	public static void call(Object called, String func, Object args[])
+	public static void Call(Object called, String func, Object arg)
 	{
 		if(instance == null) Reset();
-		instance.o_call(called, func, args);
+		instance.o_call(called, func, arg);
 	}
 	
 	public static void Return()
@@ -70,23 +70,40 @@ public class Reflector
 	}
 	
 //----------------------------------------------
-	private static Reflector instance = null;
+	private static Ref instance = null;
 	
+	private int arrowLength= 2;
+	private Variable baseCaller; 
 	
 	private ArrayList<Variable> allVars;
 	private ArrayList<Variable> callStack;
+	private int indent = 0;
 	
-	private Reflector()
+	private void addToStack(Variable v)
+	{
+		Variable prevTop = GetTopOfStack();
+		callStack.add(v);
+		indent += arrowLength + prevTop.name.length(); 
+	}
+	
+	private void removeFromStack()
+	{
+		callStack.remove(callStack.size() - 1);
+		indent -= (arrowLength + GetTopOfStack().name.length());
+	}
+	
+	private Ref()
 	{
 		allVars = new ArrayList<Variable>();
 		callStack = new ArrayList<Variable>();
+		baseCaller = new Variable(new Object(), "Main");
 	}
 	
 	private Variable GetTopOfStack()
 	{
 		if(callStack.size()>0)
 			return callStack.get(callStack.size() - 1);
-		return null;
+		return baseCaller;
 	}
 	
 	private Variable GetVar(Object o)
@@ -110,62 +127,73 @@ public class Reflector
 		}
 		return re;
 	}
-	
-	private String getStackIndentation(int shift)
-	{
-		String out = "";
-		for(int i = 0; i < callStack.size()+shift; i++)
-			out += "\t";
-		return out;
-	}
 
 	private String getStackIndentation()
 	{
-		return getStackIndentation(0);
-	}
-	
-	private void addUnique(Object o, String name)
-	{
-		for(Variable v: allVars)
-		{
-			if(v.equals(o))
-				return;
-		}
-		allVars.add(new Variable(o, name));
+		String re = "";
+		for(int i = 0; i < indent; i++)
+			re += " ";
+		return re;
 	}
 	
 	private void o_addObject(Object object, String name)
 	{
 		Variable var = new Variable(object, name);
 		allVars.add(var);
-		
-		System.out.println("Object Created: "+ var.GetNameAndType());
+		System.out.println(getStackIndentation()+"<Created> "+ var.GetNameAndType());
 	}
 	
-	private void o_call(Object called, String func, Object args[])
+	private void o_call(Object called, String func, Object arg)
 	{
 		Variable calledVar = GetVar(called);
 		Variable caller = GetTopOfStack();
-		System.out.println(getStackIndentation()+(caller == null ? "Main": caller.name) + " calls " +func + "("+ ObjectsToArgString(args) + ")"+ " on "+ calledVar.name);
+		System.out.println(getStackIndentation()+ caller.name + "->"+ calledVar.name +"."+func + "("+ (arg == null ? "": GetVar(arg).name) + ")");
 		
-		callStack.add(calledVar);
+		addToStack(calledVar);
 	}
 	
 	private void o_Return()
 	{
-		callStack.remove(callStack.size() - 1);
+		if(callStack.size() == 0)
+		{
+			System.out.println("END");
+			return;
+		}
 		System.out.println(getStackIndentation() + "Return");
+		removeFromStack();
 	}
 	
 	private void o_Return(Object object)
 	{
-		callStack.remove(callStack.size() - 1);
 		System.out.println(getStackIndentation() + "Return "+ GetVar(object).name);
+		removeFromStack();
 	}
 	
 	private void o_Return(String name, String value)
 	{
-		callStack.remove(callStack.size() - 1);
 		System.out.println(getStackIndentation() + "Return "+ name+":="+value);
+		removeFromStack();
 	}
 }
+
+
+
+
+
+/*private void addUnique(Object o, String name)
+{
+	for(Variable v: allVars)
+	{
+		if(v.equals(o))
+			return;
+	}
+	allVars.add(new Variable(o, name));
+}*/
+
+/*private String getStackIndentation(int shift)
+{
+	String out = "";
+	for(int i = 0; i < callStack.size()+shift; i++)
+		out += "    ";
+	return out;
+}*/

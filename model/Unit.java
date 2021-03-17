@@ -1,5 +1,7 @@
 package model;
 
+import reflection.*;
+
 public abstract class Unit {
 	private Asteroid asteroid;
 
@@ -11,12 +13,20 @@ public abstract class Unit {
 	
 	public abstract void Exploded();
 	
-	public void Move(Travelable target) {
+	public void Move(Asteroid target)
+	{
+		Ref.Call(asteroid, "IsNeighboor", target);
+		asteroid.IsNeighboor(target);
+		Ref.Return();
+		return;
 	}
 	
 	private void MakeStepDone() {
 	}
 	
-	public void SetAsteroid(Asteroid asteroid) {
+	public void SetAsteroid(Asteroid asteroid) 
+	{
+		this.asteroid = asteroid;
+		Ref.Return();
 	}
 }

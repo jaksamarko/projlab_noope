@@ -5,21 +5,19 @@ public class Bag
 	public void addBall(Ball b)
 	{
 		
-		Reflector.call(b, "setBag", new Object[]{this});
+		Ref.Call(b, "setBag", this);
 		b.SetBag(this);
 		
-		Reflector.call(this, "setBall", new Object[]{b});
+		Ref.Call(this, "setBall", b);
 		setBall(b);
 		
-		Boolean done = true;
+		Ref.RequestBool("kerlek írj valamit");
 		
-		Reflector.RequestBool("kerlek írj valamit");
-		
-		Reflector.Return();
+		Ref.Return();
 	}
 	
 	public void setBall(Ball b)
 	{
-		Reflector.Return();
+		Ref.Return();
 	}
 }
