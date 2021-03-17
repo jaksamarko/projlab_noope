@@ -14,7 +14,7 @@ public class Ref //singleton, nem kell init-elni
 		if(instance == null) Reset();
 		instance.o_addObject(object, name);
 	}
-	//Meg kell hívni minden metódushíváskor (elötte)
+	//Ott kell lennie minden metódus elsö sorában. args: (this, "metódus neve", argumentum)
 	public static void Call(Object called, String func, Object arg)
 	{
 		if(instance == null) Reset();

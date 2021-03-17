@@ -12,24 +12,28 @@ public class Settler extends Unit {
 	}
 	
 	public void CreatePortal() {
+		Ref.Call(this, "CreatePortal", null);
 	}
 	
 	public void CreateRobot() {
+		Ref.Call(this, "CreateRobot", null);
 	}
 	
 	
 	public void Mine() {
+		Ref.Call(this, "Mine", null);
 	}
 	
 	public void PlacePortal() {
+		Ref.Call(this, "PlacePortal", null);
 	}
 	
 	public void PutResourceBack(Material material) {
-		
-		
+		Ref.Call(this, "PutResourceBack", material);
 	}
 	
 	public void Exploded()
 	{
+		Ref.Call(this, "Exploded", null);
 	}
 }

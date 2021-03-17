@@ -13,7 +13,6 @@ public class TestPrograms {
 		Coal aResource = new Coal();
 		Ref.Created(aResource, "aResource");
 		
-		Ref.Call(asteroid, "SetResource", aResource);
 		asteroid.SetResource(aResource);
 		
 		Asteroid target = new Asteroid();
@@ -22,21 +21,17 @@ public class TestPrograms {
 		Coal tResource = new Coal();
 		Ref.Created(tResource, "tResource");
 		
-		Ref.Call(target, "SetResource", tResource);
 		target.SetResource(tResource);
 		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
 		
-		Ref.Call(asteroid, "ReceiveUnit", settler);
 		asteroid.ReceiveUnit(settler);
 		
-		Ref.Call(asteroid, "AddNeighbor", target);
 		asteroid.addNeighbor(target);
 		
 		System.out.println("-----INTERACTION-----");
 		
-		Ref.Call(settler, "Move", target);
 		settler.Move(target);
 		
 		System.out.println("!!!!!!!!!!!!!!!!TODO: Befjezni!!!!!!!!!!!!!!!!");
