@@ -19,9 +19,14 @@ public class Settler extends Unit {
 		Ref.Call(this, "CreateRobot", null);
 	}
 	
-	
 	public void Mine() {
 		Ref.Call(this, "Mine", null);
+		Resource minedMaterial = asteroid.MineResource();
+		if(minedMaterial!=null) {
+			this.MakeStepDone();
+			minedMaterial.PickedUp(inventory);
+		}
+		Ref.Return();
 	}
 	
 	public void PlacePortal() {

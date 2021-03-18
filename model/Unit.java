@@ -3,7 +3,7 @@ package model;
 import reflection.*;
 
 public abstract class Unit {
-	private Asteroid asteroid;
+	protected Asteroid asteroid;
 
 	public void Die() {
 		Ref.Call(this, "Die", null);
@@ -11,20 +11,30 @@ public abstract class Unit {
 	
 	public void Drill() {
 		Ref.Call(this, "Drill", null);
+		boolean result = asteroid.RemoveLayer();
+		if(result) {
+			this.MakeStepDone();
+		}
+		Ref.Return();
 	}
 	
 	public abstract void Exploded();
 	
-	public void Move(Asteroid target)
+	public void Move(Travelable target)
 	{
 		Ref.Call(this, "Move", target);
 		
-		asteroid.IsNeighboor(target);
+		Boolean result = asteroid.IsNeighboor(target);
+		if(result) {
+			asteroid.RemoveUnit(this);
+			target.ReceiveUnit(this);
+			this.MakeStepDone();
+		}
 		Ref.Return();
 		return;
 	}
 	
-	private void MakeStepDone() {
+	protected void MakeStepDone() {
 		Ref.Call(this, "MakeStepDone", null);
 	}
 	

@@ -17,6 +17,8 @@ public class Asteroid implements Travelable {
 	{
 		Ref.Call(this, "AddUnit", unit);
 		units = unit;
+		//TODO: Miért volt két unit 5.3.2-ön?
+		unit.SetAsteroid(this);
 		Ref.Return();
 	}
 	
@@ -69,6 +71,10 @@ public class Asteroid implements Travelable {
 	
 	public Resource MineResource() {
 		Ref.Call(this, "MineResource", null);
+		if(resource!=null) {
+			Resource removedMaterial = this.RemoveResource();
+		}
+		Ref.Return();
 		return resource;
 	}
 	
