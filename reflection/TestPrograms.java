@@ -131,10 +131,7 @@ public class TestPrograms {
 		Inventory inventory = new Inventory();
 		Ref.Created(inventory, "inventory");
 		
-		Coal aResource = new Coal();
-		Ref.Created(aResource, "aResource");
-		
-		
+		inventory.InsertItem(Material.Coal);
 		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
@@ -146,7 +143,15 @@ public class TestPrograms {
 	// 6.
 	public static void SettlerBuildPortal()
 	{
+		Settler settler = new Settler();
+		Ref.Created(settler, "settler");
 		
+		Inventory inventory = new Inventory();
+		Ref.Created(inventory, "inventory");
+		
+		settler.SetInventory(inventory);
+		
+		settler.CreatePortal();
 	}
 	// 7.
 	public static void SettlerPlacePortal()

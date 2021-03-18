@@ -10,7 +10,14 @@ public class Asteroid implements Travelable {
 	public Game game;
 	public Travelable neighbors;
 	public boolean AcceptResource(Resource resource) {
-		return false;
+		Ref.Call(resource, "AcceptResource", resource);
+		boolean ret = false;
+		if(this.resource==null) {
+			ret=true;
+		}
+		this.SetResource(resource);
+		Ref.Return();
+		return ret;
 	}
 	
 	public void AddUnit(Unit unit)

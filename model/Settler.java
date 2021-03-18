@@ -7,12 +7,16 @@ public class Settler extends Unit {
 	
 	public Settler()
 	{
-		inventory = new Inventory();
-		Ref.Created(inventory, "inventory");
+		
 	}
 	
 	public void CreatePortal() {
 		Ref.Call(this, "CreatePortal", null);
+		Boolean isCrafted = inventory.CraftPortal();
+		if(isCrafted) {
+			this.MakeStepDone();
+		}
+		Ref.Return();
 	}
 	
 	public void CreateRobot() {
@@ -35,10 +39,23 @@ public class Settler extends Unit {
 	
 	public void PutResourceBack(Material material) {
 		Ref.Call(this, "PutResourceBack", material);
+		Resource sentResorce = inventory.GetItem(material);
+		Boolean taken = asteroid.AcceptResource(sentResorce);
+		if(taken) {
+			inventory.RemoveItem(material);
+			this.MakeStepDone();
+		}
+		Ref.Return();
 	}
 	
 	public void Exploded()
 	{
 		Ref.Call(this, "Exploded", null);
+	}
+	
+	public void SetInventory(Inventory inventory) {
+		Ref.Call(this, "SetInventory", inventory);
+		this.inventory=inventory;
+		Ref.Return();
 	}
 }
