@@ -15,7 +15,7 @@ public class Robot extends Unit {
 			this.MakeStepDone();
 		}
 		if(!this.getStepDone()) {
-			Asteroid neighbor = (Asteroid) asteroid.GetRandomNeighbor();
+			Travelable neighbor = asteroid.GetRandomNeighbor();
 			asteroid.RemoveUnit(this);
 			neighbor.ReceiveUnit(this);
 			

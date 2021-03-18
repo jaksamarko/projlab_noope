@@ -191,7 +191,7 @@ public class TestPrograms {
 	public static void RobotWorkAsteroid()
 	{
 		//init begin
-		printInit();
+		//printInit();
 		
 		Game game = new Game();
 		Ref.Created(game, "game");
@@ -212,7 +212,7 @@ public class TestPrograms {
 
 		
 		//interact begin
-		printInteraction();
+		//printInteraction();
 		
 		game.AllRobotsWork();
 		
@@ -220,7 +220,34 @@ public class TestPrograms {
 	// 10.
 	public static void RobotWorkPortal()
 	{
+		Game game = new Game();
+		Ref.Created(game, "game");
 		
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
+		
+		Asteroid pairAsteroid = new Asteroid();
+		Ref.Created(pairAsteroid, "pairAsteroid");
+		
+		Portal portal = new Portal();
+		Ref.Created(portal, "portal");
+		portal.SetAsteroid(asteroid);
+		
+		Portal pair = new Portal();
+		Ref.Created(pair, "pair");
+		portal.SetPair(pair);
+		pair.SetAsteroid(pairAsteroid);
+		
+		//asteroid.SetPortal(portal);
+		asteroid.addNeighbor(portal);
+		
+		Robot robot = new Robot();
+		Ref.Created(robot, "robot");
+
+		game.SetRobots(robot);
+		asteroid.ReceiveUnit(robot);
+		
+		game.AllRobotsWork();
 	}
 	// 11.
 	public static void Sunstorm()

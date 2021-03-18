@@ -57,14 +57,17 @@ public class Asteroid implements Travelable {
 	public void DestroySelf()
 	{
 		Ref.Call(this, "DestroySelf", null);
+		Ref.Return();
 	}
 	
 	public void Explode() {
 		Ref.Call(this, "Explode", null);
+		Ref.Return();
 	}
 	
 	public void Exposure() {
 		Ref.Call(this, "Exposure", null);
+		Ref.Return();
 	}
 	
 	public Travelable GetRandomNeighbor() {
@@ -123,10 +126,12 @@ public class Asteroid implements Travelable {
 	
 	public void RemoveUnit(Unit unit) {
 		Ref.Call(this, "RemoveUnit", unit);
+		Ref.Return();
 	}
 	
 	public void SetPortal(Portal portal) {
 		Ref.Call(this, "SetPortal", portal);
+		Ref.Return();
 	}
 	
 	public void SetResource(Resource resource)
@@ -138,5 +143,6 @@ public class Asteroid implements Travelable {
 	
 	public void Sunstorm() {
 		Ref.Call(this, "Sunstorm", null);
+		Ref.Return();
 	}
 }
