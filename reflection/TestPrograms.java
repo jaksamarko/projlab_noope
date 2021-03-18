@@ -14,6 +14,10 @@ public class TestPrograms {
 	{		
 		//printInit();
 		//Init
+		
+		
+		//Faszooom geci
+		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
 		
