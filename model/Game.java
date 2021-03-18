@@ -8,13 +8,13 @@ public class Game {
 	private Settler settlers;
 	
 	public void SetRobots(Robot robot) {
-		Ref.Call(this, "SetRobots", null);
+		Ref.Call(this, "SetRobots", robot);
 		this.robots = robot;
 		Ref.Return();
 	}
 	
 	public void SetAsteroids(Asteroid asteroid) {
-		Ref.Call(this, "SetAsteroids", null);
+		Ref.Call(this, "SetAsteroids", asteroid);
 		this.asteroids = asteroid;
 		Ref.Return();
 	}
