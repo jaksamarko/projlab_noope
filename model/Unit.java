@@ -37,7 +37,9 @@ public abstract class Unit {
 	protected void MakeStepDone() {
 		Ref.Call(this, "MakeStepDone", null);
 	}
-	
+	protected boolean getStepDone() {
+		return false;
+	}
 	public void SetAsteroid(Asteroid asteroid) 
 	{
 		Ref.Call(this, "SetAsteroid", asteroid);

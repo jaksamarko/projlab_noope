@@ -1,5 +1,5 @@
 package model;
-///FUCK YOU TESZT
+
 import reflection.*;
 
 public class Asteroid implements Travelable {
@@ -69,7 +69,10 @@ public class Asteroid implements Travelable {
 	
 	public Travelable GetRandomNeighbor() {
 		Ref.Call(this, "GetRandomNeighbor", null);
+		
+		Ref.Return();
 		return neighbors;
+		
 	}
 	
 	private boolean IsNearSun() {
