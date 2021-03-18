@@ -143,6 +143,10 @@ public class Asteroid implements Travelable {
 	
 	public void Sunstorm() {
 		Ref.Call(this, "Sunstorm", null);
+		if(this.layers>0||resource!=null) {
+			//TODO a szekvencián settler van!
+			this.units.Die();
+		}
 		Ref.Return();
 	}
 }

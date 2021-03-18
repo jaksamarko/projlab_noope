@@ -252,12 +252,37 @@ public class TestPrograms {
 	// 11.
 	public static void Sunstorm()
 	{
+		Game game = new Game();
+		Ref.Created(game, "game");
+		
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
+		
+		Settler settler = new Settler();
+		Ref.Created(settler, "settler");
+		asteroid.ReceiveUnit(settler);
+		
+		game.SetAsteroids(asteroid);
+		
+		game.CreateSunstorm();
 		
 	}
 	// 12.
 	public static void ExposeCoal()
 	{
+		Game game = new Game();
+		Ref.Created(game, "game");
 		
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
+		game.SetAsteroids(asteroid);
+		
+		Resource resource = new Coal();
+		Ref.Created(resource, "resource");
+		
+		asteroid.SetResource(resource);
+		
+		game.EndTurnAsteroidEffect();
 	}
 	// 13.
 	public static void ExposeIce()

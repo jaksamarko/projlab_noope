@@ -12,6 +12,13 @@ public class Game {
 		this.robots = robot;
 		Ref.Return();
 	}
+	
+	public void SetAsteroids(Asteroid asteroid) {
+		Ref.Call(this, "SetAsteroids", null);
+		this.asteroids = asteroid;
+		Ref.Return();
+	}
+	
 	public void AllRobotsWork() {
 		Ref.Call(this, "AllRobotsWork", null);
 		robots.Work();
@@ -20,11 +27,13 @@ public class Game {
 	
 	public void CreateSunstorm() {
 		Ref.Call(this, "CreateSunstorm", null);
+		asteroids.Sunstorm();
 		Ref.Return();
 	}
 	
 	public void EndTurnAsteroidEffect() {
 		Ref.Call(this, "EndTurnAsteroidEffect", null);
+		asteroids.Exposure();
 		Ref.Return();
 	}
 }
