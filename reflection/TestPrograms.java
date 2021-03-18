@@ -120,11 +120,14 @@ public class TestPrograms {
 	// 5.
 	public static void SettlerPutBack()
 	{
+		Ref.Created(Material.Coal, "Material");
+		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
 		
 		Inventory inventory = new Inventory();
 		Ref.Created(inventory, "inventory");
+		settler.SetInventory(inventory);
 		
 		inventory.InsertItem(Material.Coal);
 		

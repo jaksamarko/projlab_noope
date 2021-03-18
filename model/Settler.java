@@ -51,8 +51,8 @@ public class Settler extends Unit {
 	
 	public void PutResourceBack(Material material) {
 		Ref.Call(this, "PutResourceBack", material);
-		Resource sentResorce = inventory.GetItem(material);
-		Boolean taken = asteroid.AcceptResource(sentResorce);
+		Resource sentResource = inventory.GetItem(material);
+		Boolean taken = asteroid.AcceptResource(sentResource);
 		if(taken) {
 			inventory.RemoveItem(material);
 			this.MakeStepDone();
