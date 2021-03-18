@@ -32,7 +32,6 @@ public class TestPrograms {
 		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
-		
 		asteroid.ReceiveUnit(settler);
 		
 		asteroid.addNeighbor(target);
@@ -59,7 +58,6 @@ public class TestPrograms {
 		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
-		
 		asteroid.ReceiveUnit(settler);
 		
 		asteroid.addNeighbor(target);
@@ -98,6 +96,7 @@ public class TestPrograms {
 		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
+		asteroid.ReceiveUnit(settler);
 		
 		//Interaction
 		
@@ -112,6 +111,7 @@ public class TestPrograms {
 		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
+		asteroid.ReceiveUnit(settler);
 		
 		Coal aResource = new Coal();
 		Ref.Created(aResource, "aResource");
@@ -135,6 +135,7 @@ public class TestPrograms {
 		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
+		asteroid.ReceiveUnit(settler);
 		
 		//Interaction
 		
@@ -150,18 +151,46 @@ public class TestPrograms {
 		Ref.Created(inventory, "inventory");
 		
 		settler.SetInventory(inventory);
-		
+		//Interaction
 		settler.CreatePortal();
 	}
 	// 7.
 	public static void SettlerPlacePortal()
 	{
+		Settler settler = new Settler();
+		Ref.Created(settler, "settler");
 		
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
+		asteroid.ReceiveUnit(settler);
+		
+		Inventory inventory = new Inventory();
+		Ref.Created(inventory, "inventory");
+		settler.SetInventory(inventory);
+		
+		//Interaction
+		settler.PlacePortal();
 	}
 	// 8.
 	public static void SettlerBuildAndPlaceRobot()
 	{
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
 		
+		Resource resource = new Coal();
+		Ref.Created(resource, "resource");
+		
+		asteroid.SetResource(resource);
+		
+		Settler settler = new Settler();
+		Ref.Created(settler, "settler");
+		asteroid.ReceiveUnit(settler);
+		
+		Inventory inventory = new Inventory();
+		Ref.Created(inventory, "inventory");
+		settler.SetInventory(inventory);
+		
+		settler.CreateRobot();
 	}
 	// 9.
 	public static void RobotWorkAsteroid()

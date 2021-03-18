@@ -21,6 +21,13 @@ public class Settler extends Unit {
 	
 	public void CreateRobot() {
 		Ref.Call(this, "CreateRobot", null);
+		Robot newRobot = inventory.CraftRobot();
+		if(newRobot!=null) {
+			asteroid.ReceiveUnit(newRobot);
+			this.MakeStepDone();
+		}
+		
+		Ref.Return();
 	}
 	
 	public void Mine() {
@@ -35,6 +42,11 @@ public class Settler extends Unit {
 	
 	public void PlacePortal() {
 		Ref.Call(this, "PlacePortal", null);
+		Boolean built = asteroid.BuildPortal(inventory);
+		if(built) {
+			this.MakeStepDone();
+		}
+		Ref.Return();
 	}
 	
 	public void PutResourceBack(Material material) {

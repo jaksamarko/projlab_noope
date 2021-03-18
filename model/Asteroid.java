@@ -38,7 +38,20 @@ public class Asteroid implements Travelable {
 	
 	public boolean BuildPortal(Inventory inventory) {
 		Ref.Call(this, "BuildPortal", inventory);
-		return false;
+		Boolean ret=false;
+		if(this.portal!=null) {
+			ret=false;
+		} else {
+			Portal newPortal = inventory.GetPortal();
+			if(newPortal==null) {
+				ret=false;
+			} else {
+				ret=true;
+				this.SetPortal(newPortal);
+			}
+		}
+		Ref.Return();
+		return ret;
 	}
 	
 	public void DestroySelf()
