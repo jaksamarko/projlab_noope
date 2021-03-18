@@ -39,8 +39,6 @@ public class TestPrograms {
 		//printInteraction();
 		//Interaction
 		settler.Move(target);
-		
-		Ref.Return();
 	}
 	// 2.
 	public static void SettlerTravelPortal()
@@ -80,8 +78,6 @@ public class TestPrograms {
 		//Interaction
 		
 		settler.Move(target);
-		
-		Ref.Return();
 	}
 	// 3.
 	public static void SettlerDrill()
@@ -101,7 +97,6 @@ public class TestPrograms {
 		//Interaction
 		
 		settler.Drill();
-		Ref.Return();
 	}
 	// 4.
 	public static void SettlerMine()
