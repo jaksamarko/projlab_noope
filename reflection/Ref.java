@@ -71,6 +71,8 @@ public class Ref //singleton, nem kell init-elni
 		instance = new Ref(); 
 	}
 	
+	public static Variable nullObject = new Variable(new Object(), "null");
+	
 	//Innentöl lefele a nem fontos
 //----------------------------------------------
 	private static Ref instance = null;
@@ -100,6 +102,7 @@ public class Ref //singleton, nem kell init-elni
 		allVars = new ArrayList<Variable>();
 		callStack = new ArrayList<Variable>();
 		baseCaller = new Variable(new Object(), "Main");
+		allVars.add(Ref.nullObject);
 	}
 	
 	private Variable GetTopOfStack()
