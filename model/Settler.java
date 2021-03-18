@@ -63,6 +63,8 @@ public class Settler extends Unit {
 	public void Exploded()
 	{
 		Ref.Call(this, "Exploded", null);
+		this.Die();
+		Ref.Return();
 	}
 	
 	public void SetInventory(Inventory inventory) {

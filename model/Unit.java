@@ -7,6 +7,7 @@ public abstract class Unit {
 
 	public void Die() {
 		Ref.Call(this, "Die", null);
+		Ref.Return();
 	}
 	
 	public void Drill() {

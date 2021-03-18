@@ -290,16 +290,82 @@ public class TestPrograms {
 	// 13.
 	public static void ExposeIce()
 	{
+		Game game = new Game();
+		Ref.Created(game, "game");
 		
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
+		game.SetAsteroids(asteroid);
+		
+		Resource resource = new Ice();
+		Ref.Created(resource, "resource");
+		
+		asteroid.SetResource(resource);
+		
+		game.EndTurnAsteroidEffect();
 	}
 	// 14.
 	public static void ExposeUraniumSettler()
 	{
+		//init begin
+		printInit();
+				
+		Game game = new Game();
+		Ref.Created(game, "game");
+
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
+		
+		game.SetAsteroids(asteroid);
+				
+		Uranium aResource = new Uranium();
+		Ref.Created(aResource, "aResource");
+				
+		asteroid.SetResource(aResource);
+				
+		Settler settler = new Settler();
+		Ref.Created(settler, "settler");
+		asteroid.ReceiveUnit(settler);
+				
+		//interact begin
+		printInteraction();
+						
+		game.EndTurnAsteroidEffect();
 		
 	}
 	// 15.
 	public static void ExposeUraniumRobot()
 	{
+		//init begin
+		printInit();
+		
+		Game game = new Game();
+		Ref.Created(game, "game");
+
+		Asteroid asteroid = new Asteroid();
+		Ref.Created(asteroid, "asteroid");
+		
+		game.SetAsteroids(asteroid);
+		
+		
+		Asteroid neighbor = new Asteroid();
+		Ref.Created(neighbor, "neighbor");
+		
+		asteroid.addNeighbor(neighbor);
+		
+		Uranium aResource = new Uranium();
+		Ref.Created(aResource, "aResource");
+		
+		asteroid.SetResource(aResource);
+		
+		Robot robot = new Robot();
+		Ref.Created(robot, "robot");
+		
+		asteroid.ReceiveUnit(robot);
+		//interact begin
+		printInteraction();
+		
+		game.EndTurnAsteroidEffect();
 		
 	}
 }
