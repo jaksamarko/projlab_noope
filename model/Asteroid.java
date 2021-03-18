@@ -72,7 +72,7 @@ public class Asteroid implements Travelable {
 	
 	public Travelable GetRandomNeighbor() {
 		Ref.Call(this, "GetRandomNeighbor", null);
-		Ref.Return();
+		Ref.Return(neighbors);
 		return neighbors;
 		
 	}
