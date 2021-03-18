@@ -4,6 +4,9 @@ public class Main
 {
 	public static void main(String[] args)
 	{
+		while(true)
+		{
+			
 		Ref.Reset();
 		
 		String startText = "";
@@ -41,6 +44,8 @@ public class Main
 		  case 13: TestPrograms.ExposeIce(); break;
 		  case 14: TestPrograms.ExposeUraniumSettler(); break;
 		  case 15: TestPrograms.ExposeUraniumRobot(); break;
+		}
+		Ref.RequestBool("<Press Enter to Restart>");
 		}
     }
 }
