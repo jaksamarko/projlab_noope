@@ -3,12 +3,16 @@ package model;
 import reflection.*;
 
 public class Asteroid implements Travelable {
-	private int layers;
+	
 	public Portal portal;
 	public Resource resource;
 	private Unit units;
 	public Game game;
 	public Travelable neighbors;
+	
+	public int GetLayers() {
+		return Ref.RequestInt("Mekkora a kéreg?");
+	}
 	public boolean AcceptResource(Resource resource) {
 		Ref.Call(resource, "AcceptResource", resource);
 		boolean ret = false;
@@ -62,25 +66,32 @@ public class Asteroid implements Travelable {
 	
 	public void Explode() {
 		Ref.Call(this, "Explode", null);
+		units.Exploded();
+		this.DestroySelf();
 		Ref.Return();
 	}
 	
 	public void Exposure() {
 		Ref.Call(this, "Exposure", null);
+		boolean result = this.IsNearSun();
+		if(result && GetLayers() == 0) {
+			resource.Exposed();
+			this.DestroySelf();
+		}
 		Ref.Return();
 	}
 	
 	public Travelable GetRandomNeighbor() {
 		Ref.Call(this, "GetRandomNeighbor", null);
-		
-		Ref.Return();
+		Ref.Return(neighbors);
 		return neighbors;
 		
 	}
 	
 	private boolean IsNearSun() {
 		Ref.Call(this, "IsNearSun", null);
-		return false;
+		Boolean in = Ref.RequestBool("Napközelben van?");
+		return in;
 	}
 	
 	public boolean IsNeighboor(Travelable travelable) {
@@ -99,9 +110,10 @@ public class Asteroid implements Travelable {
 		Ref.Call(this, "MineResource", null);
 		if(resource!=null) {
 			Resource removedMaterial = this.RemoveResource();
+			return removedMaterial;
 		}
 		Ref.Return();
-		return resource;
+		return null;
 	}
 	
 	public void ReceiveUnit(Unit unit) 
@@ -138,12 +150,13 @@ public class Asteroid implements Travelable {
 	{
 		Ref.Call(this, "SetResource", resource);
 		this.resource = resource;
+		resource.asteroid = this;
 		Ref.Return();
 	}
 	
 	public void Sunstorm() {
 		Ref.Call(this, "Sunstorm", null);
-		if(this.layers>0||resource!=null) {
+		if(this.GetLayers()>0||resource!=null) {
 			//TODO a szekvencián settler van!
 			this.units.Die();
 		}

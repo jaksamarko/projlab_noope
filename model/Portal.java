@@ -8,10 +8,12 @@ public class Portal implements Travelable {
 	public Portal pair;
 	public void Created() {
 		Ref.Call(this, "Created", null);
+		Ref.Return();
 	}
 	
 	public void Destroyed() {
 		Ref.Call(this, "Destroyed", null);
+		Ref.Return();
 	}
 	
 	public void ReceiveUnit(Unit unit) {
@@ -24,7 +26,7 @@ public class Portal implements Travelable {
 		Ref.Call(this, "SendUnitToPair", unit);
 		asteroid.AddUnit(unit);
 		Ref.Return();
-		return false;
+		return true;
 	}
 	
 	public void SetAsteroid(Asteroid asteroid) {
