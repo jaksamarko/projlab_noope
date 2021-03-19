@@ -71,7 +71,7 @@ public class Ref //singleton, nem kell init-elni
 		instance = new Ref(); 
 	}
 	
-	public static Variable nullObject = new Variable(new Object(), "null");
+	public static Object nullObject;
 	
 	public static void Return(String name, boolean value)
 	{
@@ -111,7 +111,8 @@ public class Ref //singleton, nem kell init-elni
 		allVars = new ArrayList<Variable>();
 		callStack = new ArrayList<Variable>();
 		baseCaller = new Variable(new Object(), "Main");
-		allVars.add(Ref.nullObject);
+		nullObject = new Object();
+		allVars.add(new Variable(nullObject,"null"));
 	}
 	
 	private Variable GetTopOfStack()
