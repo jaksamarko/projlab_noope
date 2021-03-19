@@ -124,7 +124,7 @@ public class TestPrograms {
 	// 5.
 	public static void SettlerPutBack()
 	{
-		Ref.Created(Material.Coal, "Material");
+		Ref.Created(Material.Coal, "material");
 		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");

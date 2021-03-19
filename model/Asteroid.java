@@ -14,7 +14,7 @@ public class Asteroid implements Travelable {
 		return Ref.RequestInt("Mekkora a kéreg?");
 	}
 	public boolean AcceptResource(Resource resource) {
-		Ref.Call(resource, "AcceptResource", resource);
+		Ref.Call(this, "AcceptResource", resource);
 		boolean ret = false;
 		if(this.resource==null) {
 			ret=true;
@@ -52,7 +52,7 @@ public class Asteroid implements Travelable {
 				this.SetPortal(newPortal);
 			}
 		}
-		Ref.Return();
+		Ref.Return("built",ret);
 		return ret;
 	}
 	

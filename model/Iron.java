@@ -7,5 +7,4 @@ public class Iron extends Resource {
 		Ref.Call(this, "PickedUp", inventory);
 		Ref.Return();
 	}
-	
 }

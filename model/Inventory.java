@@ -5,11 +5,21 @@ import reflection.Ref;
 public class Inventory {
 	public boolean CraftPortal() {
 		Ref.Call(this, "CraftPortal", null);
-		return false;
+		Boolean ret = Ref.RequestBool("Tud portált készíteni?");
+		Ref.Return("isCrafted",ret);
+		return ret;
 	}
 	
 	public Robot CraftRobot() {
 		Ref.Call(this, "CraftRobot", null);
+		Boolean ret = Ref.RequestBool("Tud robotot készíteni?");
+		if(ret) {
+			Robot r = new Robot();
+			Ref.Created(r, "newRobot");
+			return r;
+		}
+		
+		Ref.Return(Ref.nullObject);
 		return null;
 	}
 	
@@ -47,5 +57,6 @@ public class Inventory {
 	
 	public void RemoveItem(Material material) {
 		Ref.Call(this, "RemoveItem", material);
+		Ref.Return();
 	}
 }
