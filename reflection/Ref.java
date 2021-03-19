@@ -73,6 +73,15 @@ public class Ref //singleton, nem kell init-elni
 	
 	public static Variable nullObject = new Variable(new Object(), "null");
 	
+	public static void Return(String name, boolean value)
+	{
+		Return(name, ""+value);
+	}
+	public static void Return(String name, int value)
+	{
+		Return(name, ""+value);
+	}
+	
 	//Innentöl lefele a nem fontos
 //----------------------------------------------
 	private static Ref instance = null;
