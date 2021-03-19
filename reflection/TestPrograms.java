@@ -176,13 +176,16 @@ public class TestPrograms {
 	// 8.
 	public static void SettlerBuildAndPlaceRobot()
 	{
+		//init begin
+		printInit();
+		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
 		
-		Resource resource = new Coal();
-		Ref.Created(resource, "resource");
+		//Resource resource = new Coal();
+		//Ref.Created(resource, "resource");
 		
-		asteroid.SetResource(resource);
+		//asteroid.SetResource(resource);
 		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
@@ -192,13 +195,16 @@ public class TestPrograms {
 		Ref.Created(inventory, "inventory");
 		settler.SetInventory(inventory);
 		
+		//interact begin
+		printInteraction();		
+		
 		settler.CreateRobot();
 	}
 	// 9.
 	public static void RobotWorkAsteroid()
 	{
 		//init begin
-		//printInit();
+		printInit();
 		
 		Game game = new Game();
 		Ref.Created(game, "game");
@@ -219,7 +225,7 @@ public class TestPrograms {
 
 		
 		//interact begin
-		//printInteraction();
+		printInteraction();
 		
 		game.AllRobotsWork();
 		
@@ -227,6 +233,9 @@ public class TestPrograms {
 	// 10.
 	public static void RobotWorkPortal()
 	{
+		//init begin
+		printInit();
+		
 		Game game = new Game();
 		Ref.Created(game, "game");
 		
@@ -245,7 +254,7 @@ public class TestPrograms {
 		portal.SetPair(pair);
 		pair.SetAsteroid(pairAsteroid);
 		
-		//asteroid.SetPortal(portal);
+		
 		asteroid.addNeighbor(portal);
 		
 		Robot robot = new Robot();
@@ -254,11 +263,18 @@ public class TestPrograms {
 		game.SetRobots(robot);
 		asteroid.ReceiveUnit(robot);
 		
+		//interact begin
+		printInteraction();	
+		
 		game.AllRobotsWork();
+		
 	}
 	// 11.
 	public static void Sunstorm()
 	{
+		//init begin
+		printInit();
+		
 		Game game = new Game();
 		Ref.Created(game, "game");
 		
@@ -271,12 +287,19 @@ public class TestPrograms {
 		
 		game.SetAsteroids(asteroid);
 		
+		//interact begin
+		printInteraction();	
+		
 		game.CreateSunstorm();
 		
 	}
 	// 12.
 	public static void ExposeCoal()
 	{
+		
+		//init begin
+		printInit();
+		
 		Game game = new Game();
 		Ref.Created(game, "game");
 		
@@ -289,11 +312,18 @@ public class TestPrograms {
 		
 		asteroid.SetResource(resource);
 		
+		//interact begin
+		printInteraction();	
+		
 		game.EndTurnAsteroidEffect();
 	}
 	// 13.
 	public static void ExposeIce()
 	{
+		
+		//init begin
+		printInit();
+		
 		Game game = new Game();
 		Ref.Created(game, "game");
 		
@@ -305,6 +335,9 @@ public class TestPrograms {
 		Ref.Created(resource, "resource");
 		
 		asteroid.SetResource(resource);
+		
+		//interact begin
+		printInteraction();	
 		
 		game.EndTurnAsteroidEffect();
 	}
@@ -366,6 +399,7 @@ public class TestPrograms {
 		Ref.Created(robot, "robot");
 		
 		asteroid.ReceiveUnit(robot);
+		
 		//interact begin
 		printInteraction();
 		
