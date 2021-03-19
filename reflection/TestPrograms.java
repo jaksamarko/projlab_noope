@@ -182,11 +182,6 @@ public class TestPrograms {
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
 		
-		//Resource resource = new Coal();
-		//Ref.Created(resource, "resource");
-		
-		//asteroid.SetResource(resource);
-		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
 		asteroid.ReceiveUnit(settler);

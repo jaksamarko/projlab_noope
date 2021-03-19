@@ -16,6 +16,7 @@ public class Inventory {
 		if(ret) {
 			Robot r = new Robot();
 			Ref.Created(r, "newRobot");
+			Ref.Return(r);
 			return r;
 		}
 		
