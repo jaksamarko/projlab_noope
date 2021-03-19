@@ -104,6 +104,10 @@ public class TestPrograms {
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
 		
+		Inventory inventory = new Inventory();
+		Ref.Created(inventory, "inventory");
+		settler.SetInventory(inventory);
+		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
 		asteroid.ReceiveUnit(settler);

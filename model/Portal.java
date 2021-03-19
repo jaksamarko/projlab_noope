@@ -24,7 +24,7 @@ public class Portal implements Travelable {
 	
 	public boolean SendUnitToPair(Unit unit) {
 		Ref.Call(this, "SendUnitToPair", unit);
-		asteroid.AddUnit(unit);
+		asteroid.ReceiveUnit(unit);
 		Ref.Return();
 		return true;
 	}
