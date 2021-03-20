@@ -50,10 +50,9 @@ public class Inventory {
 		return null;
 	}
 	
-	public boolean InsertItem(Material material) {
+	public void InsertItem(Material material) {
 		Ref.Call(this, "InsertItem", material);
 		Ref.Return();
-		return false;
 	}
 	
 	public void RemoveItem(Material material) {

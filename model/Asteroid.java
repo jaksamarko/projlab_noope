@@ -13,14 +13,17 @@ public class Asteroid implements Travelable {
 	public int GetLayers() {
 		return Ref.RequestInt("Mekkora a kéreg?");
 	}
+	//TODO ezt az 5. teszt hibás mûködése miatt változtattam. pls check h így jó-e also, ehhez van egy hosszabb kommentem, csoportba ment
 	public boolean AcceptResource(Resource resource) {
 		Ref.Call(this, "AcceptResource", resource);
 		boolean ret = false;
-		if(this.resource==null) {
-			ret=true;
+		if(resource!=null) {
+			if(this.resource==null) {
+				ret=true;
+				this.SetResource(resource);
+			}
 		}
-		this.SetResource(resource);
-		Ref.Return();
+		Ref.Return("taken",ret);
 		return ret;
 	}
 	
@@ -89,6 +92,7 @@ public class Asteroid implements Travelable {
 	private boolean IsNearSun() {
 		Ref.Call(this, "IsNearSun", null);
 		Boolean in = Ref.RequestBool("Napközelben van?");
+		Ref.Return("result",in);
 		return in;
 	}
 	
@@ -129,8 +133,7 @@ public class Asteroid implements Travelable {
 	public boolean RemoveLayer() {
 		Ref.Call(this, "RemoveLayer", null);
 		Boolean result = Ref.RequestBool("Lehet fúrni?");
-		Ref.Created(result, "result");
-		Ref.Return(result);
+		Ref.Return("result",result);
 		return result;
 	}
 	

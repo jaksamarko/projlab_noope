@@ -37,6 +37,7 @@ public abstract class Unit {
 	
 	protected void MakeStepDone() {
 		Ref.Call(this, "MakeStepDone", null);
+		Ref.Return();
 	}
 	protected boolean getStepDone() {
 		return false;

@@ -12,23 +12,15 @@ public class TestPrograms {
 	// 1.
 	public static void SettlerTravelAsteroid()
 	{		
-		//printInit();
-		//Init
+		//init begin
+		printInit();
+		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
-		
-		Coal aResource = new Coal();
-		Ref.Created(aResource, "aResource");
-		
-		asteroid.SetResource(aResource);
-		
+
 		Asteroid target = new Asteroid();
 		Ref.Created(target, "target");
 		
-		Coal tResource = new Coal();
-		Ref.Created(tResource, "tResource");
-		
-		target.SetResource(tResource);
 		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
@@ -36,20 +28,19 @@ public class TestPrograms {
 		
 		asteroid.addNeighbor(target);
 		
-		//printInteraction();
-		//Interaction
+		//interact begin
+		printInteraction();
+		
 		settler.Move(target);
 	}
 	// 2.
 	public static void SettlerTravelPortal()
 	{
+		//init begin
+		printInit();
+		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
-		
-		Coal aResource = new Coal();
-		Ref.Created(aResource, "aResource");
-		
-		asteroid.SetResource(aResource);
 		
 		Portal target = new Portal();
 		Ref.Created(target, "target");
@@ -68,20 +59,19 @@ public class TestPrograms {
 		Asteroid pairAsteroid = new Asteroid();
 		Ref.Created(pairAsteroid, "pairAsteroid");
 		
-		Coal tResource = new Coal();
-		Ref.Created(tResource, "tResource");
-		
-		pairAsteroid.SetResource(tResource);
-		
 		pair.SetAsteroid(pairAsteroid);
 		
-		//Interaction
+		//interact begin
+		printInteraction();
 		
 		settler.Move(target);
 	}
 	// 3.
 	public static void SettlerDrill()
 	{
+		//init begin
+		printInit();
+		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
 		
@@ -94,13 +84,17 @@ public class TestPrograms {
 		Ref.Created(settler, "settler");
 		asteroid.ReceiveUnit(settler);
 		
-		//Interaction
+		//interact begin
+		printInteraction();
 		
 		settler.Drill();
 	}
-	// 4.
+	// 4.	//TODO Ez nem egyezik  a szekvenciával, de nem emlékszem miben maradtunk, szal így hagyom
 	public static void SettlerMine()
 	{
+		//init begin
+		printInit();
+		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
 		
@@ -117,13 +111,17 @@ public class TestPrograms {
 		
 		asteroid.SetResource(aResource);
 		
-		//Interaction
+		//interact begin
+		printInteraction();
 		
 		settler.Mine();
 	}
 	// 5.
 	public static void SettlerPutBack()
 	{
+		//init begin
+		printInit();
+		
 		Ref.Created(Material.Coal, "material");
 		
 		Settler settler = new Settler();
@@ -139,13 +137,17 @@ public class TestPrograms {
 		Ref.Created(asteroid, "asteroid");
 		asteroid.ReceiveUnit(settler);
 		
-		//Interaction
+		//interact begin
+		printInteraction();
 		
 		settler.PutResourceBack(Material.Coal);
 	}
 	// 6.
 	public static void SettlerBuildPortal()
 	{
+		//init begin
+		printInit();
+		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
 		
@@ -153,12 +155,18 @@ public class TestPrograms {
 		Ref.Created(inventory, "inventory");
 		
 		settler.SetInventory(inventory);
-		//Interaction
+
+		//interact begin
+		printInteraction();
+		
 		settler.CreatePortal();
 	}
 	// 7.
 	public static void SettlerPlacePortal()
 	{
+		//init begin
+		printInit();
+		
 		Settler settler = new Settler();
 		Ref.Created(settler, "settler");
 		
@@ -170,7 +178,9 @@ public class TestPrograms {
 		Ref.Created(inventory, "inventory");
 		settler.SetInventory(inventory);
 		
-		//Interaction
+		//interact begin
+		printInteraction();
+		
 		settler.PlacePortal();
 	}
 	// 8.
