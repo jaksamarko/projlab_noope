@@ -58,7 +58,6 @@ public class Settler extends Unit {
 			this.MakeStepDone();
 		}
 		Ref.Return();
-		
 	}
 	
 	public void Exploded()

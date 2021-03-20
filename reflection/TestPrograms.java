@@ -126,6 +126,8 @@ public class TestPrograms {
 		Ref.Created(inventory, "inventory");
 		settler.SetInventory(inventory);
 		
+		inventory.InsertItem(Material.Coal);
+		
 		Asteroid asteroid = new Asteroid();
 		Ref.Created(asteroid, "asteroid");
 		asteroid.ReceiveUnit(settler);
