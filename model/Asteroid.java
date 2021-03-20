@@ -18,7 +18,8 @@ public class Asteroid implements Travelable {
 		Ref.Call(this, "AcceptResource", resource);
 		boolean ret = false;
 		if(resource!=null) {
-			if(this.resource==null) {
+			boolean noResource = Ref.RequestBool("Üres?");
+			if(noResource) {
 				ret=true;
 				this.SetResource(resource);
 			}
