@@ -110,11 +110,12 @@ public class Asteroid implements Travelable {
 	
 	public Resource MineResource() {
 		Ref.Call(this, "MineResource", null);
-		if(resource!=null) {
-			Resource removedMaterial = this.RemoveResource();
-			Ref.Created(removedMaterial, "minedMaterial");
-			Ref.Return(removedMaterial);
-			return removedMaterial;
+		Resource mat = this.RemoveResource();
+		if(mat!=null) {
+			Resource minedMaterial = new Coal(); 
+			Ref.Created(minedMaterial, "minedMaterial");
+			Ref.Return(minedMaterial);
+			return minedMaterial;
 		}
 		Ref.Return(Ref.nullObject);
 		return null;
@@ -139,7 +140,15 @@ public class Asteroid implements Travelable {
 	
 	public Resource RemoveResource() {
 		Ref.Call(this, "RemoveResource", null);
-		return resource;
+		Boolean result = Ref.RequestBool("Van resource?");
+		if(result) {
+			Coal res = new Coal();
+			Ref.Created(res, "removedMaterial");
+			Ref.Return(res);
+			return res;
+		}
+		Ref.Return(Ref.nullObject);
+		return null;
 	}
 	
 	public void RemoveUnit(Unit unit) {

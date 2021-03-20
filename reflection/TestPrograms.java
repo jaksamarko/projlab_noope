@@ -106,11 +106,6 @@ public class TestPrograms {
 		Ref.Created(asteroid, "asteroid");
 		asteroid.ReceiveUnit(settler);
 		
-		Coal aResource = new Coal();
-		Ref.Created(aResource, "aResource");
-		
-		asteroid.SetResource(aResource);
-		
 		//interact begin
 		printInteraction();
 		
