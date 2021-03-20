@@ -13,15 +13,13 @@ public class Asteroid implements Travelable {
 	public int GetLayers() {
 		return Ref.RequestInt("Mekkora a kéreg?");
 	}
-	//TODO ezt az 5. teszt hibás mûködése miatt változtattam. pls check h így jó-e also, ehhez van egy hosszabb kommentem, csoportba ment
+
 	public boolean AcceptResource(Resource resource) {
 		Ref.Call(this, "AcceptResource", resource);
-		boolean ret = false;
-		if(resource!=null) {
-			if(this.resource==null) {
-				ret=true;
-				this.SetResource(resource);
-			}
+		boolean ret = Ref.RequestBool("Üres az aszter?");
+		Ref.Created(ret, "taken");
+		if(ret) {
+			this.SetResource(resource);
 		}
 		Ref.Return("taken",ret);
 		return ret;
