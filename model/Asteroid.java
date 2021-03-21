@@ -78,7 +78,6 @@ public class Asteroid implements Travelable {
 		boolean result = this.IsNearSun();
 		if(result && GetLayers() == 0) {
 			resource.Exposed();
-			this.DestroySelf();
 		}
 		Ref.Return();
 	}
