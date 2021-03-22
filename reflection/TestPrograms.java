@@ -89,7 +89,7 @@ public class TestPrograms {
 		
 		settler.Drill();
 	}
-	// 4.	//TODO Ez nem egyezik  a szekvenciával, de nem emlékszem miben maradtunk, szal így hagyom
+
 	public static void SettlerMine()
 	{
 		//init begin

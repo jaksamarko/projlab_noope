@@ -20,8 +20,6 @@ public class Asteroid implements Travelable {
 	public int GetLayers() {
 		return Ref.RequestInt("Mekkora a kéreg?");
 	}
-	//TODO ezt az 5. teszt hibás mûködése miatt változtattam. pls check h így jó-e also, ehhez van egy hosszabb kommentem, csoportba ment
-	
 	/**
 	 * Elfogad egy resource anyagot és igazat ad, ha sikerült is betenni, mert ha már van, akkor nem engedi.
 	 * @param resource

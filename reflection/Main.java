@@ -10,7 +10,7 @@ public class Main
 		Ref.Reset();
 		
 		String startText = "";
-		startText+="Válasz teszt programot:"
+		startText+="Válassz teszt programot:"
 		+ "\n1. Settler utazik Aszteroidára"
 		+ "\n2. Settler utazik Aszteroidára portálon keresztül"
 		+ "\n3. Settler Fúr"
