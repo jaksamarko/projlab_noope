@@ -1,7 +1,5 @@
 package model;
 
-import reflection.Ref;
-
 /**
  * A játékban lévõ nyersanyagok, amelyek a játék megnyeréséhez szükségesek. 
  * Vannak köztük, amelyek egy teljesen kifúrt, napközelben lévõ aszteroidán bizonyos viselkedést hajtanak végre. 

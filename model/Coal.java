@@ -1,7 +1,5 @@
 package model;
 
-import reflection.Ref;
-
 /**
  * 
  * A játék teljesítéséhez szolgáló nyersanyagok egyike. 
