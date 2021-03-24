@@ -3,13 +3,13 @@ package model;
 import reflection.Ref;
 
 /**
- * A játékban mozgó, AI által vezérelt, fúrni és mozogni képes egységek.
+ * A jÃ¡tÃ©kban mozgÃ³, AI Ã¡ltal vezÃ©relt, fÃºrni Ã©s mozogni kÃ©pes egysÃ©gek.
  */
 public class Robot extends Unit {
 	public Game game;
 	
 	/**
-	 * Ha az aszteroida felrobbant, amin tartózkodott, a robot egy szomszédos aszteroidára sodródik.
+	 * Ha az aszteroida felrobbant, amin tartÃ³zkodott, a robot egy szomszÃ©dos aszteroidÃ¡ra sodrÃ³dik.
 	 */
 	public void Exploded() {
 		Ref.Call(this, "Exploded", null);
@@ -20,7 +20,7 @@ public class Robot extends Unit {
 	}
 	
 	/**
-	 * Ez alapján hajtja végre a lépését a robot: fúr vagy mozog.
+	 * Ez alapjÃ¡n hajtja vÃ©gre a lÃ©pÃ©sÃ©t a robot: fÃºr vagy mozog.
 	 */
 	public void Work() {
 		Ref.Call(this, "Work", null);

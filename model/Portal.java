@@ -3,8 +3,8 @@ package model;
 import reflection.Ref;
 
 /**
- * A játék során segítse a telepesek közlekedését és az adott kapu párjához tartozó aszteroidára továbbítsa a játékost.
- * Illetve az õ dolga összekapcsolnia magát más kapuval, ha van már a játékban párosítatlan kapu.
+ * A jÃ¡tÃ©k sorÃ¡n segÃ­tse a telepesek kÃ¶zlekedÃ©sÃ©t Ã©s az adott kapu pÃ¡rjÃ¡hoz tartozÃ³ aszteroidÃ¡ra tovÃ¡bbÃ­tsa a jÃ¡tÃ©kost.
+ * Illetve az Ãµ dolga Ã¶sszekapcsolnia magÃ¡t mÃ¡s kapuval, ha van mÃ¡r a jÃ¡tÃ©kban pÃ¡rosÃ­tatlan kapu.
  */
 public class Portal implements Travelable {
 	private static Portal unpairedPortal;
@@ -12,7 +12,7 @@ public class Portal implements Travelable {
 	public Portal pair;
 	
 	/**
-	 * Ez lényegében egy konstruktor függvény, végbe viszi a portál összekötés logikáját.
+	 * Ez lÃ©nyegÃ©ben egy konstruktor fÃ¼ggvÃ©ny, vÃ©gbe viszi a portÃ¡l Ã¶sszekÃ¶tÃ©s logikÃ¡jÃ¡t.
 	 */
 	public void Created() {
 		Ref.Call(this, "Created", null);
@@ -20,7 +20,7 @@ public class Portal implements Travelable {
 	}
 	
 	/**
-	 * Erõforrásokat felszabadító függvény, akkor hívódik meg, mikor az aszteroida megsemmisül, ezzel együtt a portálja is, errõl értesíteni kell a portál párját, mert az is felrobban.
+	 * ErÃµforrÃ¡sokat felszabadÃ­tÃ³ fÃ¼ggvÃ©ny, akkor hÃ­vÃ³dik meg, mikor az aszteroida megsemmisÃ¼l, ezzel egyÃ¼tt a portÃ¡lja is, errÃµl Ã©rtesÃ­teni kell a portÃ¡l pÃ¡rjÃ¡t, mert az is felrobban.
 	 */
 	public void Destroyed() {
 		Ref.Call(this, "Destroyed", null);
@@ -28,7 +28,7 @@ public class Portal implements Travelable {
 	}
 	
 	/**
-	 * Fogad egy unit-ot egy másik portáltól.
+	 * Fogad egy unit-ot egy mÃ¡sik portÃ¡ltÃ³l.
 	 * @param unit A fogadott unit.
 	 */
 	public void ReceiveUnit(Unit unit) {
@@ -38,10 +38,10 @@ public class Portal implements Travelable {
 	}
 	
 	/**
-	 * Egy unit használatba veszi a portált.
-	 * Arról, hogy ez lehetséges-e (van-e párja a portálnak) egy boolean ad igazolást,ekkor az utazás meg is fog történni.
-	 * @param unit A unit ami a portált használja.
-	 * @return Igaz, ha az utazás lehetséges.
+	 * Egy unit hasznÃ¡latba veszi a portÃ¡lt.
+	 * ArrÃ³l, hogy ez lehetsÃ©ges-e (van-e pÃ¡rja a portÃ¡lnak) egy boolean ad igazolÃ¡st,ekkor az utazÃ¡s meg is fog tÃ¶rtÃ©nni.
+	 * @param unit A unit ami a portÃ¡lt hasznÃ¡lja.
+	 * @return Igaz, ha az utazÃ¡s lehetsÃ©ges.
 	 */
 	public boolean SendUnitToPair(Unit unit) {
 		Ref.Call(this, "SendUnitToPair", unit);
@@ -51,7 +51,7 @@ public class Portal implements Travelable {
 	}
 	
 	/**
-	 * Beállítja az aszeroidát 
+	 * BeÃ¡llÃ­tja az aszeroidÃ¡t 
 	 * @param asteroid Az aszteroida amihez a kapu tartozik.
 	 */
 	public void SetAsteroid(Asteroid asteroid) {
@@ -61,8 +61,8 @@ public class Portal implements Travelable {
 	}
 	
 	/**
-	 * Beállítja a kapu párját.
-	 * @param portal A pár, amihez a kaput kötni akarjuk.
+	 * BeÃ¡llÃ­tja a kapu pÃ¡rjÃ¡t.
+	 * @param portal A pÃ¡r, amihez a kaput kÃ¶tni akarjuk.
 	 */
 	public void SetPair(Portal portal) {
 		Ref.Call(this, "SetPair", portal);

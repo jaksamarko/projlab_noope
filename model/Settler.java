@@ -3,9 +3,9 @@ package model;
 import reflection.*;
 
 /**
- * A játékban azok az egységek, amiket a játékosok irányítanak. 
- * Körönként egy lépést hajthatnak végre, amely lehet craftolás, mozgás, fúrás, bányászat, nyersanyag visszahelyezése. 
- * Meghalnak, ha nincsenek elbújva napviharkor, valamint ha egy felrobbanó aszteroidán tartózkodnak.
+ * A jÃ¡tÃ©kban azok az egysÃ©gek, amiket a jÃ¡tÃ©kosok irÃ¡nyÃ­tanak. 
+ * KÃ¶rÃ¶nkÃ©nt egy lÃ©pÃ©st hajthatnak vÃ©gre, amely lehet craftolÃ¡s, mozgÃ¡s, fÃºrÃ¡s, bÃ¡nyÃ¡szat, nyersanyag visszahelyezÃ©se. 
+ * Meghalnak, ha nincsenek elbÃºjva napviharkor, valamint ha egy felrobbanÃ³ aszteroidÃ¡n tartÃ³zkodnak.
  */
 public class Settler extends Unit {
 	private Inventory inventory;
@@ -16,7 +16,7 @@ public class Settler extends Unit {
 	}
 	
 	/**
-	 * Ha van elegendõ nyersanyag náluk, portál-pár craftolása, mely a saját inventoryjába kerül.
+	 * Ha van elegendÃµ nyersanyag nÃ¡luk, portÃ¡l-pÃ¡r craftolÃ¡sa, mely a sajÃ¡t inventoryjÃ¡ba kerÃ¼l.
 	 */
 	public void CreatePortal() {
 		Ref.Call(this, "CreatePortal", null);
@@ -28,7 +28,7 @@ public class Settler extends Unit {
 	}
 	
 	/**
-	 * Ha van elegendõ nyersanyag náluk, robot craftolása, mely az adott aszteroidára kerül.
+	 * Ha van elegendÃµ nyersanyag nÃ¡luk, robot craftolÃ¡sa, mely az adott aszteroidÃ¡ra kerÃ¼l.
 	 */
 	public void CreateRobot() {
 		Ref.Call(this, "CreateRobot", null);
@@ -42,7 +42,7 @@ public class Settler extends Unit {
 	}
 	
 	/**
-	 * Bányászat mûvelete, amelyet azon az aszteroidán végezhet el, amelyiken éppen tartózkodik. Ha sikeres, az inventoryjába kerül a nyersanyag.
+	 * BÃ¡nyÃ¡szat mÃ»velete, amelyet azon az aszteroidÃ¡n vÃ©gezhet el, amelyiken Ã©ppen tartÃ³zkodik. Ha sikeres, az inventoryjÃ¡ba kerÃ¼l a nyersanyag.
 	 */
 	public void Mine() {
 		Ref.Call(this, "Mine", null);
@@ -55,7 +55,7 @@ public class Settler extends Unit {
 	}
 	
 	/**
-	 * Az inventoryjából egy portál lehelyezése az adott aszteroidára, amennyiben ez lehetséges. Ha már volt páratlan portál, összekapcsolódik a kettõ.
+	 * Az inventoryjÃ¡bÃ³l egy portÃ¡l lehelyezÃ©se az adott aszteroidÃ¡ra, amennyiben ez lehetsÃ©ges. Ha mÃ¡r volt pÃ¡ratlan portÃ¡l, Ã¶sszekapcsolÃ³dik a kettÃµ.
 	 */
 	public void PlacePortal() {
 		Ref.Call(this, "PlacePortal", null);
@@ -67,9 +67,9 @@ public class Settler extends Unit {
 	}
 	
 	/**
-	 * Amennyiben üres az aszteroida magja, amin tartózkodik, visszahelyezhet egy darab nyersanyagot az aszteroidába. 
-	 * Ekkor ez a nyersanyag eltûnik az inventoryjából.
-	 * @param material A nyersanyag, amit visszahelyezünk.
+	 * Amennyiben Ã¼res az aszteroida magja, amin tartÃ³zkodik, visszahelyezhet egy darab nyersanyagot az aszteroidÃ¡ba. 
+	 * Ekkor ez a nyersanyag eltÃ»nik az inventoryjÃ¡bÃ³l.
+	 * @param material A nyersanyag, amit visszahelyezÃ¼nk.
 	 */
 	public void PutResourceBack(Material material) {
 		Ref.Call(this, "PutResourceBack", material);
@@ -88,7 +88,7 @@ public class Settler extends Unit {
 	}
 	
 	/**
-	 * Ha az aszteroida, amin épp tartózkodik, felrobban, a telepes meghal.
+	 * Ha az aszteroida, amin Ã©pp tartÃ³zkodik, felrobban, a telepes meghal.
 	 */
 	public void Exploded()
 	{
@@ -98,8 +98,8 @@ public class Settler extends Unit {
 	}
 	
 	/**
-	 * Beállítja a setterhez tartozó inventoryt.
-	 * @param inventory Az inventory, amit a settlerhez rendelünk.
+	 * BeÃ¡llÃ­tja a setterhez tartozÃ³ inventoryt.
+	 * @param inventory Az inventory, amit a settlerhez rendelÃ¼nk.
 	 */
 	public void SetInventory(Inventory inventory) {
 		Ref.Call(this, "SetInventory", inventory);

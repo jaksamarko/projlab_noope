@@ -1,76 +1,47 @@
 package reflection;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-/**
- * 
- * singleton, nem kell init-elni
- *
- */
+
 public class Ref 
 {
-	/**
-	 * Meg kell hívni, ha új objektum-ot hozol létre. (utána)
-	 * @param object
-	 * @param name
-	 */
+	
 	
 	public static void Created(Object object, String name)
 	{
 		if(instance == null) Reset();
 		instance.o_addObject(object, name);
 	}
-	/**
-	 * Ott kell lennie minden metódus elsö sorában. args: (this, "metódus neve", argumentum)
-	 * @param called
-	 * @param func
-	 * @param arg
-	 */
+	
 	
 	public static void Call(Object called, String func, Object arg)
 	{
 		if(instance == null) Reset();
 		instance.o_call(called, func, arg);
 	}
-	/**
-	 * Meg kell hívni minden void metódus végén, és a teljes algirtumus végén is.
-	 */
+	
 	public static void Return()
 	{
 		if(instance == null) Reset();
 		instance.o_Return();
 	}
 	
-	/**
-	 * Meg kell hívni, ha a metódus objektum típussal tér vissza
-	 * @param object
-	 */
+	
 	public static void Return(Object object)
 	{
 		if(instance == null) Reset();
 		instance.o_Return(object);
 	}
 	
-	/**
-	 * Meg kell hívni, hogyha a metódus primitívvel tér vissza
-	 * @param name
-	 * @param value
-	 */
+	
 	public static void Return(String name, String value)
 	{
 		if(instance == null) Reset();
 		instance.o_Return(name, value);
 	}
 	
-	/**
-	 * Az argumentumban megadott szöveget kiírja a konzolra és vár válaszra majd azt visszadja a vissza térési értékként
-	 * figyelemben tartja az indentálást
-	 * @param requestText
-	 * @return
-	 */
 	public static boolean RequestBool(String requestText)
 	{
 		System.out.print(instance.getStackIndentation()+requestText+"\n"+instance.getStackIndentation());
@@ -83,12 +54,7 @@ public class Ref
 			e.printStackTrace();}
 		return (Boolean.parseBoolean(re));
 	}
-	/**
-	 * Az argumentumban megadott int-et kiírja a konzolra és vár válaszra majd azt visszadja a vissza térési értékként
-	 * figyelemben tartja az indentálást
-	 * @param requestText
-	 * @return
-	 */
+	
 	public static int RequestInt(String requestText)
 	{
 		System.out.print(instance.getStackIndentation()+requestText+"\n"+instance.getStackIndentation());
@@ -102,9 +68,7 @@ public class Ref
 		return (Integer.parseInt(re));
 	}
 	
-	/**
-	 * Újra indítja az egész singleton-t
-	 */
+	
 	public static void Reset()
 	{
 		instance = new Ref(); 
@@ -120,8 +84,6 @@ public class Ref
 	{
 		Return(name, ""+value);
 	}
-	
-	//Innentöl lefele a nem fontos
 //----------------------------------------------
 	private static Ref instance = null;
 	

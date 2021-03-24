@@ -10,22 +10,22 @@ public class Main
 		Ref.Reset();
 		
 		String startText = "";
-		startText+="Válassz teszt programot:"
-		+ "\n1. Settler utazik Aszteroidára"
-		+ "\n2. Settler utazik Aszteroidára portálon keresztül"
-		+ "\n3. Settler Fúr"
-		+ "\n4. Settler bányászik"
+		startText+="VÃ¡lassz teszt programot:"
+		+ "\n1. Settler utazik AszteroidÃ¡ra"
+		+ "\n2. Settler utazik AszteroidÃ¡ra portÃ¡lon keresztÃ¼l"
+		+ "\n3. Settler FÃºr"
+		+ "\n4. Settler bÃ¡nyÃ¡szik"
 		+ "\n5. Settler visszateszi az alapanyagot"
-		+ "\n6. Settler portált épít"
-		+ "\n7. Settler lehelyezi a portált"
-		+ "\n8. Settler robotot épít és lehelyez"
+		+ "\n6. Settler portÃ¡lt Ã©pÃ­t"
+		+ "\n7. Settler lehelyezi a portÃ¡lt"
+		+ "\n8. Settler robotot Ã©pÃ­t Ã©s lehelyez"
 		+ "\n9. Robotok dolgoztatva vannak"
-		+ "\n10. Robotok dolgoztatva vannak, de portálba megy bele egy robot"
-		+ "\n11. Napvihar történik"
-		+ "\n12. Körvégi napsütés hatása Szénre (megegyezik a vaséval)"
-		+ "\n13. Körvégi napsütés hatása Jégre"
-		+ "\n14. Körvégi napsütés hatása Urániumra, úgy ,hogy Settler van az aszteroidán"
-		+ "\n15. Körvégi napsütés hatása Urániumra, úgy, hogy Robot van az aszteroidán";
+		+ "\n10. Robotok dolgoztatva vannak, de portÃ¡lba megy bele egy robot"
+		+ "\n11. Napvihar tÃ¶rtÃ©nik"
+		+ "\n12. KÃ¶rvÃ©gi napsÃ¼tÃ©s hatÃ¡sa SzÃ©nre (megegyezik a vasÃ©val)"
+		+ "\n13. KÃ¶rvÃ©gi napsÃ¼tÃ©s hatÃ¡sa JÃ©gre"
+		+ "\n14. KÃ¶rvÃ©gi napsÃ¼tÃ©s hatÃ¡sa UrÃ¡niumra, Ãºgy ,hogy Settler van az aszteroidÃ¡n"
+		+ "\n15. KÃ¶rvÃ©gi napsÃ¼tÃ©s hatÃ¡sa UrÃ¡niumra, Ãºgy, hogy Robot van az aszteroidÃ¡n";
 		
 		int inp = Ref.RequestInt(startText);
 		switch(inp) {

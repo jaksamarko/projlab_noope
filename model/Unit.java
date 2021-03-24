@@ -3,15 +3,15 @@ package model;
 import reflection.*;
 
 /**
- * Absztrakt õsosztály, amibõl következik a Robot és a Settler. 
- * Ez felel a mozgásukért, hogy “A” aszteroidáról eljussanak “B” aszteroidára, illetve képesek legyenek az aszteroida rétegét fúrni. 
- * Azt is figyelembe veszi, hogy egyszerre csak egy dolgot tehessenek, erre van egy változó.
+ * Absztrakt ÃµsosztÃ¡ly, amibÃµl kÃ¶vetkezik a Robot Ã©s a Settler. 
+ * Ez felel a mozgÃ¡sukÃ©rt, hogy â€œAâ€ aszteroidÃ¡rÃ³l eljussanak â€œBâ€ aszteroidÃ¡ra, illetve kÃ©pesek legyenek az aszteroida rÃ©tegÃ©t fÃºrni. 
+ * Azt is figyelembe veszi, hogy egyszerre csak egy dolgot tehessenek, erre van egy vÃ¡ltozÃ³.
  */
 public abstract class Unit {
 	protected Asteroid asteroid;
 	
 	/**
-	 * Ez a függvény hívódik meg, mikor valamelyik okból az adott egység meghal.
+	 * Ez a fÃ¼ggvÃ©ny hÃ­vÃ³dik meg, mikor valamelyik okbÃ³l az adott egysÃ©g meghal.
 	 */
 	public void Die() {
 		Ref.Call(this, "Die", null);
@@ -19,7 +19,7 @@ public abstract class Unit {
 	}
 	
 	/**
-	 * Fúrás tevékenység, szól az aszteroidának, hogy egy réteget le akar fúrni.
+	 * FÃºrÃ¡s tevÃ©kenysÃ©g, szÃ³l az aszteroidÃ¡nak, hogy egy rÃ©teget le akar fÃºrni.
 	 */
 	public void Drill() {
 		Ref.Call(this, "Drill", null);
@@ -31,13 +31,13 @@ public abstract class Unit {
 	}
 	
 	/**
-	 * Ez egy virtuális függvény, ami akkor hívódik meg, mikor az aszteroida (amin tartózkodott) felrobbant.
+	 * Ez egy virtuÃ¡lis fÃ¼ggvÃ©ny, ami akkor hÃ­vÃ³dik meg, mikor az aszteroida (amin tartÃ³zkodott) felrobbant.
 	 */
 	public abstract void Exploded();
 	
 	/**
-	 * Egyik aszteroidáról a másikra való közlekedés.
-	 * @param target Célaszteroida, amire megyünk.
+	 * Egyik aszteroidÃ¡rÃ³l a mÃ¡sikra valÃ³ kÃ¶zlekedÃ©s.
+	 * @param target CÃ©laszteroida, amire megyÃ¼nk.
 	 */
 	public void Move(Travelable target)
 	{
@@ -54,7 +54,7 @@ public abstract class Unit {
 	}
 	
 	/**
-	 *  Setter függvény ami arra van hogy amikor egy mûveletet sikeresen végrehajtott akkor beállítja a stepDone változót. 
+	 *  Setter fÃ¼ggvÃ©ny ami arra van hogy amikor egy mÃ»veletet sikeresen vÃ©grehajtott akkor beÃ¡llÃ­tja a stepDone vÃ¡ltozÃ³t. 
 	 */
 	protected void MakeStepDone() {
 		Ref.Call(this, "MakeStepDone", null);
@@ -62,8 +62,8 @@ public abstract class Unit {
 	}
 	
 	/**
-	 * Beállítja a unit Asteroida referenciáját.
-	 * @param asteroid Az aszteroida, amin a unit tartózkodik.
+	 * BeÃ¡llÃ­tja a unit Asteroida referenciÃ¡jÃ¡t.
+	 * @param asteroid Az aszteroida, amin a unit tartÃ³zkodik.
 	 */
 	public void SetAsteroid(Asteroid asteroid) 
 	{

@@ -3,15 +3,15 @@ package model;
 import reflection.Ref;
 
 /**
- * A játékban lévõ nyersanyagok, amelyek a játék megnyeréséhez szükségesek. 
- * Vannak köztük, amelyek egy teljesen kifúrt, napközelben lévõ aszteroidán bizonyos viselkedést hajtanak végre. 
- * A jég szublimál, az urán felrobban.
+ * A jÃ¡tÃ©kban lÃ©vÃµ nyersanyagok, amelyek a jÃ¡tÃ©k megnyerÃ©sÃ©hez szÃ¼ksÃ©gesek. 
+ * Vannak kÃ¶ztÃ¼k, amelyek egy teljesen kifÃºrt, napkÃ¶zelben lÃ©vÃµ aszteroidÃ¡n bizonyos viselkedÃ©st hajtanak vÃ©gre. 
+ * A jÃ©g szublimÃ¡l, az urÃ¡n felrobban.
  */
 public abstract class Resource {
 	public Asteroid asteroid;
 	
 	/**
-	 * Ennek a függvénynek a felüldefiniálásával valósítják meg az egyes nyersanyagok a napközelben lévõ, teljesen kifúrt aszteroidán való viselkedésüket.
+	 * Ennek a fÃ¼ggvÃ©nynek a felÃ¼ldefiniÃ¡lÃ¡sÃ¡val valÃ³sÃ­tjÃ¡k meg az egyes nyersanyagok a napkÃ¶zelben lÃ©vÃµ, teljesen kifÃºrt aszteroidÃ¡n valÃ³ viselkedÃ©sÃ¼ket.
 	 */
 	public void Exposed() {
 		Ref.Call(this, "Exposed", null);
@@ -19,7 +19,7 @@ public abstract class Resource {
 	}
 	
 	/**
-	 * Ha kibányásznak egy adott nyersanyagot, akkor ennek a függvénynek az adott nyersanyag által megvalósított változata fut le.
+	 * Ha kibÃ¡nyÃ¡sznak egy adott nyersanyagot, akkor ennek a fÃ¼ggvÃ©nynek az adott nyersanyag Ã¡ltal megvalÃ³sÃ­tott vÃ¡ltozata fut le.
 	 * @param inventory
 	 */
 	public abstract void PickedUp(Inventory inventory);

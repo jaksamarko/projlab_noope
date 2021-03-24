@@ -3,13 +3,13 @@ package model;
 import reflection.Ref;
 
 /**
- * A játék teljesítéséhez szolgáló nyersanyagok egyike. 
- * Ha egy teljesen kifúrt, napközelben lévõ aszteroidában van, felrobban.
+ * A jÃ¡tÃ©k teljesÃ­tÃ©sÃ©hez szolgÃ¡lÃ³ nyersanyagok egyike. 
+ * Ha egy teljesen kifÃºrt, napkÃ¶zelben lÃ©vÃµ aszteroidÃ¡ban van, felrobban.
  */
 public class Uranium extends Resource {
 	
 	/**
-	 *  A felrobbanást megvalósító függvény.
+	 *  A felrobbanÃ¡st megvalÃ³sÃ­tÃ³ fÃ¼ggvÃ©ny.
 	 */
 	public void Exposed() {
 		Ref.Call(this, "Exposed", null);
@@ -17,9 +17,9 @@ public class Uranium extends Resource {
 		Ref.Return();
 	}
 	/**
-	 * A nyersanyag kibányászása. 
-	 * A sikerességérõl a boolean visszatérési érték informál.
-	 * @param inventory Az inventory, amibe a kibányászott nyersanyagot tesszük.
+	 * A nyersanyag kibÃ¡nyÃ¡szÃ¡sa. 
+	 * A sikeressÃ©gÃ©rÃµl a boolean visszatÃ©rÃ©si Ã©rtÃ©k informÃ¡l.
+	 * @param inventory Az inventory, amibe a kibÃ¡nyÃ¡szott nyersanyagot tesszÃ¼k.
 	 */
 	public void PickedUp(Inventory inventory) {
 		Ref.Call(this, "PickedUp", inventory);
