@@ -5,7 +5,7 @@ package model;
  * Körönként egy lépést hajthatnak végre, amely lehet craftolás, mozgás, fúrás, bányászat, nyersanyag visszahelyezése. 
  * Meghalnak, ha nincsenek elbújva napviharkor, valamint ha egy felrobbanó aszteroidán tartózkodnak.
  */
-public class Settler extends Unit
+public class Settler extends DrillUnit
 {
 	private Inventory inventory;
 	

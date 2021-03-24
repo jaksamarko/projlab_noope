@@ -6,11 +6,20 @@ package model;
  */
 public class Uranium extends Resource {
 	
+	private int lives;
+	public Uranium()
+	{
+		lives = 3;
+	}
+	
 	/**
 	 *  A felrobbanást megvalósító függvény.
 	 */
-	public void Exposed() {
-		asteroid.Explode();
+	public void Exposed()
+	{
+		lives--;
+		if(lives == 0)
+			asteroid.Explode();
 	}
 	/**
 	 * A nyersanyag kibányászása. 

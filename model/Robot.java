@@ -2,7 +2,8 @@ package model;
 /**
  * A játékban mozgó, AI által vezérelt, fúrni és mozogni képes egységek.
  */
-public class Robot extends Unit {
+public class Robot extends DrillUnit implements Worker
+{
 	
 	public Robot(Asteroid _asteroid) {super(_asteroid);}
 	
@@ -23,11 +24,9 @@ public class Robot extends Unit {
 	 */
 	public void Work()
 	{
-		if(asteroid.RemoveLayer())
-		{
-			MakeStepDone();
+		Drill();
+		if(stepDone == true)
 			return;
-		}
 		Travelable neighbor = asteroid.GetRandomNeighbor();
 		if(neighbor == null)
 			return;

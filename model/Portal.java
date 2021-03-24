@@ -9,11 +9,13 @@ public class Portal implements Travelable
 	private static Portal unpairedPortal = null;
 	public Asteroid asteroid;
 	public Portal pair;
+	public boolean crazy;
 	
 	public Portal()
 	{
 		pair = null;
 		asteroid = null;
+		crazy = false;
 	}
 	
 	/**
@@ -70,5 +72,29 @@ public class Portal implements Travelable
 		}
 		pair = unpairedPortal;
 		unpairedPortal = null;
+	}
+	
+	public void EndTurnEffect()
+	{
+		if(crazy)
+		{
+			Travelable neighbor = asteroid.GetRandomNeighbor();
+			if(neighbor.ReceivePortal(this))
+			{
+				asteroid.RemovePortal();
+			}
+		}
+	}
+
+	@Override
+	public void Sunstorm()
+	{
+		crazy = true;
+	}
+
+	@Override
+	public boolean ReceivePortal(Portal portal)
+	{
+		return false;
 	}
 }

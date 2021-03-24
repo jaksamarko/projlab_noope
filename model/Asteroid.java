@@ -17,6 +17,7 @@ public class Asteroid implements Travelable {
 	private boolean IsNearSun() {return nearSun;}
 	public void AddUnit(Unit unit) {units.add(unit);}
 	public void addNeighbor(Travelable travelable) {neighbors.add(travelable);}
+	public ArrayList<Travelable> GetNeighbors() {return neighbors;}
 	
 	private int layers;
 	private boolean nearSun;
@@ -60,7 +61,7 @@ public class Asteroid implements Travelable {
 		Portal newPortal = inventory.GetPortal();
 		if(newPortal == null)
 			return false;
-		SetPortal(newPortal);
+		ReceivePortal(newPortal);
 		return true;
 	}
 	
@@ -80,15 +81,6 @@ public class Asteroid implements Travelable {
 		for(Unit u: units)
 			u.Exploded();
 		DestroySelf();
-	}
-	
-	/**
-	 *  Egy függvény, amivel lejátszódik az az esemény, amikor az aszteroida ki van fúrva teljesen. Ez fontos a napközeli események kezelésében.
-	 */
-	public void Exposure()
-	{
-		if(IsNearSun() && layers == 0) 
-			resource.Exposed();
 	}
 	
 	public Travelable GetRandomNeighbor()
@@ -168,14 +160,27 @@ public class Asteroid implements Travelable {
 		neighbors.remove(asteroid);
 	}
 	
-	public void SetPortal(Portal portal)
+	public boolean ReceivePortal(Portal portal)
 	{
 		this.portal = portal;
+		neighbors.add(portal);
 		portal.SetAsteroid(this);
+		return true;
 	}
 	public void RemovePortal()
 	{
 		neighbors.remove(portal);
 		portal = null;
+	}
+	/**
+	 *  Egy függvény, amivel lejátszódik az az esemény, amikor az aszteroida ki van fúrva teljesen. Ez fontos a napközeli események kezelésében.
+	 */
+	@Override
+	public void EndTurnEffect()
+	{
+		portal.EndTurnEffect();
+		if(IsNearSun() && layers == 0) 
+			resource.Exposed();
+		
 	}
 }

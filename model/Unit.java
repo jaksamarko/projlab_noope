@@ -24,14 +24,6 @@ public abstract class Unit {
 	}
 	
 	/**
-	 * Fúrás tevékenység, szól az aszteroidának, hogy egy réteget le akar fúrni.
-	 */
-	public void Drill() {
-		if(asteroid.RemoveLayer()) 
-			MakeStepDone();
-	}
-	
-	/**
 	 * Ez egy virtuális függvény, ami akkor hívódik meg, mikor az aszteroida (amin tartózkodott) felrobbant.
 	 */
 	public abstract void Exploded();
