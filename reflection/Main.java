@@ -4,7 +4,7 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		while(true)
+		/*while(true)
 		{
 			
 		Ref.Reset();
@@ -46,7 +46,7 @@ public class Main
 		  case 15: TestPrograms.ExposeUraniumRobot(); break;
 		}
 		Ref.RequestBool("<Press Enter to Restart>");
-		}
+		}*/
     }
 }
 

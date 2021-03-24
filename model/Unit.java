@@ -8,26 +8,29 @@ import reflection.*;
  * Azt is figyelembe veszi, hogy egyszerre csak egy dolgot tehessenek, erre van egy változó.
  */
 public abstract class Unit {
+	
 	protected Asteroid asteroid;
+	protected boolean stepDone;
+	
+	public Unit(Asteroid _asteroid)
+	{
+		asteroid = _asteroid;
+		stepDone = false;
+	}
 	
 	/**
 	 * Ez a függvény hívódik meg, mikor valamelyik okból az adott egység meghal.
 	 */
 	public void Die() {
-		Ref.Call(this, "Die", null);
-		Ref.Return();
+		Game.RemoveUnit(this);
 	}
 	
 	/**
 	 * Fúrás tevékenység, szól az aszteroidának, hogy egy réteget le akar fúrni.
 	 */
 	public void Drill() {
-		Ref.Call(this, "Drill", null);
-		boolean result = asteroid.RemoveLayer();
-		if(result) {
-			this.MakeStepDone();
-		}
-		Ref.Return();
+		if(asteroid.RemoveLayer()) 
+			MakeStepDone();
 	}
 	
 	/**
@@ -41,24 +44,28 @@ public abstract class Unit {
 	 */
 	public void Move(Travelable target)
 	{
-		Ref.Call(this, "Move", target);
-		
-		Boolean result = asteroid.IsNeighboor(target);
-		if(result) {
+		if(asteroid.IsNeighboor(target))
+		{
 			asteroid.RemoveUnit(this);
 			target.ReceiveUnit(this);
-			this.MakeStepDone();
+			MakeStepDone();
 		}
-		Ref.Return();
-		return;
 	}
 	
 	/**
 	 *  Setter függvény ami arra van hogy amikor egy mûveletet sikeresen végrehajtott akkor beállítja a stepDone változót. 
 	 */
-	protected void MakeStepDone() {
-		Ref.Call(this, "MakeStepDone", null);
-		Ref.Return();
+	protected void MakeStepDone()
+	{
+		stepDone = true;
+	}
+	
+	/**
+	 *  Fügvény amely minden Settler körének az elején van meghívva
+	 */
+	public void Active()
+	{
+		stepDone = false;
 	}
 	
 	/**
@@ -67,8 +74,6 @@ public abstract class Unit {
 	 */
 	public void SetAsteroid(Asteroid asteroid) 
 	{
-		Ref.Call(this, "SetAsteroid", asteroid);
 		this.asteroid = asteroid;
-		Ref.Return();
 	}
 }

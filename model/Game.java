@@ -1,6 +1,6 @@
 package model;
 
-import reflection.Ref;
+import java.util.ArrayList;
 
 /**
  * 
@@ -9,46 +9,55 @@ import reflection.Ref;
  */
 
 public class Game {
-	public Robot robots;
-	private Asteroid asteroids;
-	private Settler settlers;
-	
-	public void SetRobots(Robot robot) {
-		Ref.Call(this, "SetRobots", robot);
-		this.robots = robot;
-		Ref.Return();
+	private static Game self;
+	public static void RemoveAsteroid(Asteroid asteroid)
+	{
+		self.asteroids.remove(asteroid);
+		for(Asteroid a:self.asteroids)
+			a.RemoveNeighbor(asteroid);
 	}
 	
-	public void SetAsteroids(Asteroid asteroid) {
-		Ref.Call(this, "SetAsteroids", asteroid);
-		this.asteroids = asteroid;
-		Ref.Return();
+	public static void RemoveUnit(Unit unit)
+	{
+		self.settlers.remove(unit);
+		self.robots.remove(unit);
+		for(Asteroid a:self.asteroids)
+			a.RemoveUnit(unit);
 	}
 	
+	public ArrayList<Robot> robots;
+	private ArrayList<Asteroid> asteroids;
+	private ArrayList<Settler> settlers;
+	
+	Game()
+	{
+		self = this;
+		robots = new ArrayList<Robot>();
+		asteroids = new ArrayList<Asteroid>();
+		settlers = new ArrayList<Settler>();
+	}
 	/**
 	 * A játék végigiterálja a robotokat, így az összes lép.
 	 */
-	
 	public void AllRobotsWork() {
-		Ref.Call(this, "AllRobotsWork", null);
-		robots.Work();
-		Ref.Return();
+		for(Robot r: robots)
+			r.Work();
 	}
 	
 	/**
 	 * Napvihar generálása. Hatására meghalhatnak a nem elbújt állapotban lévő egységek.
 	 */
 	public void CreateSunstorm() {
-		Ref.Call(this, "CreateSunstorm", null);
-		asteroids.Sunstorm();
-		Ref.Return();
+		for(Asteroid a:asteroids)
+			a.Sunstorm();
 	}
 	/**
 	 * A nap közelségéből adódó negatív tényezők által kiváltott hatások végbemenetele.
 	 */
 	public void EndTurnAsteroidEffect() {
-		Ref.Call(this, "EndTurnAsteroidEffect", null);
-		asteroids.Exposure();
-		Ref.Return();
+		for(Asteroid a:asteroids)
+			a.Exposure();
 	}
+
+	
 }

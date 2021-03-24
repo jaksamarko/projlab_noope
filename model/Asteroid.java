@@ -1,6 +1,6 @@
 package model;
 
-import reflection.*;
+import java.util.ArrayList;
 
 /**
  * Ez az osztály felel az aszteroidán történő eseményekre.
@@ -11,49 +11,41 @@ import reflection.*;
 
 public class Asteroid implements Travelable {
 	
-	public Portal portal;
-	public Resource resource;
-	private Unit units;
-	public Game game;
-	public Travelable neighbors;
+	// getter és setterek
+	public void RemoveUnit(Unit unit) {units.remove(unit);}
+	public void SetResource(Resource resource) {this.resource = resource;}
+	private boolean IsNearSun() {return nearSun;}
+	public void AddUnit(Unit unit) {units.add(unit);}
+	public void addNeighbor(Travelable travelable) {neighbors.add(travelable);}
 	
-	public int GetLayers() {
-		return Ref.RequestInt("Mekkora a kéreg?");
+	private int layers;
+	private boolean nearSun;
+	private Portal portal;
+	private Resource resource;
+	private ArrayList<Unit> units;
+	private ArrayList<Travelable> neighbors;
+	
+	public Asteroid(boolean _nearSun)
+	{
+		layers = 3;
+		nearSun = _nearSun;
+		portal = null;
+		resource = null;
+		units = new ArrayList<Unit>();
+		neighbors = new ArrayList<Travelable>();
 	}
+	
 	/**
 	 * Elfogad egy resource anyagot és igazat ad, ha sikerült is betenni, mert ha már van, akkor nem engedi.
 	 * @param resource
 	 * @return true, ha sikerül betenni, egyébként false
 	 */
-	public boolean AcceptResource(Resource resource) {
-		Ref.Call(this, "AcceptResource", resource);
-		boolean ret = false;
-		if(resource!=null) {
-			boolean noResource = Ref.RequestBool("Üres?");
-			if(noResource) {
-				ret=true;
-				this.SetResource(resource);
-			}
-		}
-		Ref.Return("taken",ret);
-		return ret;
-	}
-	
-
-	public void AddUnit(Unit unit)
+	public boolean AcceptResource(Resource resource)
 	{
-		Ref.Call(this, "AddUnit", unit);
-		units = unit;
-		Ref.Return();
-	}
-	
-	
-	
-	public void addNeighbor(Travelable travelable)
-	{
-		Ref.Call(this, "addNeighbor", travelable);
-		this.neighbors = travelable;
-		Ref.Return();
+		if(resource!=null)
+			return false;
+		this.resource = resource;
+		return true;
 	}
 	
 	/**
@@ -61,22 +53,15 @@ public class Asteroid implements Travelable {
 	 * @param inventory
 	 * @return true, ha van a tárolóban portál, és az aszteroidán még nincs, azaz lerakható egy, false, ha nem lehet lerakni portált
 	 */
-	public boolean BuildPortal(Inventory inventory) {
-		Ref.Call(this, "BuildPortal", inventory);
-		Boolean ret=false;
-		if(this.portal!=null) {
-			ret=false;
-		} else {
-			Portal newPortal = inventory.GetPortal();
-			if(newPortal==null) {
-				ret=false;
-			} else {
-				ret=true;
-				this.SetPortal(newPortal);
-			}
-		}
-		Ref.Return("built",ret);
-		return ret;
+	public boolean BuildPortal(Inventory inventory)
+	{
+		if(portal!=null) 
+			return false;
+		Portal newPortal = inventory.GetPortal();
+		if(newPortal == null)
+			return false;
+		SetPortal(newPortal);
+		return true;
 	}
 	
 	/**
@@ -84,48 +69,38 @@ public class Asteroid implements Travelable {
 	 */
 	public void DestroySelf()
 	{
-		Ref.Call(this, "DestroySelf", null);
-		Ref.Return();
+		Game.RemoveAsteroid(this);
 	}
 	
 	/**
 	 * 	Felel az aszteroida felrobbanásával járó dolgokért, mint például a hozzátartozó elemek értesítése, erőforrások felszabadítása.
 	 */
-	public void Explode() {
-		Ref.Call(this, "Explode", null);
-		units.Exploded();
-		this.DestroySelf();
-		Ref.Return();
+	public void Explode()
+	{
+		for(Unit u: units)
+			u.Exploded();
+		DestroySelf();
 	}
 	
 	/**
 	 *  Egy függvény, amivel lejátszódik az az esemény, amikor az aszteroida ki van fúrva teljesen. Ez fontos a napközeli események kezelésében.
 	 */
-	public void Exposure() {
-		Ref.Call(this, "Exposure", null);
-		boolean result = this.IsNearSun();
-		if(result && GetLayers() == 0) {
+	public void Exposure()
+	{
+		if(IsNearSun() && layers == 0) 
 			resource.Exposed();
-		}
-		Ref.Return();
 	}
 	
-	public Travelable GetRandomNeighbor() {
-		Ref.Call(this, "GetRandomNeighbor", null);
-		Ref.Return(neighbors);
-		return neighbors;
-		
+	public Travelable GetRandomNeighbor()
+	{
+		if(neighbors.size() == 0)
+			return null;
+		return neighbors.get(RNG.GetRand()/neighbors.size());	
 	}
 	/**
 	 * Visszaadja, hogy az aszteroida napközelben van-e.
 	 * @return true, ha napközelben van, egyébként false
 	 */
-	private boolean IsNearSun() {
-		Ref.Call(this, "IsNearSun", null);
-		Boolean in = Ref.RequestBool("Napközelben van?");
-		Ref.Return("result",in);
-		return in;
-	}
 	
 	/**
 	 * 
@@ -133,14 +108,11 @@ public class Asteroid implements Travelable {
 	 * @return true, ha a választott cél szomszéd, egyébként false
 	 */
 	public boolean IsNeighboor(Travelable travelable) {
-		Ref.Call(this, "IsNeighboor", travelable);
-		
-		if(travelable == neighbors)
+		for(Travelable t: neighbors)
 		{
-			Ref.Return("result", "True");
-			return true;
+			if(t == travelable)
+				return true;
 		}
-		Ref.Return("result", "False");
 		return false;
 	}
 	
@@ -148,17 +120,9 @@ public class Asteroid implements Travelable {
 	 * Kiveszi és odaadja a tárolt resource-t az inventory-nak
 	 * @return resource, ha az aszteroida nem üres, egyébként null
 	 */
-	public Resource MineResource() {
-		Ref.Call(this, "MineResource", null);
-		Resource mat = this.RemoveResource();
-		if(mat!=null) {
-			Resource minedMaterial = new Coal(); 
-			Ref.Created(minedMaterial, "minedMaterial");
-			Ref.Return(minedMaterial);
-			return minedMaterial;
-		}
-		Ref.Return(Ref.nullObject);
-		return null;
+	public Resource MineResource()
+	{
+		return RemoveResource();
 	}
 	
 	/**
@@ -166,72 +130,52 @@ public class Asteroid implements Travelable {
 	 */
 	public void ReceiveUnit(Unit unit) 
 	{
-		Ref.Call(this, "ReceiveUnit", unit);
 		AddUnit(unit);
-		
 		unit.SetAsteroid(this);
-		
-		Ref.Return();
 	}
 	/**
 	 *  Eltávolít egy réteget az aszteroidáról és ennek sikerességét visszaadja. Ha már nincs több ilyen réteg, akkor nem történik változás.
 	 * @return true, ha sikerült eltávolítani egy réteget, false ha nem sikerült. 
 	  */
-	public boolean RemoveLayer() {
-		Ref.Call(this, "RemoveLayer", null);
-		Boolean result = Ref.RequestBool("Lehet fúrni?");
-		Ref.Return("result",result);
-		return result;
+	public boolean RemoveLayer()
+	{
+		if(layers == 0)
+			return false;
+		layers--;
+		return true;
 	}
 	/**
 	 * Eltávolítja a nyersanyagot az aszteroidából, ez akkor fontos, ha például a jég elszublimál, teljesen eltűnik és senki nem kaphatja meg.
 	 * @return 
 	 */
-	public Resource RemoveResource() {
-		Ref.Call(this, "RemoveResource", null);
-		Boolean result = Ref.RequestBool("Van resource?");
-		if(result) {
-			Coal res = new Coal();
-			Ref.Created(res, "removedMaterial");
-			Ref.Return(res);
-			return res;
-		}
-		Ref.Return(Ref.nullObject);
-		return null;
-	}
-	/**
-	 * eltávolít egy unitot az aszteroidáról
-	 * @param unit
-	 */
-	public void RemoveUnit(Unit unit) {
-		Ref.Call(this, "RemoveUnit", unit);
-		Ref.Return();
-	}
-	/**
-	 * Hozzákapcsol egy portált az aszteroidához és visszaadja, hogy ez sikeres volt-e, mert csak 1 portál tartozhat hozzá.
-	 * @param portal
-	 */
-	public void SetPortal(Portal portal) {
-		Ref.Call(this, "SetPortal", portal);
-		Ref.Return();
-	}
-	
-	public void SetResource(Resource resource)
+	public Resource RemoveResource()
 	{
-		Ref.Call(this, "SetResource", resource);
-		this.resource = resource;
-		resource.asteroid = this;
-		Ref.Return();
+		Resource re = resource;
+		resource = null;
+		return re;
 	}
 	/**
 	 * Egy függvény, amivel lejátszódik a napkitörés effektus, ellenőrzi hogy megvan a feltételei annak, hogy elbújhassanak ott. Ha nem, akkor megöl mindenkit, aki rajta tartózkodott.
 	 */
-	public void Sunstorm() {
-		Ref.Call(this, "Sunstorm", null);
-		if(this.GetLayers()>0||resource!=null) {
-			//TODO a szekvencián settler van!
-			this.units.Die();
-		}
-		Ref.Return();
+	public void Sunstorm()
+	{
+		if(layers > 0||resource!=null)
+			for(Unit u: units)
+				u.Die();
+	}
+	public void RemoveNeighbor(Asteroid asteroid)
+	{
+		neighbors.remove(asteroid);
+	}
+	
+	public void SetPortal(Portal portal)
+	{
+		this.portal = portal;
+		portal.SetAsteroid(this);
+	}
+	public void RemovePortal()
+	{
+		neighbors.remove(portal);
+		portal = null;
 	}
 }

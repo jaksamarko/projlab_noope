@@ -6,5 +6,8 @@ package model;
  *
  */
 public enum Material {
-	Coal;
+	Coal,
+	Iron,
+	Ice,
+	Uranium;
 }

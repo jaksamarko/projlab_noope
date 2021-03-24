@@ -1,6 +1,6 @@
 package reflection;
 
-import model.*;
+/*import model.*;
 
 public class TestPrograms {
 	private static void printInit() {
@@ -404,4 +404,4 @@ public class TestPrograms {
 		game.EndTurnAsteroidEffect();
 		
 	}
-}
+}*/

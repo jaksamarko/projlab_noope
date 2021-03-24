@@ -13,10 +13,7 @@ public abstract class Resource {
 	/**
 	 * Ennek a függvénynek a felüldefiniálásával valósítják meg az egyes nyersanyagok a napközelben lévõ, teljesen kifúrt aszteroidán való viselkedésüket.
 	 */
-	public void Exposed() {
-		Ref.Call(this, "Exposed", null);
-		Ref.Return();
-	}
+	public void Exposed() {}
 	
 	/**
 	 * Ha kibányásznak egy adott nyersanyagot, akkor ennek a függvénynek az adott nyersanyag által megvalósított változata fut le.

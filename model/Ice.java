@@ -13,9 +13,7 @@ public class Ice extends Resource {
 	 * A szublimálást megvalósító függvény.
 	 */
 	public void Exposed() {
-		Ref.Call(this, "Exposed", null);
 		asteroid.RemoveResource();
-		Ref.Return();
 	}
 	
 	/**
@@ -23,8 +21,7 @@ public class Ice extends Resource {
 
 	 */
 	public void PickedUp(Inventory inventory) {
-		Ref.Call(this, "PickedUp", inventory);
-		Ref.Return();
+		inventory.InsertItem(this);
 	}
 	
 }

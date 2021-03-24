@@ -1,69 +1,62 @@
 package model;
 
-import reflection.*;
-
 /**
  * A játékban azok az egységek, amiket a játékosok irányítanak. 
  * Körönként egy lépést hajthatnak végre, amely lehet craftolás, mozgás, fúrás, bányászat, nyersanyag visszahelyezése. 
  * Meghalnak, ha nincsenek elbújva napviharkor, valamint ha egy felrobbanó aszteroidán tartózkodnak.
  */
-public class Settler extends Unit {
+public class Settler extends Unit
+{
 	private Inventory inventory;
 	
-	public Settler()
+	public Settler(Asteroid _asteroid)
 	{
-		
+		super(_asteroid);
+		inventory = new Inventory();
 	}
 	
 	/**
 	 * Ha van elegendõ nyersanyag náluk, portál-pár craftolása, mely a saját inventoryjába kerül.
 	 */
-	public void CreatePortal() {
-		Ref.Call(this, "CreatePortal", null);
-		Boolean isCrafted = inventory.CraftPortal();
-		if(isCrafted) {
+	public void CreatePortal()
+	{
+		if(inventory.CraftPortal())
 			this.MakeStepDone();
-		}
-		Ref.Return();
 	}
 	
 	/**
 	 * Ha van elegendõ nyersanyag náluk, robot craftolása, mely az adott aszteroidára kerül.
 	 */
-	public void CreateRobot() {
-		Ref.Call(this, "CreateRobot", null);
+	public void CreateRobot()
+	{
 		Robot newRobot = inventory.CraftRobot();
-		if(newRobot!=null) {
+		if(newRobot!=null)
+		{
 			asteroid.ReceiveUnit(newRobot);
-			this.MakeStepDone();
+			MakeStepDone();
 		}
-		
-		Ref.Return();
 	}
 	
 	/**
 	 * Bányászat mûvelete, amelyet azon az aszteroidán végezhet el, amelyiken éppen tartózkodik. Ha sikeres, az inventoryjába kerül a nyersanyag.
 	 */
-	public void Mine() {
-		Ref.Call(this, "Mine", null);
+	public void Mine()
+	{
 		Resource minedMaterial = asteroid.MineResource();
-		if(minedMaterial!=null) {
+		if(minedMaterial!=null)
+		{
 			this.MakeStepDone();
 			minedMaterial.PickedUp(inventory);
 		}
-		Ref.Return();
 	}
 	
 	/**
 	 * Az inventoryjából egy portál lehelyezése az adott aszteroidára, amennyiben ez lehetséges. Ha már volt páratlan portál, összekapcsolódik a kettõ.
 	 */
-	public void PlacePortal() {
-		Ref.Call(this, "PlacePortal", null);
-		Boolean built = asteroid.BuildPortal(inventory);
-		if(built) {
+	public void PlacePortal()
+	{
+		if(asteroid.BuildPortal(inventory)) 
 			this.MakeStepDone();
-		}
-		Ref.Return();
 	}
 	
 	/**
@@ -71,20 +64,16 @@ public class Settler extends Unit {
 	 * Ekkor ez a nyersanyag eltûnik az inventoryjából.
 	 * @param material A nyersanyag, amit visszahelyezünk.
 	 */
-	public void PutResourceBack(Material material) {
-		Ref.Call(this, "PutResourceBack", material);
+	public void PutResourceBack(Material material)
+	{
 		Resource sentResource = inventory.GetItem(material);
 		if(sentResource == null)
-		{
-			Ref.Return();
 			return;
-		}
-		Boolean taken = asteroid.AcceptResource(sentResource);
-		if(taken) {
+		if(asteroid.AcceptResource(sentResource))
+		{
 			inventory.RemoveItem(material);
-			this.MakeStepDone();
+			MakeStepDone();
 		}
-		Ref.Return();
 	}
 	
 	/**
@@ -92,18 +81,6 @@ public class Settler extends Unit {
 	 */
 	public void Exploded()
 	{
-		Ref.Call(this, "Exploded", null);
-		this.Die();
-		Ref.Return();
-	}
-	
-	/**
-	 * Beállítja a setterhez tartozó inventoryt.
-	 * @param inventory Az inventory, amit a settlerhez rendelünk.
-	 */
-	public void SetInventory(Inventory inventory) {
-		Ref.Call(this, "SetInventory", inventory);
-		this.inventory=inventory;
-		Ref.Return();
+		Die();
 	}
 }

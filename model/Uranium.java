@@ -12,9 +12,7 @@ public class Uranium extends Resource {
 	 *  A felrobbanást megvalósító függvény.
 	 */
 	public void Exposed() {
-		Ref.Call(this, "Exposed", null);
 		asteroid.Explode();
-		Ref.Return();
 	}
 	/**
 	 * A nyersanyag kibányászása. 
@@ -22,8 +20,7 @@ public class Uranium extends Resource {
 	 * @param inventory Az inventory, amibe a kibányászott nyersanyagot tesszük.
 	 */
 	public void PickedUp(Inventory inventory) {
-		Ref.Call(this, "PickedUp", inventory);
-		Ref.Return();
+		inventory.InsertItem(this);
 	}
 	
 }
