@@ -33,6 +33,7 @@ public class Settler extends DrillUnit
 		if(newRobot!=null)
 		{
 			asteroid.ReceiveUnit(newRobot);
+			Game.addNewWorker(newRobot);
 			MakeStepDone();
 		}
 	}

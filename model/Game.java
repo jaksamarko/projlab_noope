@@ -25,6 +25,11 @@ public class Game {
 			a.RemoveUnit(unit);
 	}
 	
+	public static void addNewWorker(Worker worker)
+	{
+		self.workers.add(worker);
+	}
+	
 	public ArrayList<Worker> workers;
 	private ArrayList<Asteroid> asteroids;
 	private ArrayList<Settler> settlers;
