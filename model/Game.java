@@ -1,6 +1,13 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.NotSerializableException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * 
@@ -8,8 +15,8 @@ import java.util.ArrayList;
  *úgy mint napvihar, aszteroidák naptól való távolság esetén történő felrobbanása.
  */
 
-public class Game {
-	private static Game self;
+public class Game implements java.io.Serializable {
+	private static transient Game self;
 	public static void RemoveAsteroid(Asteroid asteroid)
 	{
 		self.asteroids.remove(asteroid);
@@ -25,6 +32,11 @@ public class Game {
 			a.RemoveUnit(unit);
 	}
 	
+	public static void createAsteroid(Asteroid asteroid) {
+		self.asteroids.add(asteroid);
+	}
+	
+	
 	public static void addNewWorker(Worker worker)
 	{
 		self.workers.add(worker);
@@ -34,7 +46,7 @@ public class Game {
 	private ArrayList<Asteroid> asteroids;
 	private ArrayList<Settler> settlers;
 	
-	Game()
+	public Game()
 	{
 		self = this;
 		workers = new ArrayList<Worker>();
@@ -70,6 +82,53 @@ public class Game {
 	public void EndTurnAsteroidEffect() {
 		for(Asteroid a:asteroids)
 			a.EndTurnEffect();
+	}
+	
+	public Boolean Load(String filename) {
+		File f = new File(filename);
+		if(!f.exists())
+			return false;
+		
+		FileInputStream inputStream;
+		try {
+			inputStream = new FileInputStream(filename);
+			SequentialObjectInputStream stream = new SequentialObjectInputStream(inputStream);
+			Object[] objs = stream.readObject();
+			for(int i=0;i<objs.length;i++) {
+				asteroids.add((Asteroid) objs[i]);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
+	
+	public void Save(String filename) {
+		FileOutputStream outputStream;
+		try {
+			outputStream = new FileOutputStream(filename);
+			SequentialObjectOutputStream stream = new SequentialObjectOutputStream(outputStream);
+			for(Asteroid a:asteroids) {
+				stream.writeObject(a);
+			}
+			
+			stream.close();
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (NotSerializableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	

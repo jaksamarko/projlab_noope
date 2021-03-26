@@ -2,6 +2,7 @@ package model;
 
 public class Ufo extends Unit implements Worker
 {
+	public Ufo() {super(null);}
 	public Ufo(Asteroid _asteroid) {super(_asteroid);}
 
 	public void Exploded() {Die();}

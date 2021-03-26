@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * de akár portált is létrehozhat, mindezt ez az osztály kezeli.
  */
 
-public class Asteroid implements Travelable {
+public class Asteroid implements Travelable, java.io.Serializable  {
 	
 	// getter és setterek
 	public void RemoveUnit(Unit unit) {units.remove(unit);}
@@ -25,6 +25,8 @@ public class Asteroid implements Travelable {
 	private Resource resource;
 	private ArrayList<Unit> units;
 	private ArrayList<Travelable> neighbors;
+	
+	public Asteroid() {}
 	
 	public Asteroid(boolean _nearSun)
 	{

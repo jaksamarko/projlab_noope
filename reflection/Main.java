@@ -1,5 +1,8 @@
 package reflection;
 
+import model.Game;
+import model.MapCreator;
+
 public class Main
 {
 	public static void main(String[] args)
@@ -47,6 +50,14 @@ public class Main
 		}
 		Ref.RequestBool("<Press Enter to Restart>");
 		}*/
+		MapCreator mp;
+		Game g = new Game();
+		if(!g.Load("save.txt"))
+			mp = new MapCreator("MapCreate.txt");
+		
+		g.Save("save.txt");
+		
+		System.out.println("Dön");
     }
 }
 

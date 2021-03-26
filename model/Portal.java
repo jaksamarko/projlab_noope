@@ -4,7 +4,7 @@ package model;
  * A játék során segítse a telepesek közlekedését és az adott kapu párjához tartozó aszteroidára továbbítsa a játékost.
  * Illetve az õ dolga összekapcsolnia magát más kapuval, ha van már a játékban párosítatlan kapu.
  */
-public class Portal implements Travelable
+public class Portal implements Travelable, java.io.Serializable
 {
 	private static Portal unpairedPortal = null;
 	public Asteroid asteroid;

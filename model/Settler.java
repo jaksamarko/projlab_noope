@@ -9,6 +9,8 @@ public class Settler extends DrillUnit
 {
 	private Inventory inventory;
 	
+	public Settler() {super(null);}
+	
 	public Settler(Asteroid _asteroid)
 	{
 		super(_asteroid);

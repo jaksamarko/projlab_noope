@@ -5,7 +5,7 @@ package model;
  * Ez felel a mozgásukért, hogy “A” aszteroidáról eljussanak “B” aszteroidára, illetve képesek legyenek az aszteroida rétegét fúrni. 
  * Azt is figyelembe veszi, hogy egyszerre csak egy dolgot tehessenek, erre van egy változó.
  */
-public abstract class Unit {
+public abstract class Unit implements java.io.Serializable {
 	
 	protected Asteroid asteroid;
 	protected boolean stepDone;
