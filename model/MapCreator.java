@@ -102,16 +102,26 @@ public class MapCreator {
 		while(readLineUntil("new")) {
 			switch(selectFromKeys(params)) {
 				case "res":
+					Resource res = null;
 					switch(readData()) {
 						case "Coal":
-							Coal coal = new Coal();
-							coal.asteroid = aster;
-							aster.AcceptResource(coal);
+							res = new Coal();
+						break;
+						case "Iron":
+							res = new Iron();
+						break;
+						case "Uranium":
+							res = new Uranium();
+						break;
+						case "Ice":
+							res = new Ice();
 						break;
 						default:
 							System.out.println("Wrong material: "+ readData());
-						//TODO more material
 					}
+					if(res!=null)
+						res.asteroid = aster;
+					aster.SetResource(res);
 				break;
 			}
 		}

@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -84,51 +86,44 @@ public class Game implements java.io.Serializable {
 			a.EndTurnEffect();
 	}
 	
-	public Boolean Load(String filename) {
+	public static Boolean Load(String filename) {
 		File f = new File(filename);
 		if(!f.exists())
 			return false;
-		
-		FileInputStream inputStream;
 		try {
-			inputStream = new FileInputStream(filename);
-			SequentialObjectInputStream stream = new SequentialObjectInputStream(inputStream);
-			Object[] objs = stream.readObject();
-			for(int i=0;i<objs.length;i++) {
-				asteroids.add((Asteroid) objs[i]);
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			FileInputStream fileStream = new FileInputStream("save.txt");
+            ObjectInputStream input = new ObjectInputStream(fileStream);
+            int n=input.readInt();
+            for(int i=0;i<n;i++) {
+            	self.asteroids.add((Asteroid)input.readObject());
+            }
+            input.close();
+            fileStream.close();
+		} catch(FileNotFoundException e) {
+			return false;
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		
 		return true;
 	}
 	
-	public void Save(String filename) {
-		FileOutputStream outputStream;
+	public static void Save(String filename) {
 		try {
-			outputStream = new FileOutputStream(filename);
-			SequentialObjectOutputStream stream = new SequentialObjectOutputStream(outputStream);
-			for(Asteroid a:asteroids) {
-				stream.writeObject(a);
-			}
-			
-			stream.close();
-			outputStream.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (NotSerializableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			FileOutputStream file = new FileOutputStream("save.txt");
+
+            // Creates an ObjectOutputStream
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            
+            output.writeInt(self.asteroids.size());
+            for(Asteroid a: self.asteroids) {
+            	output.writeObject(a);
+            }
+            output.close();
+            file.close();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	

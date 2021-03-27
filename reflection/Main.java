@@ -52,10 +52,10 @@ public class Main
 		}*/
 		MapCreator mp;
 		Game g = new Game();
-		if(!g.Load("save.txt"))
+		if(!Game.Load("save.txt")) {
 			mp = new MapCreator("MapCreate.txt");
-		
-		g.Save("save.txt");
+		}
+		Game.Save("save.txt");
 		
 		System.out.println("Dön");
     }
