@@ -9,3 +9,5 @@ res Coal
 neigh 0,1
 new Settler 0
 aster 0
+new Ufo 0
+aster 0
