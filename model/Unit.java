@@ -5,16 +5,25 @@ package model;
  * Ez felel a mozgásukért, hogy “A” aszteroidáról eljussanak “B” aszteroidára, illetve képesek legyenek az aszteroida rétegét fúrni. 
  * Azt is figyelembe veszi, hogy egyszerre csak egy dolgot tehessenek, erre van egy változó.
  */
-public abstract class Unit implements java.io.Serializable {
-	
+public abstract class Unit {
 	protected Asteroid asteroid;
 	protected boolean stepDone;
+	
+	/**
+	 * Kell a szérializáláshoz, sry
+	 */
+	public Unit() {
+		AddUnitToGame();
+	}
 	
 	public Unit(Asteroid _asteroid)
 	{
 		asteroid = _asteroid;
 		stepDone = false;
+		
 	}
+	
+	protected abstract void AddUnitToGame();
 	
 	/**
 	 * Ez a függvény hívódik meg, mikor valamelyik okból az adott egység meghal.

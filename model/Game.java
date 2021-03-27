@@ -18,6 +18,10 @@ import java.util.Collection;
  */
 
 public class Game implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static transient Game self;
 	public static void RemoveAsteroid(Asteroid asteroid)
 	{
@@ -42,6 +46,11 @@ public class Game implements java.io.Serializable {
 	public static void addNewWorker(Worker worker)
 	{
 		self.workers.add(worker);
+	}
+	
+	public static void addNewSettler(Settler settler)
+	{
+		self.settlers.add(settler);
 	}
 	
 	public ArrayList<Worker> workers;

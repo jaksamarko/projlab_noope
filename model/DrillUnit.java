@@ -1,8 +1,16 @@
 package model;
 
-public abstract class DrillUnit extends Unit
+public abstract class DrillUnit extends Unit implements java.io.Serializable
 {
-	public DrillUnit(Asteroid _asteroid) {super(_asteroid);}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DrillUnit(Asteroid _asteroid) {
+		super(_asteroid);
+		AddUnitToGame();
+	}
 
 	/**
 	 * Fúrás tevékenység, szól az aszteroidának, hogy egy réteget le akar fúrni.

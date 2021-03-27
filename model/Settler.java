@@ -7,9 +7,11 @@ package model;
  */
 public class Settler extends DrillUnit
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Inventory inventory;
-	
-	public Settler() {super(null);}
 	
 	public Settler(Asteroid _asteroid)
 	{
@@ -85,5 +87,13 @@ public class Settler extends DrillUnit
 	public void Exploded()
 	{
 		Die();
+	}
+	
+	/**
+	 * Sry ez muszáj volt loadinghoz
+	 */
+	@Override
+	protected void AddUnitToGame() {
+		Game.addNewSettler(this);
 	}
 }

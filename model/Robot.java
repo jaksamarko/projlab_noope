@@ -5,7 +5,15 @@ package model;
 public class Robot extends DrillUnit implements Worker
 {
 	
-	public Robot(Asteroid _asteroid) {super(_asteroid);}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Robot(Asteroid _asteroid) {
+		super(_asteroid);
+	}
+	
 	
 	/**
 	 * Ha az aszteroida felrobbant, amin tartózkodott, a robot egy szomszédos aszteroidára sodródik.
@@ -33,6 +41,12 @@ public class Robot extends DrillUnit implements Worker
 		asteroid.RemoveUnit(this);
 		neighbor.ReceiveUnit(this);
 	}
-
 	
+	/**
+	 * Sry ez muszáj volt loadinghoz
+	 */
+	@Override
+	protected void AddUnitToGame() {
+		Game.addNewWorker(this);
+	}
 }
