@@ -1,43 +1,88 @@
 package control;
 
-import model.Game;
-import model.Player;
+import java.util.ArrayList;
+import interfaces.*;
+import model.*;
 
-public class Controller {
-
-	// game init
-	Game game = new Game();
-
-	public void createPlayer(String name) {
-		Game.addPlayer();
-	}
-
-	private void doaction(String action) {
-		switch (action) {
-		case "createplayer": {
-			createPlayer("arg_cli");
-		}
-		}
-	}
-
-	//játékosok része
-	public void playersWork() {
-		game.playersStart();
-
-		for (Player p : game.getPlayers()) {
-			int unitcnt = p.getPsettlers().size();
-
-			for (int i = 0; i < unitcnt; i++) {
-				if (p.getPsettler(i).GetStepDone()) {
-					i++;
-				} else {
-					doaction("input"); // chosen action by input, passed by cli
-				}
+public class Controller implements ControllerAPI
+{
+	private Travelable getTravelable(int ID)
+	{
+		for(Item<Travelable> o: destinations)
+			if(o.ID == ID)
+			{
+				if(model.GetAllTravelAble().contains(o.object))
+					return o.object;
+				else
+					return null;
 			}
-
+		return null;
+	}
+	
+	private ModelAPI model;
+	private ArrayList<Settler> settlers;
+	private int settlerIndex;
+	private ArrayList<Item<Settler>> players;
+	private ArrayList<Item<Travelable>> destinations;
+	public Controller(ModelAPI _model)
+	{
+		model = _model;
+		settlers = model.GetAllSettler();
+		settlerIndex = 0;
+		players = new ArrayList<Item<Settler>>();
+		for(int i = 0; i< settlers.size(); i++)
+		{
+			Item<Settler> it = new Item<Settler>(i+1, settlers.get(i));
+			players.add(it);
+		}
+			
+		destinations = new ArrayList<Item<Travelable>>();
+		ArrayList<Travelable> aList = model.GetAllTravelAble();
+		for(int i = 0; i< aList.size(); i++)
+		{
+			Item<Travelable> it = new Item<Travelable>(i+1, aList.get(i));
+			destinations.add(it);
 		}
 	}
-	// első játékos lép
+	
+	private void endTurn()
+	{
+		
+	}
+	
+	private void endPhase()
+	{
+		settlerIndex++;
+		if(settlerIndex>settlers.size())
+		{
+			endTurn();
+			settlerIndex = 0;
+			settlers = model.GetAllSettler();
+		}
+	}
+	
+	@Override
+	public void move(int destinationID)
+	{
+		Settler settler = settlers.get(settlerIndex);
+		Travelable destination = this.getTravelable(destinationID);
+		if(destination == null)
+			return;
+		settler.Move(destination);
+		endPhase();
+	}
+
+	@Override
+	public void drill() {
+		Settler settler = settlers.get(settlerIndex);
+		settler.Drill();
+		endPhase();
+	}
+	
+	
+	
+}
+// első játékos lép
 	// move
 	// drill
 	// mine
@@ -56,5 +101,3 @@ public class Controller {
 	// robotok dolgoznak
 
 	// körvégi dolgok meghívódnak
-
-}

@@ -11,13 +11,18 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import interfaces.ModelAPI;
+
 /**
  * 
  * Ez az osztály felel a robotokért, valamint a játékban lévő nehezítő tényezőkért, 
  *úgy mint napvihar, aszteroidák naptól való távolság esetén történő felrobbanása.
  */
 
-public class Game implements java.io.Serializable {
+
+
+
+public class Game implements java.io.Serializable, ModelAPI {
 	/**
 	 * 
 	 */
