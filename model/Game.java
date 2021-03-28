@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import interfaces.ModelAPI;
 
@@ -77,6 +79,22 @@ public class Game implements java.io.Serializable, ModelAPI {
 			w.Work();
 	}
 	
+	public ArrayList<Settler> GetAllSettler(){
+		return self.settlers;
+	}
+	
+	public ArrayList<Travelable> GetAllTravelAble(){
+		Set<Travelable> set = new HashSet<Travelable>();
+		for(Asteroid a : asteroids) {
+			ArrayList<Travelable> neighbors = a.GetNeighbors();
+			for(Travelable t : neighbors) {
+				set.add(t);
+			}
+				
+		}
+		ArrayList<Travelable> list = new ArrayList<Travelable>(set);
+		return list;
+	}
 	/**
 	 * Napvihar generálása. Hatására meghalhatnak a nem elbújt állapotban lévő egységek.
 	 */

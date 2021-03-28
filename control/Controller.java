@@ -47,7 +47,9 @@ public class Controller implements ControllerAPI
 	
 	private void endTurn()
 	{
-		
+		model.AllWorkersWork();
+		model.EndTurnAsteroidEffect();
+		model.CreateSunstorm();
 	}
 	
 	private void endPhase()
@@ -80,8 +82,45 @@ public class Controller implements ControllerAPI
 	}
 	
 	
+	@Override
+	public void mine() {
+		Settler settler = settlers.get(settlerIndex);
+		settler.Mine();
+		endPhase();
+	}
 	
+
+	@Override
+	public void putback(Material material) {
+		Settler settler = settlers.get(settlerIndex);
+		settler.PutResourceBack(material);
+		endPhase();
+	}
+	
+
+	@Override
+	public void createportal() {
+		Settler settler = settlers.get(settlerIndex);
+		settler.CreatePortal();
+		endPhase();
+	}
+	
+
+	@Override
+	public void createrobot() {
+		Settler settler = settlers.get(settlerIndex);
+		settler.CreateRobot();
+		endPhase();
+	}
+
+	@Override
+	public void placeportal() {
+		Settler settler = settlers.get(settlerIndex);
+		settler.PlacePortal();
+		endPhase();
+	}
 }
+
 // első játékos lép
 	// move
 	// drill
