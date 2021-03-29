@@ -3,6 +3,7 @@ package control;
 import java.util.ArrayList;
 import interfaces.*;
 import model.*;
+import view.DrawAbles;
 
 public class Controler implements ControlerAPI
 {
@@ -72,8 +73,10 @@ public class Controler implements ControlerAPI
 	}
 	
 	public boolean checkwin() {
-		for(Settler s: settlers) {
-			
+		for(Asteroid a : DrawAbles.getInstance().asteroids) {
+			ArrayList<Settler> settlers = new ArrayList<Settler>();
+			ArrayList<Unit> units = new ArrayList<Unit>();
+			for(Unit u : )
 		}
 			
 			

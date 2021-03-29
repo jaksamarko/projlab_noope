@@ -16,6 +16,20 @@ public class DrawAbles
 	{
 		instance = new DrawAbles();
 	}
+	
+	public Settler unitToSettler(Unit unit){
+		for(Settler s : settlers) {
+			if(s==unit)
+				return s;
+		}
+		return null;
+	}
+
+	public ArrayList<Settler> unitToSettler(ArrayList<Unit> units){
+		
+		return null;
+	}
+	
 	private static DrawAbles instance = null;
 	
 	public static void add(Asteroid asteroid) {if(instance == null)Reset(); instance.asteroids.add(asteroid);}
