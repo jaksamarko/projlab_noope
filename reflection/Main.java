@@ -55,6 +55,7 @@ public class Main
 		if(!Game.Load("save.txt")) {
 			mp = new MapCreator("MapCreate.txt");
 		}
+		
 		Game.Save("save.txt");
 		
 		System.out.println("Dön");
