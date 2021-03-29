@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -60,7 +57,7 @@ public class Game implements java.io.Serializable, ModelAPI {
 		self.settlers.add(settler);
 	}
 	
-	public ArrayList<Worker> workers;
+	private ArrayList<Worker> workers;
 	private ArrayList<Asteroid> asteroids;
 	private ArrayList<Settler> settlers;
 	

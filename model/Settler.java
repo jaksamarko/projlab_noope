@@ -1,5 +1,7 @@
 package model;
 
+import view.DrawAbles;
+
 /**
  * A játékban azok az egységek, amiket a játékosok irányítanak. 
  * Körönként egy lépést hajthatnak végre, amely lehet craftolás, mozgás, fúrás, bányászat, nyersanyag visszahelyezése. 
@@ -17,6 +19,7 @@ public class Settler extends DrillUnit
 	{
 		super(_asteroid);
 		inventory = new Inventory();
+		DrawAbles.add(this);
 	}
 	
 	/**
@@ -95,5 +98,12 @@ public class Settler extends DrillUnit
 	@Override
 	protected void AddUnitToGame() {
 		Game.addNewSettler(this);
+	}
+
+	@Override
+	public void Die() {
+		Game.RemoveUnit(this);
+		DrawAbles.remove(this);
+		
 	}
 }

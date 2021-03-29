@@ -28,9 +28,7 @@ public abstract class Unit {
 	/**
 	 * Ez a függvény hívódik meg, mikor valamelyik okból az adott egység meghal.
 	 */
-	public void Die() {
-		Game.RemoveUnit(this);
-	}
+	public abstract void Die();
 	
 	/**
 	 * Ez egy virtuális függvény, ami akkor hívódik meg, mikor az aszteroida (amin tartózkodott) felrobbant.
