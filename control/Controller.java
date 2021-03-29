@@ -45,11 +45,19 @@ public class Controller implements ControllerAPI
 		}
 	}
 	
+	public ArrayList<Settler> getSettlers(){
+		return this.settlers;
+	}
+	
+	public ArrayList<Item<Travelable>> getDestinations(){
+		return this.destinations;
+	}
+	
 	private void endTurn()
 	{
 		model.AllWorkersWork();
 		model.EndTurnAsteroidEffect();
-		model.CreateSunstorm();
+		model.CreateSunstorm(); 
 	}
 	
 	private void endPhase()
