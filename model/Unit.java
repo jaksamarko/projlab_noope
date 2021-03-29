@@ -77,4 +77,9 @@ public abstract class Unit {
 	public Asteroid getAsteroid() {
 		return this.asteroid;
 	}
+	
+	public boolean getStepDone()
+	{
+		return this.stepDone;
+	}
 }

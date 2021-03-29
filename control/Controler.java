@@ -69,7 +69,10 @@ public class Controler implements ControlerAPI
 	
 	private void endPhase()
 	{
-		settlerIndex++;
+		if(settlers.get(settlerIndex).getStepDone()) {
+			settlerIndex++;
+			settlers.get(settlerIndex).Active();
+		}
 		if(settlerIndex>settlers.size())
 		{
 			endTurn();
