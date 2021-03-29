@@ -39,6 +39,7 @@ public class Cli_Input
 			input = readln();
 		if(input.equals("f"))
 		{
+			CLI.print("Path:");
 			try {
 				reader = new BufferedReader(new FileReader(readln()));
 			} catch (FileNotFoundException e) {
