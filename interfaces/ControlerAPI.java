@@ -2,7 +2,7 @@ package interfaces;
 
 import model.Material;
 
-public interface ControllerAPI 
+public interface ControlerAPI 
 {
 	public void move(int asterID);
 	public void drill();

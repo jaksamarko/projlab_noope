@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import interfaces.*;
 import model.*;
 
-public class Controller implements ControllerAPI
+public class Controler implements ControlerAPI
 {
 	private Travelable getTravelable(int ID)
 	{
@@ -24,7 +24,7 @@ public class Controller implements ControllerAPI
 	private int settlerIndex;
 	private ArrayList<Item<Settler>> players;
 	private ArrayList<Item<Travelable>> destinations;
-	public Controller(ModelAPI _model)
+	public Controler(ModelAPI _model)
 	{
 		model = _model;
 		settlers = model.GetAllSettler();
@@ -69,6 +69,22 @@ public class Controller implements ControllerAPI
 			settlerIndex = 0;
 			settlers = model.GetAllSettler();
 		}
+	}
+	
+	public boolean checkwin() {
+		for(Settler s: settlers) {
+			
+		}
+			
+			
+		return false;
+	}
+	
+	
+	public boolean checklose() {
+		if(settlers.size()==0)
+			return true;
+		return false;
 	}
 	
 	@Override
@@ -127,6 +143,7 @@ public class Controller implements ControllerAPI
 		settler.PlacePortal();
 		endPhase();
 	}
+	
 }
 
 // első játékos lép

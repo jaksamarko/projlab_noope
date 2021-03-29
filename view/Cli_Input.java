@@ -28,9 +28,9 @@ public class Cli_Input
 	}
 	
 	
-	ControllerAPI control;
+	ControlerAPI control;
 	
-	public void init(ControllerAPI _control)
+	public void init(ControlerAPI _control)
 	{
 		control = _control;
 		CLI.println("Read from file or console?(c/f)?");
