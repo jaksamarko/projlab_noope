@@ -1,7 +1,10 @@
 package reflection;
 
+import control.Controler;
 import model.Game;
 import model.MapCreator;
+import view.Cli_Input;
+import view.Cli_Output;
 
 public class Main
 {
@@ -55,6 +58,11 @@ public class Main
 		if(!Game.Load("save.txt")) {
 			mp = new MapCreator("MapCreate.txt");
 		}
+		
+		Cli_Input input = new Cli_Input();
+		Cli_Output output = new Cli_Output(); 
+		Controler controler = new Controler(g,output);
+		input.init(controler);
 		
 		Game.Save("save.txt");
 		
