@@ -3,8 +3,8 @@ package control;
 import model.*;
 
 public class Item<T> {
-	int ID;
-	T object;
+	public int ID;
+	public T object;
 
 	public Item(int _ID, T _object) {
 		ID = _ID;

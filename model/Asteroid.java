@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import view.DrawAbles;
+
 /**
  * Ez az osztály felel az aszteroidán történő eseményekre.
  * Itt gondolhatunk arra, hogy az aszteroidán lehetnek robotok illetve telepesek, 
@@ -26,7 +28,10 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	private ArrayList<Unit> units;
 	private ArrayList<Travelable> neighbors;
 	
-	public Asteroid() {}
+	public Asteroid()
+	{
+		DrawAbles.add(this);
+	}
 	
 	public Asteroid(boolean _nearSun)
 	{
@@ -73,6 +78,7 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	public void DestroySelf()
 	{
 		Game.RemoveAsteroid(this);
+		DrawAbles.remove(this);
 	}
 	
 	/**
@@ -184,5 +190,14 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 		if(IsNearSun() && layers == 0) 
 			resource.Exposed();
 		
+	}
+	
+	public Portal GetPortal()
+	{
+		return portal;
+	}
+	public ArrayList<Unit> GetUnits()
+	{
+		return units;
 	}
 }

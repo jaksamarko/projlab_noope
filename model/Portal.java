@@ -1,5 +1,7 @@
 package model;
 
+import view.DrawAbles;
+
 /**
  * A játék során segítse a telepesek közlekedését és az adott kapu párjához tartozó aszteroidára továbbítsa a játékost.
  * Illetve az õ dolga összekapcsolnia magát más kapuval, ha van már a játékban párosítatlan kapu.
@@ -9,6 +11,7 @@ public class Portal implements Travelable, java.io.Serializable
 	private static Portal unpairedPortal = null;
 	public Asteroid asteroid;
 	public Portal pair;
+	public boolean active;
 	public boolean crazy;
 	
 	public Portal()
@@ -16,6 +19,7 @@ public class Portal implements Travelable, java.io.Serializable
 		pair = null;
 		asteroid = null;
 		crazy = false;
+		active = false;
 	}
 	
 	/**
@@ -24,6 +28,7 @@ public class Portal implements Travelable, java.io.Serializable
 	public void Destroyed() {
 		asteroid.RemovePortal();
 		pair.RemovePair();
+		DrawAbles.remove(this);
 	}
 	
 	public void RemovePair()
@@ -63,15 +68,21 @@ public class Portal implements Travelable, java.io.Serializable
 	 * Beállítja az aszeroidát 
 	 * @param asteroid Az aszteroida amihez a kapu tartozik, Bekapcsolódik így, ha van pár nélküli portál ahoz kapcsolódik
 	 */
-	public void SetAsteroid(Asteroid asteroid) {
+	public void SetAsteroid(Asteroid asteroid)
+	{
 		this.asteroid=asteroid;
-		if(unpairedPortal == null)
+		if(active == false)
 		{
-			unpairedPortal = this;
-			return;
+			if(unpairedPortal == null)
+			{
+				unpairedPortal = this;
+				return;
+			}
+			pair = unpairedPortal;
+			unpairedPortal = null;
+			active = true;
+			DrawAbles.add(this);
 		}
-		pair = unpairedPortal;
-		unpairedPortal = null;
 	}
 	
 	public void EndTurnEffect()
