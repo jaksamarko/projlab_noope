@@ -7,6 +7,7 @@ import model.Travelable;
 
 public interface ViewAPI
 {
-	public void printStatus(ArrayList<Item<Settler>> players, ArrayList<Item<Travelable>> destinations); 
-	
+	public void printStatus(ArrayList<Item<Settler>> players, ArrayList<Item<Travelable>> destinations);
+	public void printLost();
+	public void printWon();
 }

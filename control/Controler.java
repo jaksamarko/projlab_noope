@@ -21,13 +21,15 @@ public class Controler implements ControlerAPI
 	}
 	
 	private ModelAPI model;
+	private ViewAPI view;
 	private ArrayList<Settler> settlers;
 	private int settlerIndex;
 	private ArrayList<Item<Settler>> players;
 	private ArrayList<Item<Travelable>> destinations;
-	public Controler(ModelAPI _model)
+	public Controler(ModelAPI _model, ViewAPI _view)
 	{
 		model = _model;
+		view = _view;
 		settlers = model.GetAllSettler();
 		settlerIndex = 0;
 		players = new ArrayList<Item<Settler>>();
@@ -58,7 +60,11 @@ public class Controler implements ControlerAPI
 	{
 		model.AllWorkersWork();
 		model.EndTurnAsteroidEffect();
-		model.CreateSunstorm(); 
+		model.CreateSunstorm();
+		if(checklose())
+			view.printLost();
+		if(checkwin())
+			view.printWon();
 	}
 	
 	private void endPhase()
@@ -74,12 +80,28 @@ public class Controler implements ControlerAPI
 	
 	public boolean checkwin() {
 		for(Asteroid a : DrawAbles.getInstance().asteroids) {
-			ArrayList<Settler> settlers = new ArrayList<Settler>();
 			ArrayList<Unit> units = new ArrayList<Unit>();
-			for(Unit u : )
-		}
-			
-			
+			for(Unit u : a.GetUnits())
+			{
+				units.add(u);
+			}
+			ArrayList<Settler> settlers= DrawAbles.unitToSettler(units);
+			int[] array = new int[4];
+			for(int i = 0; i < 4; i++)
+				array[i] = 0;
+			for(Settler s: settlers)
+			{
+				int[] unitArray = s.GetInvetory().getCounts();
+				for(int i = 0; i < 4; i++)
+					array[i] += unitArray[i];
+			}
+			boolean hasEnough = true;
+			for(int i = 0; i < 4; i++)
+				if(array[i]< 3)
+					hasEnough = false;
+			if(hasEnough == true)
+				return true;
+		}	
 		return false;
 	}
 	

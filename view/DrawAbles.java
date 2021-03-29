@@ -17,17 +17,23 @@ public class DrawAbles
 		instance = new DrawAbles();
 	}
 	
-	public Settler unitToSettler(Unit unit){
-		for(Settler s : settlers) {
+	public static Settler unitToSettler(Unit unit){
+		for(Settler s : getInstance().settlers) {
 			if(s==unit)
 				return s;
 		}
 		return null;
 	}
 
-	public ArrayList<Settler> unitToSettler(ArrayList<Unit> units){
-		
-		return null;
+	public static ArrayList<Settler> unitToSettler(ArrayList<Unit> units){
+		ArrayList<Settler> re = new ArrayList<Settler>();
+		for(Unit u:units)
+		{
+			Settler s = unitToSettler(u);
+			if(s != null)
+				re.add(s);
+		}
+		return re;
 	}
 	
 	private static DrawAbles instance = null;

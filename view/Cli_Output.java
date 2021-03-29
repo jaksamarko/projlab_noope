@@ -80,4 +80,16 @@ public class Cli_Output implements ViewAPI
 		}
 	}
 
+	@Override
+	public void printLost() {
+		CLI.println("Game Lost");
+		
+	}
+
+	@Override
+	public void printWon() {
+		CLI.println("Game won");
+		
+	}
+
 }

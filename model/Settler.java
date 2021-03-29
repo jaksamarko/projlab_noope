@@ -106,4 +106,9 @@ public class Settler extends DrillUnit
 		DrawAbles.remove(this);
 		
 	}
+	
+	public Inventory GetInvetory()
+	{
+		return inventory;
+	}
 }

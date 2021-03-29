@@ -35,4 +35,8 @@ public class ResourceBox<T extends Resource> implements java.io.Serializable
 		if(store.size()>0)
 			store.remove(store.size() - 1);
 	}
+	public int GetCount()
+	{
+		return store.size();
+	}
 }

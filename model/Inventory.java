@@ -19,6 +19,16 @@ public class Inventory implements java.io.Serializable
 	private ResourceBox<Uranium> uraniumBox;
 	private ArrayList<Portal> portals;
 	
+	public int[] getCounts()
+	{
+		int[] array = new int[4];
+		array[0] = coalBox.GetCount();
+		array[1] = iceBox.GetCount();
+		array[2] = ironBox.GetCount();
+		array[3] = uraniumBox.GetCount();
+		return array;
+	}
+	
 	public Inventory()
 	{
 		coalBox = new ResourceBox<Coal>(); 
