@@ -12,6 +12,11 @@ public class Inventory implements java.io.Serializable
 {
 	private static transient int PortalStorageCapacity = 3; 
 	
+	public ResourceBox<Coal> GetCoalBox() {return coalBox;}
+	public ResourceBox<Iron> GetIronBox() {return ironBox;}
+	public ResourceBox<Ice> GetIceBox() {return iceBox;}
+	public ResourceBox<Uranium> GetUraniumBox() {return uraniumBox;}
+	public int GetPortalCount() {return portals.size();}
 	
 	private ResourceBox<Coal> coalBox;
 	private ResourceBox<Iron> ironBox;

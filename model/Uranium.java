@@ -5,11 +5,11 @@ package model;
  * Ha egy teljesen kifúrt, napközelben lévõ aszteroidában van, felrobban.
  */
 public class Uranium extends Resource {
-	public static int Lives = 3;
+	public static int MaxLives = 3;
 	private int lives;
 	public Uranium()
 	{
-		lives = Uranium.Lives;
+		lives = Uranium.MaxLives;
 	}
 	
 	/**
@@ -31,6 +31,6 @@ public class Uranium extends Resource {
 	}
 	
 	public String toString() {
-        return "Uranum";
+        return "Uranum (exposed "+ (Uranium.MaxLives - lives) +" times)";
     } 
 }

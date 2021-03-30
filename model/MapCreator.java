@@ -201,7 +201,7 @@ public class MapCreator {
 				break;
 				case "lives":
 					Resource res = aster.RemoveResource();
-					for(int i=Integer.parseInt(readData());i<Uranium.Lives;i++) {
+					for(int i=Integer.parseInt(readData());i<Uranium.MaxLives;i++) {
 						res.Exposed();
 					}
 					aster.SetResource(res);

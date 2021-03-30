@@ -19,6 +19,15 @@ public class Cli_Output implements ViewAPI
 		return -1;
 	}
 	
+	private int getSettlerID(Settler s, ArrayList<Item<Settler>> list)
+	{
+		for(Item<Settler> i: list)
+			if(i.object == s)
+				return i.ID;
+		return -1;				
+		
+	}
+	
 	private String getSettlers(Asteroid a, ArrayList<Item<Settler>> players)
 	{
 		String re = "";
@@ -71,7 +80,7 @@ public class Cli_Output implements ViewAPI
 			String resource = "None";
 			if(a.GetResource() != null)
 				resource = a.GetResource().toString();
-			CLI.println("Asteroid("+getID(a, destinations)+") material: " + resource+" layers: "+a.GetLayers());
+			CLI.println("Asteroid("+getID(a, destinations)+") material: " + resource+"; layers: "+a.GetLayers());
 			CLI.print("\tNeighbors: ");
 			boolean started = false;
 			for(Travelable t:a.GetNeighbors())
@@ -99,6 +108,15 @@ public class Cli_Output implements ViewAPI
 			CLI.println("\tUfo count: "+ ufoCount(a,DrawAbles.getInstance().ufos));
 			CLI.println("");
 		}
+		for(Settler s:DrawAbles.getInstance().settlers)
+		{
+			CLI.println("Player ("+getSettlerID(s, players) + ") inventory");
+			CLI.println("\tCoal count: "+s.GetInvetory().GetCoalBox().GetCount());
+			CLI.println("\tIron count: "+s.GetInvetory().GetIronBox().GetCount());
+			CLI.println("\tIce count: "+s.GetInvetory().GetIceBox().GetCount());
+			CLI.println("\tUranium count: "+s.GetInvetory().GetUraniumBox().GetCount());
+			CLI.println("\tPortal count: "+s.GetInvetory().GetPortalCount());
+		}
 	}
 
 	@Override
@@ -114,8 +132,7 @@ public class Cli_Output implements ViewAPI
 
 	@Override
 	public void printCurrentPlayer(int playerID) {
-		CLI.println("Current Player: "+playerID);
-		
+		CLI.println("Current Player: "+ playerID);
 	}
 
 }
