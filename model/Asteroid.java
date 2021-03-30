@@ -28,11 +28,6 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	private ArrayList<Unit> units;
 	private ArrayList<Travelable> neighbors;
 	
-	public Asteroid()
-	{
-		DrawAbles.add(this);
-	}
-	
 	public Asteroid(boolean _nearSun)
 	{
 		layers = Asteroid.Layers;
@@ -41,6 +36,7 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 		resource = null;
 		units = new ArrayList<Unit>();
 		neighbors = new ArrayList<Travelable>();
+		DrawAbles.add(this);
 	}
 	
 	/**

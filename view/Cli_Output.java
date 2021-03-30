@@ -68,15 +68,30 @@ public class Cli_Output implements ViewAPI
 	{
 		for(Asteroid a:DrawAbles.getInstance().asteroids)
 		{
-			CLI.println("Asteroid: "+getID(a, destinations));
+			CLI.println("Asteroid("+getID(a, destinations)+")");
+			CLI.print("\tNeighbors: ");
+			boolean started = false;
+			for(Travelable t:a.GetNeighbors())
+			{
+				if(started == false)
+				{
+					CLI.print(""+getID(t, destinations));
+					started = true;
+				}
+				else
+				{
+					CLI.print(", "+getID(t, destinations));
+				}
+			}
+			CLI.println("");
 			if(a.GetPortal() != null)
-				CLI.println("Has Portal: "+getID(a.GetPortal(), destinations));
+				CLI.println("\tHas Portal: "+getID(a.GetPortal(), destinations));
 			String units = getSettlers(a, players);
 			if(units.length()>0)
-				CLI.println("Settlers: "+ units);
-			CLI.println("Robot count: "+ robotCount(a,DrawAbles.getInstance().robots));
-			CLI.println("Ufo count: "+ ufoCount(a,DrawAbles.getInstance().ufos));
-			
+				CLI.println("\tSettlers: "+ units);
+			CLI.println("\tRobot count: "+ robotCount(a,DrawAbles.getInstance().robots));
+			CLI.println("\tUfo count: "+ ufoCount(a,DrawAbles.getInstance().ufos));
+			CLI.println("");
 		}
 	}
 
@@ -89,7 +104,6 @@ public class Cli_Output implements ViewAPI
 	@Override
 	public void printWon() {
 		CLI.println("Game won");
-		
 	}
 
 }

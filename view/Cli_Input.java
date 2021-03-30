@@ -35,7 +35,7 @@ public class Cli_Input
 		control = _control;
 		CLI.println("Read from file or console?(c/f)?");
 		String input = "";
-		while(input.equals("c")||input.equals("f"))
+		while(!(input.equals("c")||input.equals("f")))
 			input = readln();
 		if(input.equals("f"))
 		{
@@ -57,7 +57,7 @@ public class Cli_Input
 			String[] pieces = line.split(" ");
 			if(pieces.length == 0)
 				continue;
-			String cmd = pieces[1];
+			String cmd = pieces[0];
 			if(cmd.equals("move"))
 			{
 				if(pieces.length == 1)
@@ -65,7 +65,7 @@ public class Cli_Input
 					CLI.printError("move-nak 2 argument kell");
 					break;
 				}
-				control.move(Integer.parseInt(pieces[0]));
+				control.move(Integer.parseInt(pieces[1]));
 			}
 			else if(cmd.equals("drill"))
 			{

@@ -46,6 +46,8 @@ public class Controler implements ControlerAPI
 			Item<Travelable> it = new Item<Travelable>(i+1, aList.get(i));
 			destinations.add(it);
 		}
+		
+		view.printStatus(players, destinations);
 	}
 	
 	public ArrayList<Settler> getSettlers(){

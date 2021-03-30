@@ -63,6 +63,7 @@ public class Main
 		Cli_Output output = new Cli_Output(); 
 		Controler controler = new Controler(g,output);
 		input.init(controler);
+		input.Run();
 		
 		Game.Save("save.txt");
 		
