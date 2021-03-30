@@ -8,11 +8,14 @@ import view.DrawAbles;
  */
 public class Portal implements Travelable, java.io.Serializable
 {
+	public Portal GetPair() {return pair;}
+	public void SetPair(Portal other) {pair = other; other.pair = this; }
+	
 	private static Portal unpairedPortal = null;
-	public Asteroid asteroid;
-	public Portal pair;
-	public boolean active;
-	public boolean crazy;
+	private Asteroid asteroid;
+	private Portal pair;
+	private boolean active;
+	private boolean crazy;
 	
 	public Portal()
 	{

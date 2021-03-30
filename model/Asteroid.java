@@ -16,10 +16,12 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	// getter és setterek
 	public void RemoveUnit(Unit unit) {units.remove(unit);}
 	public void SetResource(Resource resource) {this.resource = resource;}
+	public Resource GetResource() { return resource;}
 	private boolean IsNearSun() {return nearSun;}
 	public void AddUnit(Unit unit) {units.add(unit);}
 	public void addNeighbor(Travelable travelable) {neighbors.add(travelable);}
 	public ArrayList<Travelable> GetNeighbors() {return neighbors;}
+	public int GetLayers() {return layers;}
 	
 	private int layers;
 	private boolean nearSun;
@@ -91,7 +93,7 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	{
 		if(neighbors.size() == 0)
 			return null;
-		return neighbors.get(RNG.GetRand()/neighbors.size());	
+		return neighbors.get(RNG.GetRand() % neighbors.size());	
 	}
 	/**
 	 * Visszaadja, hogy az aszteroida napközelben van-e.
@@ -155,8 +157,12 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	 */
 	public void Sunstorm()
 	{
+		// if I use the orignal ArrayList it throws java.util.ConcurrentModificationException
+		ArrayList<Unit> unitsCopy = new ArrayList<Unit>();
+		for(Unit u: units)
+			unitsCopy.add(u);
 		if(layers > 0||resource!=null)
-			for(Unit u: units)
+			for(Unit u: unitsCopy)
 				u.Die();
 	}
 	public void RemoveNeighbor(Asteroid asteroid)

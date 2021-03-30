@@ -18,4 +18,8 @@ public abstract class Resource implements java.io.Serializable {
 	 * @param inventory
 	 */
 	public abstract void PickedUp(Inventory inventory);
+	
+	public String toString() {
+        return "Not Defined";
+    } 
 }

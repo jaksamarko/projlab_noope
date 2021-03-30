@@ -14,4 +14,8 @@ public class Coal extends Resource {
 	public void PickedUp(Inventory inventory) {
 		inventory.InsertItem(this);
 	}
+	
+	public String toString() {
+        return "Coal";
+    } 
 }

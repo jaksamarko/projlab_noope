@@ -26,6 +26,9 @@ public class Controler implements ControlerAPI
 	private int settlerIndex;
 	private ArrayList<Item<Settler>> players;
 	private ArrayList<Item<Travelable>> destinations;
+	private boolean won = false;
+	private boolean lost = false;
+	private boolean sunStormActive = true;
 	public Controler(ModelAPI _model, ViewAPI _view)
 	{
 		model = _model;
@@ -46,8 +49,8 @@ public class Controler implements ControlerAPI
 			Item<Travelable> it = new Item<Travelable>(i+1, aList.get(i));
 			destinations.add(it);
 		}
-		
 		view.printStatus(players, destinations);
+		view.printCurrentPlayer(players.get(settlerIndex).ID);
 	}
 	
 	public ArrayList<Settler> getSettlers(){
@@ -63,9 +66,9 @@ public class Controler implements ControlerAPI
 		model.AllWorkersWork();
 		model.EndTurnAsteroidEffect();
 		model.CreateSunstorm();
-		if(checklose())
+		if(lost = checklose())
 			view.printLost();
-		if(checkwin())
+		if(won = checkwin())
 			view.printWon();
 	}
 	
@@ -73,14 +76,21 @@ public class Controler implements ControlerAPI
 	{
 		if(settlers.get(settlerIndex).getStepDone()) {
 			settlerIndex++;
+			if(settlerIndex > settlers.size()-1)
+			{
+				endTurn();
+				settlerIndex = 0;
+				settlers = model.GetAllSettler();
+			}
+			if(won || lost)
+			{
+				view.printStatus(players, destinations);
+				return;
+			}
 			settlers.get(settlerIndex).Active();
 		}
-		if(settlerIndex>settlers.size())
-		{
-			endTurn();
-			settlerIndex = 0;
-			settlers = model.GetAllSettler();
-		}
+		view.printCurrentPlayer(players.get(settlerIndex).ID);
+		view.printStatus(players, destinations);
 	}
 	
 	public boolean checkwin() {

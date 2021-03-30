@@ -68,7 +68,10 @@ public class Cli_Output implements ViewAPI
 	{
 		for(Asteroid a:DrawAbles.getInstance().asteroids)
 		{
-			CLI.println("Asteroid("+getID(a, destinations)+")");
+			String resource = "None";
+			if(a.GetResource() != null)
+				resource = a.GetResource().toString();
+			CLI.println("Asteroid("+getID(a, destinations)+") material: " + resource+" layers: "+a.GetLayers());
 			CLI.print("\tNeighbors: ");
 			boolean started = false;
 			for(Travelable t:a.GetNeighbors())
@@ -85,7 +88,10 @@ public class Cli_Output implements ViewAPI
 			}
 			CLI.println("");
 			if(a.GetPortal() != null)
-				CLI.println("\tHas Portal: "+getID(a.GetPortal(), destinations));
+			{
+				Portal pair = a.GetPortal().GetPair();
+				CLI.println("\tHas Portal: "+getID(a.GetPortal(), destinations) + " (pair: "+ getID(a.GetPortal().GetPair(), destinations) +")");
+			}
 			String units = getSettlers(a, players);
 			if(units.length()>0)
 				CLI.println("\tSettlers: "+ units);
@@ -104,6 +110,12 @@ public class Cli_Output implements ViewAPI
 	@Override
 	public void printWon() {
 		CLI.println("Game won");
+	}
+
+	@Override
+	public void printCurrentPlayer(int playerID) {
+		CLI.println("Current Player: "+playerID);
+		
 	}
 
 }

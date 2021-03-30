@@ -97,7 +97,7 @@ public class Game implements java.io.Serializable, ModelAPI {
 	 */
 	public Asteroid GetRandomAsteroid()
 	{
-		return asteroids.get(RNG.GetRand()/asteroids.size());
+		return asteroids.get(RNG.GetRand() % asteroids.size());
 	}
 	
 	public void CreateSunstorm() {

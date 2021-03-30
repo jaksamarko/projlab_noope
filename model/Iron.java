@@ -11,4 +11,8 @@ public class Iron extends Resource {
 	public void PickedUp(Inventory inventory) {
 		inventory.InsertItem(this);
 	}
+	
+	public String toString() {
+        return "Iron";
+    } 
 }

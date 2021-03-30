@@ -30,4 +30,7 @@ public class Uranium extends Resource {
 		inventory.InsertItem(this);
 	}
 	
+	public String toString() {
+        return "Uranum";
+    } 
 }

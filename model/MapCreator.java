@@ -228,7 +228,7 @@ public class MapCreator {
 					
 				break;
 				case "neigh":
-					portal.pair=(Portal)objects.get("Portal").get(readId());
+					portal.SetPair((Portal)objects.get("Portal").get(readId()));
 				break;
 			}
 		}

@@ -66,8 +66,6 @@ public class Main
 		input.Run();
 		
 		Game.Save("save.txt");
-		
-		System.out.println("Dön");
     }
 }
 

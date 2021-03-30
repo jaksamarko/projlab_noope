@@ -22,4 +22,7 @@ public class Ice extends Resource {
 		inventory.InsertItem(this);
 	}
 	
+	public String toString() {
+        return "Ice";
+    } 
 }
