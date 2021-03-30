@@ -222,7 +222,10 @@ public class MapCreator {
 		while(readLineUntil("new")) {
 			switch(selectFromKeys(params)) {
 				case "aster":
-					portal.SetAsteroid((Asteroid)objects.get("Asteroid").get(readId()));
+					Asteroid aster = (Asteroid)objects.get("Asteroid").get(readId());
+					//portal.SetAsteroid(aster);
+					aster.ReceivePortal(portal);
+					
 				break;
 				case "neigh":
 					portal.pair=(Portal)objects.get("Portal").get(readId());
