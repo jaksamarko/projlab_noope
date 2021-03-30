@@ -9,7 +9,7 @@ import view.DrawAbles;
 public class Portal implements Travelable, java.io.Serializable
 {
 	public Portal GetPair() {return pair;}
-	public void SetPair(Portal other) {pair = other; other.pair = this; }
+	public void SetPair(Portal other) {pair = other; other.pair = this; active = true; other.active = true;}
 	
 	private static Portal unpairedPortal = null;
 	private Asteroid asteroid;
@@ -23,6 +23,7 @@ public class Portal implements Travelable, java.io.Serializable
 		asteroid = null;
 		crazy = false;
 		active = false;
+		DrawAbles.add(this);
 	}
 	
 	/**
@@ -84,7 +85,6 @@ public class Portal implements Travelable, java.io.Serializable
 			pair = unpairedPortal;
 			unpairedPortal = null;
 			active = true;
-			DrawAbles.add(this);
 		}
 	}
 	
