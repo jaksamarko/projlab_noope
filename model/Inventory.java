@@ -120,4 +120,8 @@ public class Inventory implements java.io.Serializable
 		if(material == Material.Uranium)
 			uraniumBox.Remove();
 	}
+	
+	public void InsertPortal() {
+		this.portals.add(new Portal());
+	}
 }

@@ -6,13 +6,18 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class MapCreator {
-	private final String types[] = {"Asteroid","Settler","Ufo"/*,"Portal","Robot"*/};
+	private final String types[] = {"Asteroid","Settler","Ufo","Portal","Robot"};
 	
 	private final String params[] = {
 			//For asteroid
+			"layers",
 			"res","neigh",
 			//For settler/robot
-			"aster"};
+			"aster",
+			//settler
+			"inv",
+			//Resource
+			"lives"};
 	
 	
 	private HashMap<String,HashMap<Integer, Object>> objects = new HashMap<String, HashMap<Integer, Object>>();
@@ -40,6 +45,12 @@ public class MapCreator {
 							case "Ufo":
 								objects.get(type).put(readId(),createUfo());
 							break;
+							case "Robot":
+								objects.get(type).put(readId(),createRobot());
+								break;
+							case "Portal":
+								objects.get(type).put(readId(),createPortal());
+								break;
 							case "":
 								System.out.println("Wrong line: "+ln);
 							break;
@@ -50,8 +61,12 @@ public class MapCreator {
 								configAsteroid((Asteroid)objects.get(type).get(readId()));
 							break;
 							case "Ufo":
+							case "Robot":
 							case "Settler":
 								configUnit((Unit)objects.get(type).get(readId()));
+							break;
+							case "Portal":
+								configPortal((Portal)objects.get(type).get(readId()));
 							break;
 						}
 					}
@@ -123,6 +138,10 @@ public class MapCreator {
 						res.asteroid = aster;
 					aster.SetResource(res);
 				break;
+				case "layers":
+					for(int i=Integer.parseInt(readData());i<Asteroid.Layers;i++)
+						aster.RemoveLayer();
+				break;
 			}
 		}
 		return aster;
@@ -130,9 +149,18 @@ public class MapCreator {
 	
 	private Settler createSettler() throws IOException {
 		Settler sett = new Settler(null);
+		Inventory inv = sett.GetInvetory();
 		while(readLineUntil("new")) {
-			/*switch(selectFromKeys(params)) {
-			}*/
+			switch(selectFromKeys(params)) {
+				case "inv":
+					switch(readData()) {
+						case "Portal":
+							//TODO ha a zsebében van
+								inv.InsertPortal();
+							break;
+					}
+				break;
+			}
 		}
 		return sett;
 	}
@@ -146,13 +174,38 @@ public class MapCreator {
 		return ufo;
 	}
 	
+	private Portal createPortal() throws IOException {
+		Portal portal = new Portal();
+		while(readLineUntil("new")) {
+			
+		}
+		return portal;
+	}
+	
+	private Robot createRobot() throws IOException {
+		Robot robot = new Robot(null);
+		while(readLineUntil("new")) {
+			
+		}
+		return robot;
+	}
+	
 	private void configAsteroid(Asteroid aster) throws IOException {
 		Game.createAsteroid(aster);
 		while(readLineUntil("new")) {
-			if(findKey("neigh")) {
-				for(String dat:readData().split(",")) {
-					aster.addNeighbor((Asteroid)objects.get("Asteroid").get(Integer.parseInt(dat)));
-				}
+			switch(selectFromKeys(params)) {
+				case "neigh":
+					for(String dat:readData().split(",")) {
+						aster.addNeighbor((Asteroid)objects.get("Asteroid").get(Integer.parseInt(dat)));
+					}
+				break;
+				case "lives":
+					Resource res = aster.RemoveResource();
+					for(int i=Integer.parseInt(readData());i<Uranium.Lives;i++) {
+						res.Exposed();
+					}
+					aster.SetResource(res);
+				break;
 			}
 		}
 	}
@@ -161,6 +214,19 @@ public class MapCreator {
 		while(readLineUntil("new")) {
 			if(findKey("aster")) {
 				((Asteroid)objects.get("Asteroid").get(readId())).ReceiveUnit(unit);
+			}
+		}
+	}
+	
+	private void configPortal(Portal portal) throws IOException {
+		while(readLineUntil("new")) {
+			switch(selectFromKeys(params)) {
+				case "aster":
+					portal.SetAsteroid((Asteroid)objects.get("Asteroid").get(readId()));
+				break;
+				case "neigh":
+					portal.pair=(Portal)objects.get("Portal").get(readId());
+				break;
 			}
 		}
 	}

@@ -55,7 +55,7 @@ public class Main
 		}*/
 		MapCreator mp;
 		Game g = new Game();
-		if(!Game.Load("save.txt")) {
+		if(/*!Game.Load("save.txt")*/true) {
 			mp = new MapCreator("MapCreate.txt");
 		}
 		

@@ -12,7 +12,7 @@ import view.DrawAbles;
  */
 
 public class Asteroid implements Travelable, java.io.Serializable  {
-	
+	public static int Layers = 3;
 	// getter és setterek
 	public void RemoveUnit(Unit unit) {units.remove(unit);}
 	public void SetResource(Resource resource) {this.resource = resource;}
@@ -35,7 +35,7 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	
 	public Asteroid(boolean _nearSun)
 	{
-		layers = 3;
+		layers = Asteroid.Layers;
 		nearSun = _nearSun;
 		portal = null;
 		resource = null;
