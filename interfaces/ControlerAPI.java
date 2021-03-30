@@ -1,5 +1,6 @@
 package interfaces;
 
+import model.Asteroid;
 import model.Material;
 
 public interface ControlerAPI 
@@ -11,4 +12,6 @@ public interface ControlerAPI
 	public void createportal();
 	public void createrobot();
 	public void placeportal();
+	public void admin_setSunstorm(boolean state);
+	public void admin_setNearSun(int asteroidID, boolean state);
 }

@@ -22,6 +22,8 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	public void addNeighbor(Travelable travelable) {neighbors.add(travelable);}
 	public ArrayList<Travelable> GetNeighbors() {return neighbors;}
 	public int GetLayers() {return layers;}
+	public void SetNearSun(boolean state) {nearSun = state;}
+	public boolean GetNearSun() { return nearSun;}
 	
 	private int layers;
 	private boolean nearSun;
@@ -48,7 +50,7 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	 */
 	public boolean AcceptResource(Resource resource)
 	{
-		if(resource!=null)
+		if(this.resource!=null)
 			return false;
 		this.resource = resource;
 		return true;
@@ -189,8 +191,9 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	public void EndTurnEffect()
 	{
 		portal.EndTurnEffect();
-		if(IsNearSun() && layers == 0) 
-			resource.Exposed();
+		if(IsNearSun() && layers == 0)
+			if(resource != null)
+				resource.Exposed();
 		
 	}
 	

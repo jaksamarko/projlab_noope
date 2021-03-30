@@ -3,6 +3,7 @@ package control;
 import java.util.ArrayList;
 import interfaces.*;
 import model.*;
+import view.CLI;
 import view.DrawAbles;
 
 public class Controler implements ControlerAPI
@@ -43,12 +44,25 @@ public class Controler implements ControlerAPI
 		}
 			
 		destinations = new ArrayList<Item<Travelable>>();
-		ArrayList<Travelable> aList = model.GetAllTravelAble();
+		int index = 1;
+		for(Asteroid a:DrawAbles.getInstance().asteroids)
+		{
+			destinations.add(new Item<Travelable>(index, a));
+			index++;
+		}
+		
+		for(Portal p : DrawAbles.getInstance().portals)
+		{
+			destinations.add(new Item<Travelable>(index, p));
+			index++;
+		}
+		
+		/*ArrayList<Travelable> aList = model.GetAllTravelAble();
 		for(int i = 0; i< aList.size(); i++)
 		{
 			Item<Travelable> it = new Item<Travelable>(i+1, aList.get(i));
 			destinations.add(it);
-		}
+		}*/
 		view.printStatus(players, destinations);
 		view.printCurrentPlayer(players.get(settlerIndex).ID);
 	}
@@ -63,8 +77,10 @@ public class Controler implements ControlerAPI
 	
 	private void endTurn()
 	{
+		view.printEndTurn();
 		model.AllWorkersWork();
 		model.EndTurnAsteroidEffect();
+		if(sunStormActive)
 		model.CreateSunstorm();
 		if(lost = checklose())
 			view.printLost();
@@ -89,8 +105,8 @@ public class Controler implements ControlerAPI
 			}
 			settlers.get(settlerIndex).Active();
 		}
-		view.printCurrentPlayer(players.get(settlerIndex).ID);
 		view.printStatus(players, destinations);
+		view.printCurrentPlayer(players.get(settlerIndex).ID);
 	}
 	
 	public boolean checkwin() {
@@ -182,6 +198,24 @@ public class Controler implements ControlerAPI
 		Settler settler = settlers.get(settlerIndex);
 		settler.PlacePortal();
 		endPhase();
+	}
+
+	@Override
+	public void admin_setSunstorm(boolean state) {
+		sunStormActive = state;
+		CLI.println("sunStorm: "+ sunStormActive);
+	}
+
+	@Override
+	public void admin_setNearSun(int asteroidID, boolean state) {
+		Travelable ta = getTravelable(asteroidID);
+		for(Asteroid a: DrawAbles.getInstance().asteroids)
+			if(a == ta)
+			{
+				a.SetNearSun(state);
+				break;
+			}
+		view.printStatus(players, destinations);
 	}
 	
 }

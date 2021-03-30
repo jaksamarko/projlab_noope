@@ -9,7 +9,7 @@ public class Cli_Input
 {
 	BufferedReader consoleReader;
 	BufferedReader reader;
-	
+	boolean printRead = false;
 	public Cli_Input()
 	{
 		consoleReader = new BufferedReader(new InputStreamReader(System.in));
@@ -39,6 +39,7 @@ public class Cli_Input
 			input = readln();
 		if(input.equals("f"))
 		{
+			printRead = true;
 			CLI.print("Path:");
 			try {
 				reader = new BufferedReader(new FileReader(readln()));
@@ -54,6 +55,12 @@ public class Cli_Input
 		while(true)
 		{
 			String line = readln();
+			if(printRead)
+			{
+				if(line == null)
+					break;
+				CLI.println(line);
+			}
 			String[] pieces = line.split(" ");
 			if(pieces.length == 0)
 				continue;
@@ -63,7 +70,7 @@ public class Cli_Input
 				if(pieces.length == 1)
 				{
 					CLI.printError("move-nak 2 argument kell");
-					break;
+					continue;
 				}
 				control.move(Integer.parseInt(pieces[1]));
 			}
@@ -80,7 +87,7 @@ public class Cli_Input
 				if(pieces.length == 1)
 				{
 					CLI.printError("putback-nek 2 argument kell");
-					break;
+					continue;
 				}
 				if(pieces[1].equals("coal"))
 					control.putback(Material.Coal);
@@ -106,6 +113,39 @@ public class Cli_Input
 			else if(cmd.equals("quit"))
 			{
 				break;
+			}
+			else if(cmd.equals("admin"))
+			{
+				if(pieces.length == 1 )
+				{
+					CLI.printError("kevés argument admin-nak");
+					continue;
+				}
+				if(pieces[1].equals("setsun"))
+				{
+					if(pieces.length == 2 )
+					{
+						CLI.printError("kevés argument setsun-nak");
+						continue;
+					}
+					boolean state = false;
+					if(pieces[2].equals("on"))
+						state = true;
+					control.admin_setSunstorm(state);
+				}
+				else if(pieces[1].equals("setnearsun"))
+				{
+					if(pieces.length < 4 )
+					{
+						CLI.printError("kevés argument setnearsun-nak");
+						continue;
+					}
+					int id = Integer.parseInt(pieces[2]);
+					boolean state = false;
+					if(pieces[3].equals("on"))
+						state = true;
+					control.admin_setNearSun(id, state);
+				}
 			}
 		}
 	}

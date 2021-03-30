@@ -80,7 +80,7 @@ public class Cli_Output implements ViewAPI
 			String resource = "None";
 			if(a.GetResource() != null)
 				resource = a.GetResource().toString();
-			CLI.println("Asteroid("+getID(a, destinations)+") material: " + resource+"; layers: "+a.GetLayers());
+			CLI.println("Asteroid("+getID(a, destinations)+") material: " + resource+"; layers: "+a.GetLayers()+ "; near sun: "+a.GetNearSun());
 			CLI.print("\tNeighbors: ");
 			boolean started = false;
 			for(Travelable t:a.GetNeighbors())
@@ -117,6 +117,7 @@ public class Cli_Output implements ViewAPI
 			CLI.println("\tUranium count: "+s.GetInvetory().GetUraniumBox().GetCount());
 			CLI.println("\tPortal count: "+s.GetInvetory().GetPortalCount());
 		}
+		CLI.println("");
 	}
 
 	@Override
@@ -133,6 +134,12 @@ public class Cli_Output implements ViewAPI
 	@Override
 	public void printCurrentPlayer(int playerID) {
 		CLI.println("Current Player: "+ playerID);
+	}
+
+	@Override
+	public void printEndTurn() {
+		CLI.println("End Turn");
+		
 	}
 
 }
