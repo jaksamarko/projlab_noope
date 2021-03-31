@@ -5,7 +5,8 @@ import model.Material;
 
 public interface ControlerAPI 
 {
-	public void move(int asterID);
+	public void moveA(int ID);
+	public void moveG(int ID);
 	public void drill();
 	public void mine();
 	public void putback(Material material);

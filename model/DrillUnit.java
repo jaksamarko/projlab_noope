@@ -7,8 +7,8 @@ public abstract class DrillUnit extends Unit implements java.io.Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public DrillUnit(Asteroid _asteroid) {
-		super(_asteroid);
+	public DrillUnit(int ID, Asteroid _asteroid) {
+		super(ID, _asteroid);
 		AddUnitToGame();
 	}
 

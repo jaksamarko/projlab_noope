@@ -13,9 +13,9 @@ public class Robot extends DrillUnit implements Worker
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Robot(Asteroid _asteroid) 
+	public Robot(int ID, Asteroid _asteroid) 
 	{
-		super(_asteroid);
+		super(ID, _asteroid);
 		DrawAbles.add(this);
 	}
 	

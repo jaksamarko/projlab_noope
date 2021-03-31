@@ -8,25 +8,10 @@ import view.DrawAbles;
 
 public class Controler implements ControlerAPI
 {
-	private Travelable getTravelable(int ID)
-	{
-		for(Item<Travelable> o: destinations)
-			if(o.ID == ID)
-			{
-				if(model.GetAllTravelAble().contains(o.object))
-					return o.object;
-				else
-					return null;
-			}
-		return null;
-	}
-	
 	private ModelAPI model;
 	private ViewAPI view;
 	private ArrayList<Settler> settlers;
 	private int settlerIndex;
-	private ArrayList<Item<Settler>> players;
-	private ArrayList<Item<Travelable>> destinations;
 	private boolean won = false;
 	private boolean lost = false;
 	private boolean sunStormActive = true;
@@ -37,50 +22,13 @@ public class Controler implements ControlerAPI
 		view = _view;
 		settlers = model.GetAllSettler();
 		settlerIndex = 0;
-		players = new ArrayList<Item<Settler>>();
-		for(int i = 0; i< settlers.size(); i++)
-		{
-			Item<Settler> it = new Item<Settler>(i+1, settlers.get(i));
-			players.add(it);
-		}
-			
-		destinations = new ArrayList<Item<Travelable>>();
-		int index = 1;
-		for(Asteroid a:DrawAbles.getInstance().asteroids)
-		{
-			destinations.add(new Item<Travelable>(index, a));
-			index++;
-		}
 		
-		for(Portal p : DrawAbles.getInstance().portals)
-		{
-			destinations.add(new Item<Travelable>(index, p));
-			index++;
-		}
-		
-		//Optimize later
-		for(Portal p:DrawAbles.getInstance().portals)
-		{
-			if(p.GetPair() == null)
-				for(Portal q:DrawAbles.getInstance().portals)
-				{
-					if(!DrawAbles.getInstance().portals.contains(q.GetPair()))
-					{
-						p.SetPair(q);
-						break;
-					}
-				}
-		}
-		view.printStatus(players, destinations);
-		view.printCurrentPlayer(players.get(settlerIndex).ID);
+		view.printStatus();
+		view.printCurrentPlayer(settlers.get(settlerIndex).GetID());
 	}
 	
 	public ArrayList<Settler> getSettlers(){
 		return this.settlers;
-	}
-	
-	public ArrayList<Item<Travelable>> getDestinations(){
-		return this.destinations;
 	}
 	
 	private void endTurn()
@@ -109,13 +57,13 @@ public class Controler implements ControlerAPI
 			}
 			if(won || lost)
 			{
-				view.printStatus(players, destinations);
+				view.printStatus();
 				return;
 			}
 			settlers.get(settlerIndex).Active();
 		}
-		view.printStatus(players, destinations);
-		view.printCurrentPlayer(players.get(settlerIndex).ID);
+		view.printStatus();
+		view.printCurrentPlayer(settlers.get(settlerIndex).GetID());
 	}
 	
 	public boolean checkwin() {
@@ -153,12 +101,18 @@ public class Controler implements ControlerAPI
 	}
 	
 	@Override
-	public void move(int destinationID)
+	public void moveA(int ID)
 	{
 		Settler settler = settlers.get(settlerIndex);
-		Travelable destination = this.getTravelable(destinationID);
-		if(destination == null)
-			return;
+		Asteroid destination = DrawAbles.getAsteroid(ID);
+		settler.Move(destination);
+		endPhase();
+	}
+	
+	public void moveG(int ID)
+	{
+		Settler settler = settlers.get(settlerIndex);
+		Portal destination = DrawAbles.getPortal(ID);
 		settler.Move(destination);
 		endPhase();
 	}
@@ -217,14 +171,8 @@ public class Controler implements ControlerAPI
 
 	@Override
 	public void admin_setNearSun(int asteroidID, boolean state) {
-		Travelable ta = getTravelable(asteroidID);
-		for(Asteroid a: DrawAbles.getInstance().asteroids)
-			if(a == ta)
-			{
-				a.SetNearSun(state);
-				break;
-			}
-		view.printStatus(players, destinations);
+		DrawAbles.getAsteroid(asteroidID).SetNearSun(state);
+		view.printStatus();
 	}
 
 	@Override

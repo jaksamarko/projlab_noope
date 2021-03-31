@@ -157,6 +157,4 @@ public class Game implements java.io.Serializable, ModelAPI {
 			e.printStackTrace();
 		}
 	}
-
-	
 }

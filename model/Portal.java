@@ -1,12 +1,13 @@
 package model;
 
 import view.DrawAbles;
+import view.ID;
 
 /**
  * A játék során segítse a telepesek közlekedését és az adott kapu párjához tartozó aszteroidára továbbítsa a játékost.
  * Illetve az õ dolga összekapcsolnia magát más kapuval, ha van már a játékban párosítatlan kapu.
  */
-public class Portal implements Travelable, java.io.Serializable
+public class Portal extends ID implements Travelable, java.io.Serializable
 {
 	public Portal GetPair() {return pair;}
 	public void SetPair(Portal other) {pair = other; other.pair = this; active = true; other.active = true;}
@@ -17,8 +18,9 @@ public class Portal implements Travelable, java.io.Serializable
 	private boolean active;
 	private boolean crazy;
 	
-	public Portal()
+	public Portal(int ID)
 	{
+		super(ID);
 		pair = null;
 		asteroid = null;
 		crazy = false;

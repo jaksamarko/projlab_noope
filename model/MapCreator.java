@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+import view.ID;
+
 public class MapCreator {
 	private final String types[] = {"Asteroid","Settler","Ufo","Portal","Robot"};
 	
@@ -113,7 +115,7 @@ public class MapCreator {
 	}
 	
 	private Asteroid createAsteroid() throws IOException {
-		Asteroid aster = new Asteroid(false);
+		Asteroid aster = new Asteroid(ID.tempGetID(),false);
 		while(readLineUntil("new")) {
 			switch(selectFromKeys(params)) {
 				case "res":
@@ -148,7 +150,7 @@ public class MapCreator {
 	}
 	
 	private Settler createSettler() throws IOException {
-		Settler sett = new Settler(null);
+		Settler sett = new Settler(ID.tempGetID(),null);
 		Inventory inv = sett.GetInvetory();
 		while(readLineUntil("new")) {
 			switch(selectFromKeys(params)) {
@@ -166,7 +168,7 @@ public class MapCreator {
 	}
 	
 	private Ufo createUfo() throws IOException {
-		Ufo ufo = new Ufo(null);
+		Ufo ufo = new Ufo(ID.tempGetID(),null);
 		while(readLineUntil("new")) {
 			/*switch(selectFromKeys(params)) {
 			}*/
@@ -175,7 +177,7 @@ public class MapCreator {
 	}
 	
 	private Portal createPortal() throws IOException {
-		Portal portal = new Portal();
+		Portal portal = new Portal(ID.tempGetID());
 		while(readLineUntil("new")) {
 			
 		}
@@ -183,7 +185,7 @@ public class MapCreator {
 	}
 	
 	private Robot createRobot() throws IOException {
-		Robot robot = new Robot(null);
+		Robot robot = new Robot(ID.tempGetID(),null);
 		while(readLineUntil("new")) {
 			
 		}

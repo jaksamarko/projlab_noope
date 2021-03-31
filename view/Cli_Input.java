@@ -72,7 +72,12 @@ public class Cli_Input
 					CLI.printError("move-nak 2 argument kell");
 					continue;
 				}
-				control.move(Integer.parseInt(pieces[1]));
+				String[] pieces2 = pieces[1].split("\\.");
+				if(pieces2[0].equals("A"))
+					control.moveA(Integer.parseInt(pieces2[1]));
+				if(pieces2[0].equals("G"))
+					control.moveG(Integer.parseInt(pieces2[1]));
+				
 			}
 			else if(cmd.equals("drill"))
 			{

@@ -9,9 +9,9 @@ public class Ufo extends Unit implements Worker, java.io.Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Ufo(Asteroid _asteroid)
+	public Ufo(int ID, Asteroid _asteroid)
 	{
-		super(_asteroid);
+		super(ID, _asteroid);
 		DrawAbles.add(this);
 	}
 

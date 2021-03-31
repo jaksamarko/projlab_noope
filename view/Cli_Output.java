@@ -28,89 +28,120 @@ public class Cli_Output implements ViewAPI
 		
 	}
 	
-	private String getSettlers(Asteroid a, ArrayList<Item<Settler>> players)
+	private String getAsteroidSettlers(Asteroid a)
 	{
 		String re = "";
 		boolean started = false;
-		for(Item<Settler> s: players)
+		for(Settler s: DrawAbles.getInstance().settlers)
 		{
-			if(a.GetUnits().contains(s.object))
+			if(a.GetUnits().contains(s))
 			{
 				if(started == false)
 				{
 					started = true;
-					re = re + s.ID;
+					re = re + s.GetID();
 				}
 				else
 				{
-					re = re + ", " + s.ID;
+					re = re + ", " + s.GetID();
 				}
 			}
 		}
 		return re;
 	}
 	
-	private int robotCount(Asteroid a, ArrayList<Robot> robots)
+	private String getAsteroidRobots(Asteroid a)
 	{
-		int count = 0;
-		for(Robot r: robots)
+		String re = "";
+		boolean started = false;
+		for(Robot r: DrawAbles.getInstance().robots)
 		{
 			if(a.GetUnits().contains(r))
-			count++;
+			{
+				if(started == false)
+				{
+					started = true;
+					re = re + r.GetID();
+				}
+				else
+				{
+					re = re + ", " + r.GetID();
+				}
+			}
 		}
-		return count;
+		return re;
 	}
 	
-	private int ufoCount(Asteroid a, ArrayList<Ufo> ufos)
+	private String getAsteroidUfos(Asteroid a)
 	{
-		int count = 0;
-		for(Ufo u: ufos)
+		String re = "";
+		boolean started = false;
+		for(Ufo u: DrawAbles.getInstance().ufos)
 		{
 			if(a.GetUnits().contains(u))
-			count++;
+			{
+				if(started == false)
+				{
+					started = true;
+					re = re + u.GetID();
+				}
+				else
+				{
+					re = re + ", " + u.GetID();
+				}
+			}
 		}
-		return count;
+		return re;
 	}
 	
 	@Override
-	public void printStatus(ArrayList<Item<Settler>> players, ArrayList<Item<Travelable>> destinations)
+	public void printStatus()
 	{
 		for(Asteroid a:DrawAbles.getInstance().asteroids)
 		{
 			String resource = "None";
 			if(a.GetResource() != null)
 				resource = a.GetResource().toString();
-			CLI.println("Asteroid("+getID(a, destinations)+") material: " + resource+"; layers: "+a.GetLayers()+ "; near sun: "+a.GetNearSun());
+			CLI.println("Asteroid("+a.GetID()+") material: " + resource+"; layers: "+a.GetLayers()+ "; near sun: "+a.GetNearSun());
 			CLI.print("\tNeighbors: ");
 			boolean started = false;
 			for(Travelable t:a.GetNeighbors())
 			{
+				if(t == a.GetPortal())
+					continue;
+				
 				if(started == false)
 				{
-					CLI.print(""+getID(t, destinations));
+					CLI.print(""+t.GetID());
 					started = true;
 				}
 				else
 				{
-					CLI.print(", "+getID(t, destinations));
+					CLI.print(", "+t.GetID());
 				}
 			}
 			CLI.println("");
 			if(a.GetPortal() != null)
 			{
-				Portal pair = a.GetPortal().GetPair();
-				CLI.println("\tHas Portal: "+getID(a.GetPortal(), destinations) + " (pair: "+ getID(a.GetPortal().GetPair(), destinations) +")");
+				CLI.println("\tHas Portal: "+a.GetPortal().GetID()+ " (pair: "+ a.GetPortal().GetPair().GetID() +")");
 			}
-			String units = getSettlers(a, players);
-			if(units.length()>0)
-				CLI.println("\tSettlers: "+ units);
-			CLI.println("\tRobot count: "+ robotCount(a,DrawAbles.getInstance().robots));
-			CLI.println("\tUfo count: "+ ufoCount(a,DrawAbles.getInstance().ufos));
+			
+			String settlers = getAsteroidSettlers(a);
+			if(settlers.length()>0)
+				CLI.println("\tSettlers: "+ settlers);
+			
+			String robots = getAsteroidRobots(a);
+			if(robots.length()>0)
+				CLI.println("\tSettlers: "+ robots);
+			
+			String ufos = getAsteroidUfos(a);
+			if(ufos.length()>0)
+				CLI.println("\tSettlers: "+ ufos);
 			CLI.println("");
 		}
 		for(Settler s:DrawAbles.getInstance().settlers)
 		{
-			CLI.println("Player ("+getSettlerID(s, players) + ") inventory");
+			CLI.println("Player ("+ s.GetID() + ") inventory");
 			CLI.println("\tCoal count: "+s.GetInvetory().GetCoalBox().GetCount());
 			CLI.println("\tIron count: "+s.GetInvetory().GetIronBox().GetCount());
 			CLI.println("\tIce count: "+s.GetInvetory().GetIceBox().GetCount());

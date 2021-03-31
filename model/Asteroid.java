@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import view.DrawAbles;
+import view.ID;
 
 /**
  * Ez az osztály felel az aszteroidán történő eseményekre.
@@ -11,7 +12,7 @@ import view.DrawAbles;
  * de akár portált is létrehozhat, mindezt ez az osztály kezeli.
  */
 
-public class Asteroid implements Travelable, java.io.Serializable  {
+public class Asteroid extends ID implements Travelable, java.io.Serializable  {
 	public static int Layers = 3;
 	// getter és setterek
 	public void RemoveUnit(Unit unit) {units.remove(unit);}
@@ -32,8 +33,9 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	private ArrayList<Unit> units;
 	private ArrayList<Travelable> neighbors;
 	
-	public Asteroid(boolean _nearSun)
+	public Asteroid(int ID, boolean _nearSun)
 	{
+		super(ID);
 		layers = Asteroid.Layers;
 		nearSun = _nearSun;
 		portal = null;

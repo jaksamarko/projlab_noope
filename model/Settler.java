@@ -15,9 +15,9 @@ public class Settler extends DrillUnit
 	private static final long serialVersionUID = 1L;
 	private Inventory inventory;
 	
-	public Settler(Asteroid _asteroid)
+	public Settler(int ID, Asteroid _asteroid)
 	{
-		super(_asteroid);
+		super(ID, _asteroid);
 		inventory = new Inventory();
 		DrawAbles.add(this);
 	}
