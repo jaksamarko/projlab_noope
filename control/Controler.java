@@ -58,12 +58,19 @@ public class Controler implements ControlerAPI
 			index++;
 		}
 		
-		/*ArrayList<Travelable> aList = model.GetAllTravelAble();
-		for(int i = 0; i< aList.size(); i++)
+		//Optimize later
+		for(Portal p:DrawAbles.getInstance().portals)
 		{
-			Item<Travelable> it = new Item<Travelable>(i+1, aList.get(i));
-			destinations.add(it);
-		}*/
+			if(p.GetPair() == null)
+				for(Portal q:DrawAbles.getInstance().portals)
+				{
+					if(!DrawAbles.getInstance().portals.contains(q.GetPair()))
+					{
+						p.SetPair(q);
+						break;
+					}
+				}
+		}
 		view.printStatus(players, destinations);
 		view.printCurrentPlayer(players.get(settlerIndex).ID);
 	}

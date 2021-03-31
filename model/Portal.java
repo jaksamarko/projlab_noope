@@ -40,7 +40,9 @@ public class Portal implements Travelable, java.io.Serializable
 	public void ProxyDestroy()
 	{
 		if(asteroid != null)
+		{
 			asteroid.RemovePortal();
+		}
 		DrawAbles.remove(this);
 	}
 	
@@ -119,5 +121,10 @@ public class Portal implements Travelable, java.io.Serializable
 	public boolean ReceivePortal(Portal portal)
 	{
 		return false;
+	}
+	
+	public Asteroid GetAsteroid()
+	{
+		return this.asteroid;
 	}
 }
