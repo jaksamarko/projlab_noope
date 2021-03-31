@@ -12,15 +12,15 @@ new Settler 1
 aster 1
 inv Portal
 new Portal 4
-pair 3
+neigh 3
 new Portal 3
-pair 4
+neigh 4
 aster 2
 new Portal 1
 aster 1
-pair 2
+neigh 2
 new Portal 2
 aster 3
-pair 1
+neigh 1
 new Robot 1
 aster 3
