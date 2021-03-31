@@ -146,6 +146,18 @@ public class Cli_Input
 						state = true;
 					control.admin_setNearSun(id, state);
 				}
+				else if(pieces[1].equals("setwork"))
+				{
+					if(pieces.length == 2 )
+					{
+						CLI.printError("kevés argument setwork-nek");
+						continue;
+					}
+					boolean state = false;
+					if(pieces[2].equals("on"))
+						state = true;
+					control.admin_setWorkers(state);
+				}
 			}
 		}
 	}

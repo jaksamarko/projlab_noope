@@ -30,8 +30,17 @@ public class Portal implements Travelable, java.io.Serializable
 	 * Erõforrásokat felszabadító függvény, akkor hívódik meg, mikor az aszteroida megsemmisül, ezzel együtt a portálja is, errõl értesíteni kell a portál párját, mert az is felrobban.
 	 */
 	public void Destroyed() {
-		asteroid.RemovePortal();
-		pair.RemovePair();
+		if(asteroid != null)
+			asteroid.RemovePortal();
+		if(pair != null)
+			pair.ProxyDestroy();
+		DrawAbles.remove(this);
+	}
+	
+	public void ProxyDestroy()
+	{
+		if(asteroid != null)
+			asteroid.RemovePortal();
 		DrawAbles.remove(this);
 	}
 	

@@ -129,4 +129,12 @@ public class Inventory implements java.io.Serializable
 	public void InsertPortal() {
 		this.portals.add(new Portal());
 	}
+	
+	public void Die()
+	{
+		for(Portal p: portals)
+		{
+			p.Destroyed();
+		}
+	}
 }

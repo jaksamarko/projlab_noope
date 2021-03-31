@@ -53,6 +53,7 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 		if(this.resource!=null)
 			return false;
 		this.resource = resource;
+		this.resource.SetAsteroid(this);
 		return true;
 	}
 	
@@ -86,7 +87,12 @@ public class Asteroid implements Travelable, java.io.Serializable  {
 	 */
 	public void Explode()
 	{
+		ArrayList<Unit> copy = new ArrayList<Unit>();
+		if(portal != null)
+			portal.Destroyed();
 		for(Unit u: units)
+			copy.add(u);
+		for(Unit u: copy)
 			u.Exploded();
 		DestroySelf();
 	}

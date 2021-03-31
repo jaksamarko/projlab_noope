@@ -14,4 +14,5 @@ public interface ControlerAPI
 	public void placeportal();
 	public void admin_setSunstorm(boolean state);
 	public void admin_setNearSun(int asteroidID, boolean state);
+	public void admin_setWorkers (boolean status);
 }

@@ -111,7 +111,10 @@ public class Game implements java.io.Serializable, ModelAPI {
 	 * A nap közelségéből adódó negatív tényezők által kiváltott hatások végbemenetele.
 	 */
 	public void EndTurnAsteroidEffect() {
-		for(Asteroid a:asteroids)
+		ArrayList<Asteroid> copy = new ArrayList<Asteroid>();
+		for(Asteroid a: asteroids)
+			copy.add(a);
+		for(Asteroid a:copy)
 			a.EndTurnEffect();
 	}
 	

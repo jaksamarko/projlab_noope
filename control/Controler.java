@@ -30,6 +30,7 @@ public class Controler implements ControlerAPI
 	private boolean won = false;
 	private boolean lost = false;
 	private boolean sunStormActive = true;
+	private boolean workersActive = true;
 	public Controler(ModelAPI _model, ViewAPI _view)
 	{
 		model = _model;
@@ -78,10 +79,11 @@ public class Controler implements ControlerAPI
 	private void endTurn()
 	{
 		view.printEndTurn();
-		model.AllWorkersWork();
+		if(workersActive)
+			model.AllWorkersWork();
 		model.EndTurnAsteroidEffect();
 		if(sunStormActive)
-		model.CreateSunstorm();
+			model.CreateSunstorm();
 		if(lost = checklose())
 			view.printLost();
 		if(won = checkwin())
@@ -216,6 +218,13 @@ public class Controler implements ControlerAPI
 				break;
 			}
 		view.printStatus(players, destinations);
+	}
+
+	@Override
+	public void admin_setWorkers(boolean status) {
+		workersActive = status;
+		CLI.println("workers active: " + status);
+		
 	}
 	
 }

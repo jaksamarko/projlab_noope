@@ -103,8 +103,8 @@ public class Settler extends DrillUnit
 	@Override
 	public void Die() {
 		Game.RemoveUnit(this);
+		inventory.Die();
 		DrawAbles.remove(this);
-		
 	}
 	
 	public Inventory GetInvetory()

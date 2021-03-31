@@ -6,7 +6,12 @@ package model;
  * A jég szublimál, az urán felrobban.
  */
 public abstract class Resource implements java.io.Serializable {
-	public Asteroid asteroid;
+	Asteroid asteroid;
+	
+	public void SetAsteroid(Asteroid _asteroid)
+	{
+		asteroid = _asteroid;
+	}
 	
 	/**
 	 * Ennek a függvénynek a felüldefiniálásával valósítják meg az egyes nyersanyagok a napközelben lévõ, teljesen kifúrt aszteroidán való viselkedésüket.
