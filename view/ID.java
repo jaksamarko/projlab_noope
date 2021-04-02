@@ -11,5 +11,6 @@ public class ID
 	public ID(int _id)
 	{
 		id = _id;
+		ID.tempGetID();
 	}
 }
