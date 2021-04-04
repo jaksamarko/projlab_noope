@@ -139,7 +139,7 @@ public class MapCreator {
 					aster.SetResource(res);
 				break;
 				case "layers":
-					for(int i=Integer.parseInt(readData());i<Asteroid.Layers;i++)
+					for(int i=Integer.parseInt(readData());i<Asteroid.defLayers;i++)
 						aster.RemoveLayer();
 				break;
 			}

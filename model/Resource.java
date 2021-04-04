@@ -6,7 +6,12 @@ package model;
  * A jég szublimál, az urán felrobban.
  */
 public abstract class Resource implements java.io.Serializable {
-	Asteroid asteroid;
+	protected Asteroid asteroid;
+	
+	public void setAsteroid(Asteroid _asteroid)
+	{
+		asteroid = _asteroid;
+	}
 	
 	public void SetAsteroid(Asteroid _asteroid)
 	{

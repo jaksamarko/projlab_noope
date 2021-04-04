@@ -1,6 +1,4 @@
 package interfaces;
-
-import model.Asteroid;
 import model.Material;
 
 public interface ControlerAPI 

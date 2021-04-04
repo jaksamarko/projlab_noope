@@ -1,38 +1,15 @@
 package view;
-
-import java.util.ArrayList;
-
-import control.Item;
 import interfaces.ViewAPI;
 import model.*;
 
 public class Cli_Output implements ViewAPI
 {
 	
-	private int getID(Travelable a, ArrayList<Item<Travelable>> ta)
-	{
-		for(Item<Travelable> i: ta)
-		{
-			if(i.object == a)
-				return i.ID;
-		}
-		return -1;
-	}
-	
-	private int getSettlerID(Settler s, ArrayList<Item<Settler>> list)
-	{
-		for(Item<Settler> i: list)
-			if(i.object == s)
-				return i.ID;
-		return -1;				
-		
-	}
-	
 	private String getAsteroidSettlers(Asteroid a)
 	{
 		String re = "";
 		boolean started = false;
-		for(Settler s: DrawAbles.getInstance().settlers)
+		for(Settler s: ObjectStore.getInstance().settlers)
 		{
 			if(a.GetUnits().contains(s))
 			{
@@ -54,7 +31,7 @@ public class Cli_Output implements ViewAPI
 	{
 		String re = "";
 		boolean started = false;
-		for(Robot r: DrawAbles.getInstance().robots)
+		for(Robot r: ObjectStore.getInstance().robots)
 		{
 			if(a.GetUnits().contains(r))
 			{
@@ -76,7 +53,7 @@ public class Cli_Output implements ViewAPI
 	{
 		String re = "";
 		boolean started = false;
-		for(Ufo u: DrawAbles.getInstance().ufos)
+		for(Ufo u: ObjectStore.getInstance().ufos)
 		{
 			if(a.GetUnits().contains(u))
 			{
@@ -97,7 +74,7 @@ public class Cli_Output implements ViewAPI
 	@Override
 	public void printStatus()
 	{
-		for(Asteroid a:DrawAbles.getInstance().asteroids)
+		for(Asteroid a:ObjectStore.getInstance().asteroids)
 		{
 			String resource = "None";
 			if(a.GetResource() != null)
@@ -139,7 +116,7 @@ public class Cli_Output implements ViewAPI
 				CLI.println("\tSettlers: "+ ufos);
 			CLI.println("");
 		}
-		for(Settler s:DrawAbles.getInstance().settlers)
+		for(Settler s:ObjectStore.getInstance().settlers)
 		{
 			CLI.println("Player ("+ s.GetID() + ") inventory");
 			CLI.println("\tCoal count: "+s.GetInvetory().GetCoalBox().GetCount());

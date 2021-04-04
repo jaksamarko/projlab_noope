@@ -1,19 +1,19 @@
-package view;
+package model;
 
 import java.util.ArrayList;
 
 import model.*;
 
-public class DrawAbles
+public class ObjectStore
 {
-	public static DrawAbles getInstance()
+	public static ObjectStore getInstance()
 	{
 		NullReset();
 		return instance;
 	}
 	private static void Reset()
 	{
-		instance = new DrawAbles();
+		instance = new ObjectStore();
 	}
 	private static void NullReset()
 	{
@@ -40,7 +40,7 @@ public class DrawAbles
 		return re;
 	}
 	
-	private static DrawAbles instance = null;
+	private static ObjectStore instance = null;
 	
 	public static void add(Asteroid asteroid) {NullReset(); instance.asteroids.add(asteroid);}
 	public static void add(Portal portal) {NullReset(); instance.portals.add(portal);}
@@ -98,7 +98,7 @@ public class DrawAbles
 	public ArrayList<Robot> robots;
 	public ArrayList<Ufo> ufos;
 	
-	private DrawAbles()
+	private ObjectStore()
 	{
 		asteroids = new ArrayList<Asteroid>();
 		portals = new ArrayList<Portal>();

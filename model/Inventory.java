@@ -1,9 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-
-import view.DrawAbles;
-
 /**
  * 
  * Ez az osztály felel a nyersanyagok tárolásáért, telepesenként külön-külön.
@@ -55,7 +52,7 @@ public class Inventory implements java.io.Serializable
 		if(portals.size()<PortalStorageCapacity && ironBox.Has(2) && iceBox.Has(1) && uraniumBox.Has(1))
 		{
 			ironBox.UseUp(2); iceBox.UseUp(1); uraniumBox.UseUp(1);
-			portals.add(new Portal(DrawAbles.getUniquePortalID()));
+			portals.add(new Portal(ObjectStore.getUniquePortalID()));
 			return true;
 		}
 		return false;
@@ -69,7 +66,7 @@ public class Inventory implements java.io.Serializable
 		if(ironBox.Has(1) && ironBox.Has(1) && uraniumBox.Has(1))
 		{
 			ironBox.UseUp(1); ironBox.UseUp(1); uraniumBox.UseUp(1);
-			new Robot(DrawAbles.getUniqueRobotID(),null);
+			new Robot(ObjectStore.getUniqueRobotID(),null);
 		}
 		return null;
 	}
@@ -129,7 +126,7 @@ public class Inventory implements java.io.Serializable
 	}
 	
 	public void InsertPortal() {
-		this.portals.add(new Portal(DrawAbles.getUniquePortalID()));
+		this.portals.add(new Portal(ObjectStore.getUniquePortalID()));
 	}
 	
 	public void Die()

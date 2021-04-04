@@ -1,8 +1,4 @@
 package interfaces;
-import java.util.ArrayList;
-import control.*;
-import model.Settler;
-import model.Travelable;
 
 
 public interface ViewAPI

@@ -1,6 +1,5 @@
 package model;
 
-import view.DrawAbles;
 
 public class Ufo extends Unit implements Worker, java.io.Serializable
 {
@@ -12,7 +11,7 @@ public class Ufo extends Unit implements Worker, java.io.Serializable
 	public Ufo(int ID, Asteroid _asteroid)
 	{
 		super(ID, _asteroid);
-		DrawAbles.add(this);
+		ObjectStore.add(this);
 	}
 
 	public void Exploded() {Die();}
@@ -42,6 +41,6 @@ public class Ufo extends Unit implements Worker, java.io.Serializable
 	@Override
 	public void Die() {
 		Game.RemoveUnit(this);
-		DrawAbles.add(this);
+		ObjectStore.add(this);
 	}
 }

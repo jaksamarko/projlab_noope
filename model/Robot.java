@@ -1,7 +1,5 @@
 package model;
 
-import view.DrawAbles;
-
 /**
  * A játékban mozgó, AI által vezérelt, fúrni és mozogni képes egységek.
  */
@@ -16,7 +14,7 @@ public class Robot extends DrillUnit implements Worker
 	public Robot(int ID, Asteroid _asteroid) 
 	{
 		super(ID, _asteroid);
-		DrawAbles.add(this);
+		ObjectStore.add(this);
 	}
 	
 	
@@ -59,7 +57,7 @@ public class Robot extends DrillUnit implements Worker
 	@Override
 	public void Die() {
 		Game.RemoveUnit(this);
-		DrawAbles.remove(this);
+		ObjectStore.remove(this);
 		
 	}
 }

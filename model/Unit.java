@@ -1,7 +1,5 @@
 package model;
 
-import view.ID;
-
 /**
  * Absztrakt õsosztály, amibõl következik a Robot és a Settler. 
  * Ez felel a mozgásukért, hogy “A” aszteroidáról eljussanak “B” aszteroidára, illetve képesek legyenek az aszteroida rétegét fúrni. 

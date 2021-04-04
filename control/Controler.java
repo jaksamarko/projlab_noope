@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import interfaces.*;
 import model.*;
 import view.CLI;
-import view.DrawAbles;
 
 public class Controler implements ControlerAPI
 {
@@ -67,13 +66,13 @@ public class Controler implements ControlerAPI
 	}
 	
 	public boolean checkwin() {
-		for(Asteroid a : DrawAbles.getInstance().asteroids) {
+		for(Asteroid a : ObjectStore.getInstance().asteroids) {
 			ArrayList<Unit> units = new ArrayList<Unit>();
 			for(Unit u : a.GetUnits())
 			{
 				units.add(u);
 			}
-			ArrayList<Settler> settlers= DrawAbles.unitToSettler(units);
+			ArrayList<Settler> settlers= ObjectStore.unitToSettler(units);
 			int[] array = new int[4];
 			for(int i = 0; i < 4; i++)
 				array[i] = 0;
@@ -104,7 +103,7 @@ public class Controler implements ControlerAPI
 	public void moveA(int ID)
 	{
 		Settler settler = settlers.get(settlerIndex);
-		Asteroid destination = DrawAbles.getAsteroid(ID);
+		Asteroid destination = ObjectStore.getAsteroid(ID);
 		settler.Move(destination);
 		endPhase();
 	}
@@ -112,7 +111,7 @@ public class Controler implements ControlerAPI
 	public void moveG(int ID)
 	{
 		Settler settler = settlers.get(settlerIndex);
-		Portal destination = DrawAbles.getPortal(ID);
+		Portal destination = ObjectStore.getPortal(ID);
 		settler.Move(destination);
 		endPhase();
 	}
@@ -171,7 +170,7 @@ public class Controler implements ControlerAPI
 
 	@Override
 	public void admin_setNearSun(int asteroidID, boolean state) {
-		DrawAbles.getAsteroid(asteroidID).SetNearSun(state);
+		ObjectStore.getAsteroid(asteroidID).SetNearSun(state);
 		view.printStatus();
 	}
 
@@ -183,23 +182,3 @@ public class Controler implements ControlerAPI
 	}
 	
 }
-
-// első játékos lép
-	// move
-	// drill
-	// mine
-	// place portal
-	// place back material
-	// craft
-
-	// ha egy játékos minden unitaja lépett, nextplayer
-
-	// ....
-
-	// utolsó játékos is lépett, game step
-
-	// JÁTÉK RÉSZE
-
-	// robotok dolgoznak
-
-	// körvégi dolgok meghívódnak
