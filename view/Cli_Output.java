@@ -1,10 +1,13 @@
 package view;
+import java.util.ArrayList;
+
 import interfaces.ViewAPI;
 import model.*;
 
 public class Cli_Output implements ViewAPI
 {
-	
+	String storedOut = "";
+
 	private String getAsteroidSettlers(Asteroid a)
 	{
 		String re = "";
@@ -71,6 +74,23 @@ public class Cli_Output implements ViewAPI
 		return re;
 	}
 	
+	public void println(String line)
+	{
+		storedOut+= line + "\n";
+		CLI.println(line);
+	}
+	
+	public void print(String text)
+	{
+		storedOut+= text;
+		CLI.print(text);
+	}
+	
+	public String getOut()
+	{
+		return storedOut;
+	}
+	
 	@Override
 	public void printStatus()
 	{
@@ -79,8 +99,8 @@ public class Cli_Output implements ViewAPI
 			String resource = "None";
 			if(a.GetResource() != null)
 				resource = a.GetResource().toString();
-			CLI.println("Asteroid("+a.GetID()+") material: " + resource+"; layers: "+a.GetLayers()+ "; near sun: "+a.GetNearSun());
-			CLI.print("\tNeighbors: ");
+			println("Asteroid("+a.GetID()+") material: " + resource+"; layers: "+a.GetLayers()+ "; near sun: "+a.GetNearSun());
+			print("\tNeighbors: ");
 			boolean started = false;
 			for(Travelable t:a.GetNeighbors())
 			{
@@ -89,65 +109,69 @@ public class Cli_Output implements ViewAPI
 				
 				if(started == false)
 				{
-					CLI.print(""+t.GetID());
+					print(""+t.GetID());
 					started = true;
 				}
 				else
 				{
-					CLI.print(", "+t.GetID());
+					print(", "+t.GetID());
 				}
 			}
-			CLI.println("");
+			println("");
 			if(a.GetPortal() != null)
 			{
-				CLI.println("\tHas Portal: "+a.GetPortal().GetID()+ " (pair: "+ a.GetPortal().GetPair().GetID() +")");
+				println("\tHas Portal: "+a.GetPortal().GetID()+ " (pair: "+ a.GetPortal().GetPair().GetID() +")");
 			}
 			
 			String settlers = getAsteroidSettlers(a);
 			if(settlers.length()>0)
-				CLI.println("\tSettlers: "+ settlers);
+				println("\tSettlers: "+ settlers);
 			
 			String robots = getAsteroidRobots(a);
 			if(robots.length()>0)
-				CLI.println("\tSettlers: "+ robots);
+				println("\tSettlers: "+ robots);
 			
 			String ufos = getAsteroidUfos(a);
 			if(ufos.length()>0)
-				CLI.println("\tSettlers: "+ ufos);
-			CLI.println("");
+				println("\tSettlers: "+ ufos);
+			println("");
 		}
 		for(Settler s:ObjectStore.getInstance().settlers)
 		{
-			CLI.println("Player ("+ s.GetID() + ") inventory");
-			CLI.println("\tCoal count: "+s.GetInvetory().GetCoalBox().GetCount());
-			CLI.println("\tIron count: "+s.GetInvetory().GetIronBox().GetCount());
-			CLI.println("\tIce count: "+s.GetInvetory().GetIceBox().GetCount());
-			CLI.println("\tUranium count: "+s.GetInvetory().GetUraniumBox().GetCount());
-			CLI.println("\tPortal count: "+s.GetInvetory().GetPortalCount());
+			println("Player ("+ s.GetID() + ") inventory");
+			println("\tCoal count: "+s.GetInvetory().GetCoalBox().GetCount());
+			println("\tIron count: "+s.GetInvetory().GetIronBox().GetCount());
+			println("\tIce count: "+s.GetInvetory().GetIceBox().GetCount());
+			println("\tUranium count: "+s.GetInvetory().GetUraniumBox().GetCount());
+			println("\tPortal count: "+s.GetInvetory().GetPortalCount());
 		}
-		CLI.println("");
+		println("");
 	}
 
 	@Override
 	public void printLost() {
-		CLI.println("Game Lost");
+		println("Game Lost");
 		
 	}
 
 	@Override
 	public void printWon() {
-		CLI.println("Game won");
+		println("Game won");
 	}
 
 	@Override
 	public void printCurrentPlayer(int playerID) {
-		CLI.println("Current Player: "+ playerID);
+		println("Current Player: "+ playerID);
 	}
 
 	@Override
 	public void printEndTurn() {
-		CLI.println("End Turn");
-		
+		println("End Turn");
 	}
 
+	@Override
+	public void log(String text) {
+		println(text);
+		
+	}
 }

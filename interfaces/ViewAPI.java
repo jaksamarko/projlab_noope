@@ -8,4 +8,5 @@ public interface ViewAPI
 	public void printWon();
 	public void printCurrentPlayer(int playerID);
 	public void printEndTurn();
+	public void log(String text);
 }

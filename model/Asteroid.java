@@ -195,7 +195,8 @@ public class Asteroid extends ID implements Travelable, java.io.Serializable  {
 	@Override
 	public void EndTurnEffect()
 	{
-		portal.EndTurnEffect();
+		if(portal != null)
+			portal.EndTurnEffect();
 		if(IsNearSun() && layers == 0)
 			if(resource != null)
 				resource.Exposed();

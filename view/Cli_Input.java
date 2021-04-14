@@ -1,8 +1,13 @@
 package view;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 import interfaces.*;
+import model.MapCreator;
 import model.Material;
 
 public class Cli_Input
@@ -10,25 +15,13 @@ public class Cli_Input
 	BufferedReader consoleReader;
 	BufferedReader reader;
 	boolean printRead = false;
+	ControlerAPI control;
+	
 	public Cli_Input()
 	{
 		consoleReader = new BufferedReader(new InputStreamReader(System.in));
 		reader = consoleReader;
 	}
-	
-	public String readln(){
-		
-		String re = "";
-		try {
-			re = reader.readLine();
-		} catch (IOException e) {
-			System.out.println("io problem");
-			e.printStackTrace();}
-		return re;
-	}
-	
-	
-	ControlerAPI control;
 	
 	public void init(ControlerAPI _control)
 	{
@@ -50,6 +43,89 @@ public class Cli_Input
 		}
 	}
 	
+	public String readln(){
+		
+		String re = null;
+		try {
+			re = reader.readLine();
+		} catch (IOException e) {
+			System.out.println("io problem");
+			e.printStackTrace();}
+		return re;
+	}
+	
+	public void loadGame()
+	{
+		CLI.print("File to load from?\nPath: ");
+		String input = readln();
+		MapCreator mp = new MapCreator(input);
+	}
+	
+	public void compareStringWithfile(String data)
+	{
+		reader = consoleReader;
+		CLI.println("What file to chech output with?");
+		String fname = readln();
+		StringBuilder contentBuilder = new StringBuilder();
+		 
+        try (Stream<String> stream = Files.lines( Paths.get(fname), StandardCharsets.UTF_8)) 
+        {
+            stream.forEach(s -> contentBuilder.append(s).append("\n"));
+        }
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+        String fileString = contentBuilder.toString();
+        String[] dataP = data.split("\n");
+        String[] fileP = fileString.split("\n");
+        
+        int dataI = 0;
+        int fileI = 0;
+        
+        boolean check = true;
+        boolean end = false;
+        
+        while(!end)
+        {  	
+        	if(!dataP[dataI].equals(fileP[fileI]))
+        	{
+        		CLI.println("「"+dataP[dataI]+"」 not same as 「"+fileP[fileI]+"」");
+        		check = false;
+        	}
+        	dataI++;
+        	fileI++;
+        	
+        	if(fileI > fileP.length - 1 || dataI > dataP.length - 1)
+        	{
+        		end = true;
+        	}
+        	
+        	while(!end && dataP[dataI].trim().equals(""))
+        	{
+        		dataI++;
+        		if(dataI > dataP.length - 1)
+        			end = true;
+        	}
+        	while(!end && fileP[fileI].trim().equals(""))
+        	{
+        		fileI++;
+        		if(fileI > fileP.length - 1)
+        			end = true;
+        	}
+        	
+        	if(fileI > fileP.length - 1 || dataI > dataP.length - 1)
+        	{
+        		if(!(fileI > fileP.length - 1 && dataI > dataP.length - 1))
+        		{
+        			CLI.println("files are not same length");
+        			check = false;
+        		}
+        	}
+        }
+        CLI.println("test result: " + check);
+	}
+	
 	public void Run()
 	{
 		while(true)
@@ -59,7 +135,7 @@ public class Cli_Input
 			{
 				if(line == null)
 					break;
-				CLI.println(line);
+				CLI.println("<From file> " + line);
 			}
 			String[] pieces = line.split(" ");
 			if(pieces.length == 0)
@@ -126,11 +202,11 @@ public class Cli_Input
 					CLI.printError("kevés argument admin-nak");
 					continue;
 				}
-				if(pieces[1].equals("setsun"))
+				if(pieces[1].equals("setsunstorm"))
 				{
 					if(pieces.length == 2 )
 					{
-						CLI.printError("kevés argument setsun-nak");
+						CLI.printError("kevés argument setsunstorm-nak");
 						continue;
 					}
 					boolean state = false;
@@ -151,11 +227,11 @@ public class Cli_Input
 						state = true;
 					control.admin_setNearSun(id, state);
 				}
-				else if(pieces[1].equals("setwork"))
+				else if(pieces[1].equals("setai"))
 				{
 					if(pieces.length == 2 )
 					{
-						CLI.printError("kevés argument setwork-nek");
+						CLI.printError("kevés argument setai-nek");
 						continue;
 					}
 					boolean state = false;

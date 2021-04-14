@@ -3,7 +3,6 @@ package control;
 import java.util.ArrayList;
 import interfaces.*;
 import model.*;
-import view.CLI;
 
 public class Controler implements ControlerAPI
 {
@@ -165,7 +164,7 @@ public class Controler implements ControlerAPI
 	@Override
 	public void admin_setSunstorm(boolean state) {
 		sunStormActive = state;
-		CLI.println("sunStorm: "+ sunStormActive);
+		view.log("sunStorm: "+ sunStormActive);
 	}
 
 	@Override
@@ -177,7 +176,7 @@ public class Controler implements ControlerAPI
 	@Override
 	public void admin_setWorkers(boolean status) {
 		workersActive = status;
-		CLI.println("workers active: " + status);
+		view.log("workers active: " + status);
 		
 	}
 	
