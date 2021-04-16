@@ -63,9 +63,9 @@ public class Inventory implements java.io.Serializable
 	 * @return robot, ha sikeres volt a gyártás, egyébként null
 	 */
 	public Robot CraftRobot() {
-		if(ironBox.Has(1) && ironBox.Has(1) && uraniumBox.Has(1))
+		if(coalBox.Has(1) && ironBox.Has(1) && uraniumBox.Has(1))
 		{
-			ironBox.UseUp(1); ironBox.UseUp(1); uraniumBox.UseUp(1);
+			coalBox.UseUp(1); ironBox.UseUp(1); uraniumBox.UseUp(1);
 			new Robot(ObjectStore.getUniqueRobotID(),null);
 		}
 		return null;
