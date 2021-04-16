@@ -158,6 +158,26 @@ public class MapCreator {
 							//TODO ha a zsebében van
 								inv.InsertPortal();
 							break;
+						case "Iron":
+							for(int i=0;i<readId();i++) {
+								inv.InsertItem(new Iron());
+							}
+							break;
+						case "Coal":
+							for(int i=0;i<readId();i++) {
+								inv.InsertItem(new Coal());
+							}
+							break;
+						case "Ice":
+							for(int i=0;i<readId();i++) {
+								inv.InsertItem(new Ice());
+							}
+							break;
+						case "Uranium":
+							for(int i=0;i<readId();i++) {
+								inv.InsertItem(new Uranium());
+							}
+							break;
 					}
 				break;
 			}
