@@ -155,8 +155,9 @@ public class MapCreator {
 				case "inv":
 					switch(readData()) {
 						case "Portal":
-							//TODO ha a zsebében van
+							for(int i=0;i<readId();i++) {
 								inv.InsertPortal();
+							}
 							break;
 						case "Iron":
 							for(int i=0;i<readId();i++) {
