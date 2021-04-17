@@ -120,6 +120,7 @@ public class Cli_Input
         	{
         		CLI.println("「"+dataP[dataI]+"」 not same as 「"+fileP[fileI]+"」");
         		check = false;
+        		break;
         	}
         	dataI++;
         	fileI++;
