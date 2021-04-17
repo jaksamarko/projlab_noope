@@ -1,0 +1,1 @@
+Asteroid(1) material: None; layers: 0; near sun: true	
