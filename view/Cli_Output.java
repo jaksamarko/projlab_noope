@@ -4,10 +4,19 @@ import java.util.ArrayList;
 import interfaces.ViewAPI;
 import model.*;
 
+/**
+ * Ez egy CLI-re kiíró ideiglenes view modul
+ */
 public class Cli_Output implements ViewAPI
 {
+	/**
+	 * Ide menti az output-ot, késöbbi teszt céljából
+	 */
 	String storedOut = "";
 
+	/**
+	 * Argumentumban megaddott aszteroidához összegyüjti a rajta lévő settlereket és megadja az ID-jaikat stringként
+	 */
 	private String getAsteroidSettlers(Asteroid a)
 	{
 		String re = "";
@@ -30,6 +39,9 @@ public class Cli_Output implements ViewAPI
 		return re;
 	}
 	
+	/**
+	 * Argumentumban megaddott aszteroidához összegyüjti a rajta lévő robotokat és megadja az ID-jaikat stringként
+	 */
 	private String getAsteroidRobots(Asteroid a)
 	{
 		String re = "";
@@ -51,7 +63,9 @@ public class Cli_Output implements ViewAPI
 		}
 		return re;
 	}
-	
+	/**
+	 * Argumentumban megaddott aszteroidához összegyüjti a rajta lévő ufo-kat és megadja az ID-jaikat stringként
+	 */
 	private String getAsteroidUfos(Asteroid a)
 	{
 		String re = "";
@@ -74,23 +88,35 @@ public class Cli_Output implements ViewAPI
 		return re;
 	}
 	
+	/**
+	 * Egy sor kiírása a console-ra. Adat gyüjtés is
+	 */
 	public void println(String line)
 	{
 		storedOut+= line + "\n";
 		CLI.println(line);
 	}
 	
+	/**
+	 * Kiírása a console-ra. Adat gyüjtés is
+	 */
 	public void print(String text)
 	{
 		storedOut+= text;
 		CLI.print(text);
 	}
 	
+	/**
+	 * Megadja az összegyüjtött kiírási adatot
+	 */
 	public String getOut()
 	{
 		return storedOut;
 	}
 	
+	/**
+	 * kiírja a játék állapotát a console-ra
+	 */
 	@Override
 	public void printStatus()
 	{
@@ -148,27 +174,38 @@ public class Cli_Output implements ViewAPI
 		println("");
 	}
 
+	/**
+	 * kiírja, hogy el lett veszítve a játék
+	 */
 	@Override
 	public void printLost() {
 		println("Game Lost");
 		
 	}
-
+	/**
+	 * kiírja, hogy meg lett nyerve a játék
+	 */
 	@Override
 	public void printWon() {
 		println("Game won");
 	}
-
+	/**
+	 * kiírja, hogy ki a jelenlegi játékos
+	 */
 	@Override
 	public void printCurrentPlayer(int playerID) {
 		println("Current Player: "+ playerID);
 	}
-
+	/**
+	 * kiírja, hogy vége van a körnek
+	 */
 	@Override
 	public void printEndTurn() {
 		println("End Turn");
 	}
-
+	/**
+	 * kiírja ami a argumentumban van megadva. Teszteklés miatt fontos
+	 */
 	@Override
 	public void log(String text) {
 		println(text);

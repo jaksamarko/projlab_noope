@@ -9,9 +9,14 @@ import java.util.stream.Stream;
 import interfaces.*;
 import model.MapCreator;
 import model.Material;
-
+/**
+ * Ez az osztály végzi el az input beolvasást fájlból és a console-ról
+ */
 public class Cli_Input
 {
+	/**
+	 * Attrbútumok, amelyek megadják az olvasási módot és konkrét olvasók
+	 */
 	BufferedReader consoleReader;
 	BufferedReader reader;
 	boolean printRead = false;
@@ -25,6 +30,10 @@ public class Cli_Input
 		reader = consoleReader;
 	}
 	
+	/**
+	 * Olvasás incializálása a velhasználóval, CLI kérdéseken kersztül, hogy hogyan történjen az olvasás
+	 * ha nem futtatjuk, akkor autómatikusan console-ról olvas és nem mőködik a run függvény
+	 */
 	public void init(ControlerAPI _control)
 	{
 		control = _control;
@@ -34,7 +43,6 @@ public class Cli_Input
 			try {
 				reader = new BufferedReader(new FileReader("c"+testNum+".txt"));
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return;
@@ -50,7 +58,6 @@ public class Cli_Input
 			try {
 				reader = new BufferedReader(new FileReader(readln()));
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
