@@ -39,7 +39,11 @@ public class Main
 		Controler controler = new Controler(g,output);
 		input.init(controler);
 		input.Run();
-		input.compareStringWithfile(output.getOut());
+		CLI.println("Do you want to compare the output with a file?(y/n)");
+		if(input.readln().equals("y"))
+		{
+			input.compareStringWithfile(output.getOut());
+		}
 		Game.Save("save.txt");
     }
 }
