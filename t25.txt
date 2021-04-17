@@ -1,0 +1,11 @@
+Asteroid(1) material: Iron; layers: 0; near sun: false
+	has Portal: 1
+	Neighbors: 2
+	Settler: 1
+	
+Player (1) inventory
+	Coal count: 3
+	Iron count: 3
+	Ice count: 2
+	Uranium count: 2
+	Portal count: 1
