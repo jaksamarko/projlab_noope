@@ -118,7 +118,7 @@ public class Cli_Input
         {  	
         	if(!dataP[dataI].equals(fileP[fileI]))
         	{
-        		CLI.println("「"+dataP[dataI]+"」 not same as 「"+fileP[fileI]+"」");
+        		CLI.println("「"+dataP[dataI]+"」 not same as in the file: 「"+fileP[fileI]+"」");
         		check = false;
         		break;
         	}
