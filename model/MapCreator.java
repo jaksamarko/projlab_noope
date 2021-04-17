@@ -76,8 +76,10 @@ public class MapCreator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+	}
+	
+	private void warning(String str) {
+		System.out.println("(MapCreate)WARNING:"+str);
 	}
 	
 	private String readData() {
@@ -155,29 +157,29 @@ public class MapCreator {
 				case "inv":
 					switch(readData()) {
 						case "Portal":
-							for(int i=0;i<readId();i++) {
+							//for(int i=0;i<readId();i++) {
 								inv.InsertPortal();
-							}
+							//}
 							break;
 						case "Iron":
-							for(int i=0;i<readId();i++) {
+							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Iron());
-							}
+							//}
 							break;
 						case "Coal":
-							for(int i=0;i<readId();i++) {
+							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Coal());
-							}
+							//}
 							break;
 						case "Ice":
-							for(int i=0;i<readId();i++) {
+							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Ice());
-							}
+							//}
 							break;
 						case "Uranium":
-							for(int i=0;i<readId();i++) {
+							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Uranium());
-							}
+							//}
 							break;
 					}
 				break;
@@ -229,6 +231,8 @@ public class MapCreator {
 				break;
 			}
 		}
+		if(aster.GetNeighbors().size()==0)
+			warning("Asteroid"+aster.GetID()+" have no neighbour!");
 	}
 	
 	private void configUnit(Unit unit) throws IOException {
@@ -237,6 +241,8 @@ public class MapCreator {
 				((Asteroid)objects.get("Asteroid").get(readId())).ReceiveUnit(unit);
 			}
 		}
+		if(unit.getAsteroid()==null)
+			warning("Unit "+unit.GetID()+" have no asteroid!");
 	}
 	
 	private void configPortal(Portal portal) throws IOException {
@@ -246,12 +252,15 @@ public class MapCreator {
 					Asteroid aster = (Asteroid)objects.get("Asteroid").get(readId());
 					//portal.SetAsteroid(aster);
 					aster.ReceivePortal(portal);
-					
 				break;
 				case "neigh":
 					portal.SetPair((Portal)objects.get("Portal").get(readId()));
 				break;
 			}
 		}
+		if(portal.GetPair()==null)
+			warning("Portal "+portal.GetID()+" have no pair!");
+		if(portal.GetAsteroid()==null)
+			warning("Portal "+portal.GetID()+" have no asteroid!");
 	}
 }
