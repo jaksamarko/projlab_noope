@@ -109,9 +109,15 @@ public class Cli_Input
         String[] fileP = fileString.split("\n");
         
         for(String s: dataP)
+        {
         	s = s.trim();
+        	s = s.toLowerCase();
+        }
         for(String s: fileP)
+        {
         	s = s.trim();
+        	s = s.toLowerCase();
+        }
         
         int dataI = 0;
         int fileI = 0;
