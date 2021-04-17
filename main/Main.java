@@ -25,15 +25,22 @@ public class Main
 	
 	public static void main(String[] args)
 	{
-			Game g = new Game();
-			Cli_Input input = new Cli_Input();
-			input.loadGame();
-			Cli_Output output = new Cli_Output();
-			Controler controler = new Controler(g,output);
-			input.init(controler);
-			input.Run();
-			input.compareStringWithfile(output.getOut());
-			Game.Save("save.txt");
+		Game g = new Game();
+		Cli_Input input = new Cli_Input();
+		CLI.println("TestMode?(y/n)");
+		if(input.readln().equals("y"))
+		{
+			CLI.println("Test Number?");
+			input.loadGame(true,Integer.parseInt(input.readln()));
+		}
+		else
+			input.loadGame(false, -1);
+		Cli_Output output = new Cli_Output();
+		Controler controler = new Controler(g,output);
+		input.init(controler);
+		input.Run();
+		input.compareStringWithfile(output.getOut());
+		Game.Save("save.txt");
     }
 }
 

@@ -16,6 +16,8 @@ public class Cli_Input
 	BufferedReader reader;
 	boolean printRead = false;
 	ControlerAPI control;
+	boolean testMode = false;
+	int testNum = 0;
 	
 	public Cli_Input()
 	{
@@ -26,6 +28,17 @@ public class Cli_Input
 	public void init(ControlerAPI _control)
 	{
 		control = _control;
+		if(testMode)
+		{
+			printRead = true;
+			try {
+				reader = new BufferedReader(new FileReader("c"+testNum+".txt"));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
 		CLI.println("Read from file or console?(c/f)?");
 		String input = "";
 		while(!(input.equals("c")||input.equals("f")))
@@ -54,8 +67,15 @@ public class Cli_Input
 		return re;
 	}
 	
-	public void loadGame()
+	public void loadGame(boolean _testMode, int _testNum)
 	{
+		testMode = _testMode;
+		testNum = _testNum;
+		if(testMode)
+		{
+			MapCreator mp = new MapCreator("m"+testNum+".txt");
+			return;
+		}
 		CLI.print("File to load from?\nPath: ");
 		String input = readln();
 		MapCreator mp = new MapCreator(input);
@@ -63,9 +83,17 @@ public class Cli_Input
 	
 	public void compareStringWithfile(String data)
 	{
-		reader = consoleReader;
-		CLI.println("What file to chech output with?");
 		String fname = readln();
+		if(testMode)
+		{
+			fname = "t"+testNum+".txt";
+		}
+		else
+		{
+			reader = consoleReader;
+			CLI.println("What file to chech output with?");
+			fname = readln();
+		}
 		StringBuilder contentBuilder = new StringBuilder();
 		 
         try (Stream<String> stream = Files.lines( Paths.get(fname), StandardCharsets.UTF_8)) 
