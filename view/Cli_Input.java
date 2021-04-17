@@ -24,6 +24,9 @@ public class Cli_Input
 	boolean testMode = false;
 	int testNum = 0;
 	
+	/**
+	 * Megadja, hogy console-ról történik-e a beolvasás
+	 */
 	public boolean isConsoleRead()
 	{
 		return reader == consoleReader;
@@ -302,6 +305,10 @@ public class Cli_Input
 					if(pieces[2].equals("on"))
 						state = true;
 					control.admin_setWorkers(state);
+				}
+				else if(pieces[1].equals("forceendturn"))
+				{
+					this.control.admin_forceEndTurn();
 				}
 			}
 		}

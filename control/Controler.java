@@ -232,5 +232,15 @@ public class Controler implements ControlerAPI
 		view.log("workers active: " + status);
 		
 	}
+	/**
+	 * A játék kör végének a kényszerítése teszthez.
+	 */
+	@Override
+	public void admin_forceEndTurn() {
+		settlerIndex = 0;
+		endTurn();
+		view.printStatus();
+		
+	}
 	
 }
