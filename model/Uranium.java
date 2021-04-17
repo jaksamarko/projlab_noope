@@ -31,6 +31,6 @@ public class Uranium extends Resource {
 	}
 	
 	public String toString() {
-        return "Uranum (exposed "+ (Uranium.MaxLives - lives) +" times)";
+        return "Uranium (exposed "+ (Uranium.MaxLives - lives) +" times)";
     } 
 }
