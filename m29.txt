@@ -1,0 +1,3 @@
+new Asteroid 1
+res Iron
+layers 0

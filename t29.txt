@@ -1,0 +1,3 @@
+Current Player: 0
+End Turn
+Game Lost
