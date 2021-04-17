@@ -8,7 +8,7 @@ import view.Cli_Output;
 public class Main
 {
 	/**
-	 * Játékos portált letesz parancs
+	 * A játék incializálásának a hívása itt történik. Van egy két console-ra történő kérés, amely késöbb ki lesz törölve, amint a prototípus fásinak vége
 	 */
 	public static void main(String[] args)
 	{
