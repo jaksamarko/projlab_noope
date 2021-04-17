@@ -27,10 +27,19 @@ public class Main
 		input.init(controler);
 		input.Run();
 		CLI.println("Do you want to compare the output with a file?(y/n)");
-		if(input.readln().equals("y"))
+		
+		if(input.isConsoleRead())
+		{
+			if(input.readln().equals("y"))
+			{
+				input.compareStringWithfile(output.getOut());
+			}
+		}
+		else
 		{
 			input.compareStringWithfile(output.getOut());
 		}
+				
 		Game.Save("save.txt");
     }
 }

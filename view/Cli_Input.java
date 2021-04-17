@@ -24,6 +24,11 @@ public class Cli_Input
 	boolean testMode = false;
 	int testNum = 0;
 	
+	public boolean isConsoleRead()
+	{
+		return reader == consoleReader;
+	}
+	
 	public Cli_Input()
 	{
 		consoleReader = new BufferedReader(new InputStreamReader(System.in));
@@ -63,6 +68,9 @@ public class Cli_Input
 		}
 	}
 	
+	/**
+	 * Egy sor olvasás a beálíitt olvasási forrásból
+	 */
 	public String readln(){
 		
 		String re = null;
@@ -74,6 +82,9 @@ public class Cli_Input
 		return re;
 	}
 	
+	/**
+	 * Pály betöltő metódus, ha az argumentban true-ként adjuk meg a test módot, akkor a testNum-ban megadott fájlal lefutat egy teljes tesztet.
+	 */
 	public void loadGame(boolean _testMode, int _testNum)
 	{
 		testMode = _testMode;
@@ -88,6 +99,9 @@ public class Cli_Input
 		MapCreator mp = new MapCreator(input);
 	}
 	
+	/**
+	 * Felhasználótol bekér egy fájl nevet és ellenőrzi, hogy megyegyezik az argumentumban megadott adattal
+	 */
 	public void compareStringWithfile(String data)
 	{
 		String fname = readln();
@@ -173,6 +187,9 @@ public class Cli_Input
         CLI.println("test result: " + check);
 	}
 	
+	/**
+	 * Játék indítása. és folytonos olvasás, amit a kontrol egységnek továbbít
+	 */
 	public void Run()
 	{
 		while(true)
