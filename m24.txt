@@ -1,0 +1,9 @@
+new Asteroid 1
+res Iron
+layers 0
+new Settler
+aster 1
+inv Coal 3
+inv Iron 3
+inv Ice 2
+inv Uranium 2

@@ -1,0 +1,3 @@
+new Asteroid 1
+res Ice
+layers 0
