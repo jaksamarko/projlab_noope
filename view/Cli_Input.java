@@ -108,6 +108,11 @@ public class Cli_Input
         String[] dataP = data.split("\n");
         String[] fileP = fileString.split("\n");
         
+        for(String s: dataP)
+        	s = s.trim();
+        for(String s: fileP)
+        	s = s.trim();
+        
         int dataI = 0;
         int fileI = 0;
         
