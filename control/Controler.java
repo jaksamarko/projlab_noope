@@ -4,16 +4,33 @@ import java.util.ArrayList;
 import interfaces.*;
 import model.*;
 
+
+/**
+ * Ez maga a control modul, mivel keveset csinál jelenleg ezért csak egy osztályban van megoldva.
+ */
 public class Controler implements ControlerAPI
 {
+	/**
+	 * Attribútumok a különböző más komponensekhez
+	 */
 	private ModelAPI model;
 	private ViewAPI view;
+	/**
+	 * Külen el van tárolva az összes settler, hogy nyomon lehessen követni a játékosoknak a sorrenjét.
+	 */
 	private ArrayList<Settler> settlers;
 	private int settlerIndex;
+	/**
+	 * Játék állapotát tároloó boolean-ek
+	 */
 	private boolean won = false;
 	private boolean lost = false;
 	private boolean sunStormActive = true;
 	private boolean workersActive = true;
+	
+	/**
+	 *Inicializálódnak a komponens re mutató attribútumok és a modelltől lekérjük a játékosokáltal irányított settler űrhajókat. 
+	 */
 	public Controler(ModelAPI _model, ViewAPI _view)
 	{
 		model = _model;
@@ -29,6 +46,9 @@ public class Controler implements ControlerAPI
 		return this.settlers;
 	}
 	
+	/**
+	 * A játékbeli egy körnek a végén a model-ben a szükséges váloztatások lefutatását végző metódus
+	 */
 	private void endTurn()
 	{
 		view.printEndTurn();
@@ -42,7 +62,9 @@ public class Controler implements ControlerAPI
 		if(won = checkwin())
 			view.printWon();
 	}
-	
+	/**
+	 * Amikor egy játékos elvégez egy action-t akkor ez lefut (phase a kisebb egység, ami többször is lefut egy turn-ben)
+	 */
 	private void endPhase()
 	{
 		if(settlers.get(settlerIndex).getStepDone()) {
@@ -64,6 +86,9 @@ public class Controler implements ControlerAPI
 		view.printCurrentPlayer(settlers.get(settlerIndex).GetID());
 	}
 	
+	/**
+	 * Algoritmus ami ellenörzi, hogy a játék nyert állapotban van-e
+	 */
 	public boolean checkwin() {
 		for(Asteroid a : ObjectStore.getInstance().asteroids) {
 			ArrayList<Unit> units = new ArrayList<Unit>();
@@ -92,12 +117,18 @@ public class Controler implements ControlerAPI
 	}
 	
 	
+	/**
+	 * Algoritmus ami ellenörzi, hogy a játék elvesztett állapotban van-e. (jelenleg ez ekvivalens azzal, hogy nem maradt több settler)
+	 */
 	public boolean checklose() {
 		if(settlers.size()==0)
 			return true;
 		return false;
 	}
 	
+	/**
+	 * Játékos aszeroidára mozog parancs
+	 */
 	@Override
 	public void moveA(int ID)
 	{
@@ -107,6 +138,9 @@ public class Controler implements ControlerAPI
 		endPhase();
 	}
 	
+	/**
+	 * Játékos kapún megy keresztül parancs
+	 */
 	public void moveG(int ID)
 	{
 		Settler settler = settlers.get(settlerIndex);
@@ -115,6 +149,9 @@ public class Controler implements ControlerAPI
 		endPhase();
 	}
 
+	/**
+	 * Játékos fúr parancs
+	 */
 	@Override
 	public void drill() {
 		Settler settler = settlers.get(settlerIndex);
@@ -122,7 +159,9 @@ public class Controler implements ControlerAPI
 		endPhase();
 	}
 	
-	
+	/**
+	 * 
+	 */
 	@Override
 	public void mine() {
 		Settler settler = settlers.get(settlerIndex);
@@ -130,7 +169,9 @@ public class Controler implements ControlerAPI
 		endPhase();
 	}
 	
-
+	/**
+	 * játékos nyersanyagot visszatesz parancs
+	 */
 	@Override
 	public void putback(Material material) {
 		Settler settler = settlers.get(settlerIndex);
@@ -138,7 +179,9 @@ public class Controler implements ControlerAPI
 		endPhase();
 	}
 	
-
+	/**
+	 * Játékos portált épít parancs
+	 */
 	@Override
 	public void createportal() {
 		Settler settler = settlers.get(settlerIndex);
@@ -146,33 +189,43 @@ public class Controler implements ControlerAPI
 		endPhase();
 	}
 	
-
+	/**
+	 * Játékos robot épít parancs
+	 */
 	@Override
 	public void createrobot() {
 		Settler settler = settlers.get(settlerIndex);
 		settler.CreateRobot();
 		endPhase();
 	}
-
+	/**
+	 * Játékos portált letesz parancs
+	 */
 	@Override
 	public void placeportal() {
 		Settler settler = settlers.get(settlerIndex);
 		settler.PlacePortal();
 		endPhase();
 	}
-
+	/**
+	 * Nem játékosok által kiadható legális parancs: Játékban a napvhiar kikapcsolása
+	 */
 	@Override
 	public void admin_setSunstorm(boolean state) {
 		sunStormActive = state;
 		view.log("sunStorm: "+ sunStormActive);
 	}
-
+	/**
+	 * Nem játékosok által kiadható legális parancs: Játékban egy aszteroida naphoz közel/távol mozgatása
+	 */
 	@Override
 	public void admin_setNearSun(int asteroidID, boolean state) {
 		ObjectStore.getAsteroid(asteroidID).SetNearSun(state);
 		view.printStatus();
 	}
-
+	/**
+	 * Nem játékosok által kiadható legális parancs: játékban az ai kikapcsolása parancs. Terminológia az ilyen unit-okra "worker"
+	 */
 	@Override
 	public void admin_setWorkers(boolean status) {
 		workersActive = status;

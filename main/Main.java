@@ -7,22 +7,9 @@ import view.Cli_Output;
 
 public class Main
 {
-	
-	/*public static void main(String[] args)
-	{
-		MapCreator mp;
-		Game g = new Game();
-		mp = new MapCreator("MapCreate.txt");
-		
-		Cli_Input input = new Cli_Input();
-		Cli_Output output = new Cli_Output(); 
-		Controler controler = new Controler(g,output);
-		input.init(controler);
-		input.Run();
-		
-		Game.Save("save.txt");
-    }*/
-	
+	/**
+	 * Játékos portált letesz parancs
+	 */
 	public static void main(String[] args)
 	{
 		Game g = new Game();

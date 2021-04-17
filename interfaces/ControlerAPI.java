@@ -1,6 +1,9 @@
 package interfaces;
 import model.Material;
 
+/**
+ * A controller által feldolgozanodó parancsok, amelyeket játékos adhat ki
+ */
 public interface ControlerAPI 
 {
 	public void moveA(int ID);
