@@ -1,5 +1,8 @@
 package interfaces;
 
+/**
+ * A view által megvalósítandó metódusok. Itt minden a megjelinítési hívásokkal kapcsolatos. Controller feladata ezek meghívása
+ */
 
 public interface ViewAPI
 {

@@ -1,6 +1,9 @@
 package interfaces;
 import model.Material;
 
+/**
+ * A controller által feldolgozanodó parancsok, amelyeket játékos adhat ki
+ */
 public interface ControlerAPI 
 {
 	public void moveA(int ID);
@@ -14,4 +17,5 @@ public interface ControlerAPI
 	public void admin_setSunstorm(boolean state);
 	public void admin_setNearSun(int asteroidID, boolean state);
 	public void admin_setWorkers (boolean status);
+	public void admin_forceEndTurn();
 }

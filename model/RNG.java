@@ -1,9 +1,15 @@
 package model;
 
+/**
+ * Ez egy single-ton osztály, amely "véletlen" számokat add vissza, de úgy, hogy minden futtatáskor ugyanazokat adja. 
+ */
 public class RNG
 {
 	private static RNG instance = null;
 	public static void Reset() {instance = new RNG();}
+	/**
+	 * Véletlen szám lekérés
+	 */
 	public static int GetRand()
 	{
 		if(instance == null)
@@ -16,11 +22,14 @@ public class RNG
 	{
 		index = 0;
 	}
+	/**
+	 * Véletlen szám lekérés a singleton objektumon. gyakorlatilag csak kiveszebb számot a tömbből, majd leközelebb az az utánit.
+	 */
 	private int _GetRand()
 	{
 		int re = numbers[index];
 		index++;
-		index = index / count;
+		index = index % count;
 		return re;
 	}
 	

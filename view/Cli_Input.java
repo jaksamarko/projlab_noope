@@ -9,9 +9,14 @@ import java.util.stream.Stream;
 import interfaces.*;
 import model.MapCreator;
 import model.Material;
-
+/**
+ * Ez az osztály végzi el az input beolvasást fájlból és a console-ról
+ */
 public class Cli_Input
 {
+	/**
+	 * Attrbútumok, amelyek megadják az olvasási módot és konkrét olvasók
+	 */
 	BufferedReader consoleReader;
 	BufferedReader reader;
 	boolean printRead = false;
@@ -19,12 +24,24 @@ public class Cli_Input
 	boolean testMode = false;
 	int testNum = 0;
 	
+	/**
+	 * Megadja, hogy console-ról történik-e a beolvasás
+	 */
+	public boolean isConsoleRead()
+	{
+		return reader == consoleReader;
+	}
+	
 	public Cli_Input()
 	{
 		consoleReader = new BufferedReader(new InputStreamReader(System.in));
 		reader = consoleReader;
 	}
 	
+	/**
+	 * Olvasás incializálása a velhasználóval, CLI kérdéseken kersztül, hogy hogyan történjen az olvasás
+	 * ha nem futtatjuk, akkor autómatikusan console-ról olvas és nem mőködik a run függvény
+	 */
 	public void init(ControlerAPI _control)
 	{
 		control = _control;
@@ -34,7 +51,6 @@ public class Cli_Input
 			try {
 				reader = new BufferedReader(new FileReader("c"+testNum+".txt"));
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return;
@@ -50,12 +66,14 @@ public class Cli_Input
 			try {
 				reader = new BufferedReader(new FileReader(readln()));
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 	
+	/**
+	 * Egy sor olvasás a beálíitt olvasási forrásból
+	 */
 	public String readln(){
 		
 		String re = null;
@@ -67,6 +85,9 @@ public class Cli_Input
 		return re;
 	}
 	
+	/**
+	 * Pály betöltő metódus, ha az argumentban true-ként adjuk meg a test módot, akkor a testNum-ban megadott fájlal lefutat egy teljes tesztet.
+	 */
 	public void loadGame(boolean _testMode, int _testNum)
 	{
 		testMode = _testMode;
@@ -81,6 +102,9 @@ public class Cli_Input
 		MapCreator mp = new MapCreator(input);
 	}
 	
+	/**
+	 * Felhasználótol bekér egy fájl nevet és ellenőrzi, hogy megyegyezik az argumentumban megadott adattal
+	 */
 	public void compareStringWithfile(String data)
 	{
 		String fname = readln();
@@ -166,6 +190,9 @@ public class Cli_Input
         CLI.println("test result: " + check);
 	}
 	
+	/**
+	 * Játék indítása. és folytonos olvasás, amit a kontrol egységnek továbbít
+	 */
 	public void Run()
 	{
 		while(true)
@@ -278,6 +305,10 @@ public class Cli_Input
 					if(pieces[2].equals("on"))
 						state = true;
 					control.admin_setWorkers(state);
+				}
+				else if(pieces[1].equals("forceendturn"))
+				{
+					this.control.admin_forceEndTurn();
 				}
 			}
 		}
