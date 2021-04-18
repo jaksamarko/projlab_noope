@@ -197,7 +197,9 @@ public class Cli_Input
 	{
 		while(true)
 		{
-			String line = readln().toLowerCase();
+			String line = readln();
+			if(line != null)
+				line.toLowerCase();
 			if(printRead)
 			{
 				if(line == null)
