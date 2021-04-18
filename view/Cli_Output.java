@@ -145,8 +145,11 @@ public class Cli_Output implements ViewAPI
 			}
 			println("");
 			if(a.GetPortal() != null)
-			{
-				println("\tHas Portal: "+a.GetPortal().GetID()+ a.GetPortal().GetPair() == null ? "": "(pair: "+ a.GetPortal().GetPair().GetID() +")");
+			{	
+				if(a.GetPortal().GetPair() != null)
+					println("\tHas Portal: "+a.GetPortal().GetID()+ "(pair: "+ a.GetPortal().GetPair().GetID() +")");
+				else
+					println("\tHas Portal: "+a.GetPortal().GetID());
 			}
 			
 			String settlers = getAsteroidSettlers(a);

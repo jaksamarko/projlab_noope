@@ -40,7 +40,7 @@ public class Main
 			input.compareStringWithfile(output.getOut());
 		}
 				
-		Game.Save("save.txt");
+		//Game.Save("save.txt");
     }
 }
 
