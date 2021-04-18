@@ -312,6 +312,15 @@ public class Cli_Input
 				{
 					this.control.admin_forceEndTurn();
 				}
+				else if(pieces[1].equals("drillrobot"))
+				{
+					if(pieces.length == 2 )
+					{
+						CLI.printError("kevés argument drillrobot-nak");
+						continue;
+					}
+					control.admin_drillRobot(Integer.parseInt(pieces[2]));
+				}
 			}
 		}
 	}

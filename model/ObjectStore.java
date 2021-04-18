@@ -160,4 +160,13 @@ public class ObjectStore
 				return p;
 		return null;
 	}
+	
+	public static Robot getRobot(int ID) 
+	{
+		NullReset(); 
+		for(Robot r: instance.robots)
+			if(r.GetID() == ID)
+				return r;
+		return null;
+	}
 }
