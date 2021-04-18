@@ -1,0 +1,3 @@
+admin setsunstorm off
+admin setai off	
+move G.1
