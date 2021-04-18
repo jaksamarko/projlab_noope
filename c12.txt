@@ -1,4 +1,4 @@
-admin setsunstorm off
+admin setsunstorm on
 admin setai off
 admin setnearsun 1 on
 admin setnearsun 1 on
