@@ -18,4 +18,5 @@ public interface ControlerAPI
 	public void admin_setNearSun(int asteroidID, boolean state);
 	public void admin_setWorkers (boolean status);
 	public void admin_forceEndTurn();
+	public void admin_drillRobot(int robotID);
 }

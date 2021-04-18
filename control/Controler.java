@@ -242,5 +242,11 @@ public class Controler implements ControlerAPI
 		view.printStatus();
 		
 	}
+
+	@Override
+	public void admin_drillRobot(int robotID)
+	{
+		ObjectStore.getRobot(robotID).Drill();
+	}
 	
 }
