@@ -1,3 +1,4 @@
 admin setsunstorm on
 admin setai off
 admin forceendturn
+admin forceendturn

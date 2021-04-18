@@ -147,7 +147,7 @@ public class Cli_Output implements ViewAPI
 			if(a.GetPortal() != null)
 			{	
 				if(a.GetPortal().GetPair() != null)
-					println("\tHas Portal: "+a.GetPortal().GetID()+ "(pair: "+ a.GetPortal().GetPair().GetID() +")");
+					println("\tHas Portal: "+a.GetPortal().GetID()+ " (pair: "+ a.GetPortal().GetPair().GetID() +")");
 				else
 					println("\tHas Portal: "+a.GetPortal().GetID());
 			}
