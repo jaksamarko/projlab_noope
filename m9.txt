@@ -3,3 +3,5 @@ res Coal
 layers 1
 new Robot 1
 aster 1
+new Settler 1
+aster 1

@@ -12,6 +12,7 @@ Current Player: 1
 sunStorm: true
 workers active: true
 End Turn
+Game Lost
 Asteroid(1) material: Coal; layers: 1; near sun: false
 
 Player (1) inventory
@@ -20,6 +21,5 @@ Player (1) inventory
 	Ice count: 0
 	Uranium count: 0
 	Portal count: 0
-
-Current Player: 1
 	
+Current Player: 1

@@ -1,3 +1,2 @@
 admin setsunstorm on
 admin setai on
-drill

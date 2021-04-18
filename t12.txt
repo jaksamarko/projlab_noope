@@ -15,8 +15,7 @@ Player (1) inventory
 Current Player: 1
 sunStorm: false
 workers active: false
-End Turn
-Game Lost
+
 Asteroid(2) material: None; layers: 3; near sun: false
 
 Player (1) inventory
