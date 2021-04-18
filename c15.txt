@@ -1,4 +1,5 @@
 admin setsunstorm off
 admin setai on
-drill
-move 2
+admin forceendturn
+admin forceendturn
+admin forceendturn

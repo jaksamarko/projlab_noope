@@ -1,6 +1,6 @@
 new Asteroid 1
-res Coal
 layers 1
+res Coal
 new Robot 1
 aster 1
 new Settler 1

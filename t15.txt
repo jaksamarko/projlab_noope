@@ -1,11 +1,12 @@
 Asteroid(1) material: Iron; layers: 1; near sun: false
 	Neighbors: 2
 	Has Portal: 1 (pair: 2)
-	Robots:1
+	Settlers: 1
+	Robots: 1
 
 Asteroid(2) material: None; layers: 3; near sun: false
 	Neighbors: 1
-Has Portal: 2 (pair: 1)
+	Has Portal: 2 (pair: 1)
 
 Player (1) inventory
 	Coal count: 0
@@ -24,8 +25,8 @@ Asteroid(1) material: Iron; layers: 0; near sun: false
 
 Asteroid(2) material: None; layers: 3; near sun: false
 	Neighbors: 1
-Has Portal: 2 (pair: 1)
-Robots:1
+	Has Portal: 2 (pair: 1)
+	Robots:1
 
 Player (1) inventory
 	Coal count: 0

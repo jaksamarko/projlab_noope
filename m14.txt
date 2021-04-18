@@ -10,6 +10,8 @@ new Robot 1
 aster 1
 new Asteroid 2
 neigh 1
+new Settler 1
+aster 2
 new Portal 2
 aster 2
 neigh 1

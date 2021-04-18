@@ -6,3 +6,5 @@ new Robot 1
 aster 1
 new Asteroid 2
 neigh 1
+new Settler 1
+aster 2

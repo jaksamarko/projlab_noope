@@ -11,7 +11,7 @@ new Asteroid 3
 neigh 2
 layers 0
 new Portal 2
-aster 2
+aster 3
 neigh 1
 new Settler 1
-aster 2
+aster 3
