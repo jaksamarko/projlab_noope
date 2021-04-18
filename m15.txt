@@ -1,0 +1,14 @@
+new Asteroid 1
+layers 1
+resource Iron
+neigh 2
+new Portal 1
+aster 1
+neigh 2
+new Robot 1
+aster 1
+new Asteroid 2
+neigh 1
+new Portal 2
+aster 2
+neigh 1

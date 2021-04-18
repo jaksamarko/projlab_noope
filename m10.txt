@@ -1,0 +1,16 @@
+new Asteroid 1
+neigh 2
+layers 0
+new Portal 1
+aster 1
+neigh 2
+new Asteroid 2
+neigh 1
+neigh 3
+new Asteroid 3
+neigh 2
+new Portal 2
+aster 2
+neigh 1
+new Settler 1
+aster 3

@@ -1,0 +1,5 @@
+admin setsunstorm off
+admin setai off
+admin setnearsun 1 on
+move 2
+admin setnearsun 1 on

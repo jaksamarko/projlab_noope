@@ -1,0 +1,5 @@
+admin setsunstorm off
+admin setai on
+admin setnearsun 1 on
+drill
+admin setnearsun 1 on
