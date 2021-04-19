@@ -66,7 +66,7 @@ public class Inventory implements java.io.Serializable
 		if(coalBox.Has(1) && ironBox.Has(1) && uraniumBox.Has(1))
 		{
 			coalBox.UseUp(1); ironBox.UseUp(1); uraniumBox.UseUp(1);
-			new Robot(ObjectStore.getUniqueRobotID(),null);
+			return new Robot(ObjectStore.getUniqueRobotID(),null);
 		}
 		return null;
 	}

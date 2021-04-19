@@ -199,7 +199,7 @@ public class Cli_Input
 		{
 			String line = readln();
 			if(line != null)
-				line.toLowerCase();
+				line = line.toLowerCase();
 			if(printRead)
 			{
 				if(line == null)
