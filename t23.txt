@@ -8,7 +8,7 @@ Asteroid(2) material: Iron; layers: 0; near sun: false
 	Has Portal: 2 (pair: 1)
 	Robots: 1
 	
-Player(1) inventory
+Player (1) inventory
 	Coal count: 0
 	Iron count: 0
 	Ice count: 1
