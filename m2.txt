@@ -1,0 +1,8 @@
+new Asteroid 1
+neigh 3
+new Asteroid 2
+neigh 3
+new Asteroid 3
+neigh 1,2
+new Settler 1
+aster 1

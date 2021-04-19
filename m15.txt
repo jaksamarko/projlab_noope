@@ -5,6 +5,8 @@ neigh 2
 new Portal 1
 aster 1
 neigh 2
+new Settler 1
+aster 1
 new Robot 1
 aster 1
 new Asteroid 2

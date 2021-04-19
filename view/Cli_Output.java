@@ -145,8 +145,11 @@ public class Cli_Output implements ViewAPI
 			}
 			println("");
 			if(a.GetPortal() != null)
-			{
-				println("\tHas Portal: "+a.GetPortal().GetID()+ " (pair: "+ a.GetPortal().GetPair().GetID() +")");
+			{	
+				if(a.GetPortal().GetPair() != null)
+					println("\tHas Portal: "+a.GetPortal().GetID()+ " (pair: "+ a.GetPortal().GetPair().GetID() +")");
+				else
+					println("\tHas Portal: "+a.GetPortal().GetID());
 			}
 			
 			String settlers = getAsteroidSettlers(a);
@@ -155,11 +158,11 @@ public class Cli_Output implements ViewAPI
 			
 			String robots = getAsteroidRobots(a);
 			if(robots.length()>0)
-				println("\tSettlers: "+ robots);
+				println("\tRobots: "+ robots);
 			
 			String ufos = getAsteroidUfos(a);
 			if(ufos.length()>0)
-				println("\tSettlers: "+ ufos);
+				println("\tUfos: "+ ufos);
 			println("");
 		}
 		for(Settler s:ObjectStore.getInstance().settlers)

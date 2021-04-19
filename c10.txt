@@ -1,3 +1,4 @@
 admin setsunstorm on
 admin setai off
-move A.2
+admin forceendturn
+admin forceendturn

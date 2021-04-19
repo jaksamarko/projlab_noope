@@ -1,11 +1,13 @@
-Asteroid(1) material: Iron; layers: 1; near sun: false
+Asteroid(1) material: None; layers: 3; near sun: false
 	Neighbors: 2
 	Has Portal: 1 (pair: 2)
 	Settlers: 1
-	Robots: 1
 
 Asteroid(2) material: None; layers: 3; near sun: false
-	Neighbors: 1
+	Neighbors: 1, 3
+
+Asteroid(3) material: None; layers: 3; near sun: false
+	Neighbors: 2
 	Has Portal: 2 (pair: 1)
 
 Player (1) inventory
@@ -17,16 +19,20 @@ Player (1) inventory
 
 Current Player: 1
 sunStorm: false
-workers active: true
+workers active: false
 End Turn
-Asteroid(1) material: Iron; layers: 0; near sun: false
+
+Asteroid(1) material: None; layers: 3; near sun: false
 	Neighbors: 2
 	Has Portal: 1 (pair: 2)
 
 Asteroid(2) material: None; layers: 3; near sun: false
-	Neighbors: 1
+	Neighbors: 1, 3
+
+Asteroid(3) material: None; layers: 3; near sun: false
+	Neighbors: 2
 	Has Portal: 2 (pair: 1)
-	Robots:1
+	Settlers: 1
 
 Player (1) inventory
 	Coal count: 0
