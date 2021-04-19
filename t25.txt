@@ -7,5 +7,27 @@ Player (1) inventory
 	Iron count: 3
 	Ice count: 2
 	Uranium count: 2
+	Portal count: 2
+
+
+Current Player: 1
+sunStorm: false
+workers active: false
+End Turn
+Asteroid(1) material: Iron; layers: 0; near sun: false
+	Neighbors: 
+	has Portal: 1
+	Settlers: 1
+	
+Player (1) inventory
+	Coal count: 3
+	Iron count: 3
+	Ice count: 2
+	Uranium count: 2
 	Portal count: 1
+
+
+Current Player: 1
+
+
 
