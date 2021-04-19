@@ -1,10 +1,16 @@
 new Asteroid 1
 res Iron
 layers 0
-new Settler
+new Settler 1
 aster 1
-inv Coal 3
-inv Iron 3
-inv Ice 2
-inv Uranium 2
-inv Portal 2
+inv Coal
+inv Coal
+inv Coal
+inv Iron
+inv Iron
+inv Iron
+inv Ice
+inv Ice
+inv Uranium
+inv Uranium
+inv Portal
