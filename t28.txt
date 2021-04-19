@@ -1,2 +1,20 @@
+Asteroid(1) material: Iron; layers: 0; near sun: false
+	Neighbors: 
+	Settlers: 1, 2
+
+Player (1) inventory
+	Coal count: 3
+	Iron count: 3
+	Ice count: 2
+	Uranium count: 2
+	Portal count: 1
+Player (2) inventory
+	Coal count: 0
+	Iron count: 3
+	Ice count: 2
+	Uranium count: 1
+	Portal count: 0
+
+Current Player: 1
 End Turn
 Game Win

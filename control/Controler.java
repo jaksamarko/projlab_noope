@@ -39,7 +39,8 @@ public class Controler implements ControlerAPI
 		settlerIndex = 0;
 		
 		view.printStatus();
-		view.printCurrentPlayer(settlers.get(settlerIndex).GetID());
+		if(settlers.size()>0)
+			view.printCurrentPlayer(settlers.get(settlerIndex).GetID());
 	}
 	
 	public ArrayList<Settler> getSettlers(){

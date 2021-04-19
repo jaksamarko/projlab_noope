@@ -4,3 +4,4 @@ admin setnearsun 1 on
 admin setnearsun 2 on
 admin setnearsun 3 on
 admin setnearsun 4 on
+admin forceendturn
