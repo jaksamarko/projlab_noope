@@ -1,0 +1,5 @@
+admin setsunstorm off
+admin setai off
+mine
+move A.2
+mine

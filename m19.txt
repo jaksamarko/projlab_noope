@@ -1,0 +1,20 @@
+new Asteroid 1
+layers 0
+resource Iron
+neigh 2
+new Settler 1
+aster 1
+inv Iron 
+inv Iron 
+inv Iron 
+inv Iron 
+inv Iron 
+inv Iron 
+inv Iron 
+inv Iron 
+inv Iron 
+inv Portal 
+new Asteroid 2
+layers 0
+resource Iron
+neigh 1
