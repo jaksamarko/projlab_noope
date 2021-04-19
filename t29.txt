@@ -4,3 +4,6 @@ Asteroid(1) material: Iron; layers: 0; near sun: false
 Current Player: 0
 End Turn
 Game Lost
+
+Asteroid(1) material: Iron; layers: 0; near sun: false
+	Neighbors: 
