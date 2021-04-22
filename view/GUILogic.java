@@ -101,5 +101,11 @@ public class GUILogic implements ViewAPI
 			}
 		}
 	}
+
+	@Override
+	public void logEvent(String text) {
+		// TODO 
+		
+	}
 	
 }

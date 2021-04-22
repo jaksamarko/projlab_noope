@@ -10,5 +10,5 @@ public interface ViewAPI
 	public void printCurrentPlayer(int playerID);
 	public void printLost();
 	public void printWon();
-	
+	public void logEvent(String text);
 }
