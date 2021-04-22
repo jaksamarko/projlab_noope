@@ -52,7 +52,6 @@ public class Controler implements ControlerAPI
 	 */
 	private void endTurn()
 	{
-		view.printEndTurn();
 		if(workersActive)
 			model.AllWorkersWork();
 		model.EndTurnAsteroidEffect();
@@ -83,7 +82,6 @@ public class Controler implements ControlerAPI
 			}
 			settlers.get(settlerIndex).Active();
 		}
-		view.printStatus();
 		view.printCurrentPlayer(settlers.get(settlerIndex).GetID());
 	}
 	
@@ -214,7 +212,6 @@ public class Controler implements ControlerAPI
 	@Override
 	public void admin_setSunstorm(boolean state) {
 		sunStormActive = state;
-		view.log("sunStorm: "+ sunStormActive);
 	}
 	/**
 	 * Nem játékosok által kiadható legális parancs: Játékban egy aszteroida naphoz közel/távol mozgatása
@@ -230,7 +227,6 @@ public class Controler implements ControlerAPI
 	@Override
 	public void admin_setWorkers(boolean status) {
 		workersActive = status;
-		view.log("workers active: " + status);
 		
 	}
 	/**
