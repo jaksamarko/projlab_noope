@@ -56,7 +56,10 @@ public class Controler implements ControlerAPI
 			model.AllWorkersWork();
 		model.EndTurnAsteroidEffect();
 		if(sunStormActive)
+		{
 			model.CreateSunstorm();
+			view.logEvent("napvihar történt");
+		}
 		if(lost = checklose())
 			view.printLost();
 		if(won = checkwin())

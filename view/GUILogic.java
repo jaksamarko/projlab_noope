@@ -43,6 +43,11 @@ public class GUILogic implements ViewAPI
 		//TODO
 	}
 	
+	public void DrawPortal(PortalNode node)
+	{
+		//TODO
+	}
+	
 	public void DrawPlayerInventoryUI(int activePlayer)
 	{
 		//TODO
@@ -57,7 +62,7 @@ public class GUILogic implements ViewAPI
 		for(AsterNode node: asterNodes)
 			DrawAsteroid(node);
 		for(PortalNode node: portalNodes)
-		{}
+			DrawPortal(node);
 		
 		DrawPlayerInventoryUI(activePlayer);
 		//TODO
