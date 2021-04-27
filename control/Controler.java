@@ -66,7 +66,7 @@ public class Controler implements ControlerAPI
 			view.printWon();
 		view.printStatus();
 		view.printCurrentPlayer(settlerIndex);
-		}
+	}
 	/**
 	 * Amikor egy játékos elvégez egy action-t akkor ez lefut (phase a kisebb egység, ami többször is lefut egy turn-ben)
 	 */
