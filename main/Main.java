@@ -1,9 +1,7 @@
 package main;
 import control.Controler;
 import model.*;
-import view.CLI;
-import view.Cli_Input;
-import view.Cli_Output;
+import view.GUILogic;
 
 public class Main
 {
@@ -13,34 +11,10 @@ public class Main
 	public static void main(String[] args)
 	{
 		Game g = new Game();
-		Cli_Input input = new Cli_Input();
-		CLI.println("TestMode?(y/n)");
-		if(input.readln().equals("y"))
-		{
-			CLI.println("Test Number?");
-			input.loadGame(true,Integer.parseInt(input.readln()));
-		}
-		else
-			input.loadGame(false, -1);
-		Cli_Output output = new Cli_Output();
+		MapCreator mp = new MapCreator("m1.txt");
+		GUILogic output = new GUILogic();
 		Controler controler = new Controler(g,output);
-		input.init(controler);
-		input.Run();
-		CLI.println("Do you want to compare the output with a file?(y/n)");
-		
-		if(input.isConsoleRead())
-		{
-			if(input.readln().equals("y"))
-			{
-				input.compareStringWithfile(output.getOut());
-			}
-		}
-		else
-		{
-			input.compareStringWithfile(output.getOut());
-		}
-				
-		//Game.Save("save.txt");
+		output.ActivateInput(controler);
     }
 }
 

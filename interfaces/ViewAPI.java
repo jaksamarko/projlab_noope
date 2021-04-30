@@ -7,9 +7,8 @@ package interfaces;
 public interface ViewAPI
 {
 	public void printStatus();
+	public void printCurrentPlayer(int playerID);
 	public void printLost();
 	public void printWon();
-	public void printCurrentPlayer(int playerID);
-	public void printEndTurn();
-	public void log(String text);
+	public void logEvent(String text);
 }
