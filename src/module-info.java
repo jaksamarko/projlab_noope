@@ -1,5 +1,6 @@
 module Noope {
 	requires javafx.controls;
+	requires javafx.graphics;
 	
-	opens main to javafx.graphics, javafx.fxml;
+	opens view to javafx.graphics, javafx.fxml;
 }
