@@ -142,8 +142,10 @@ public class MapCreator {
 							res = new Ice();
 						break;
 						case "X":
+							x=readId();
 							break;
 						case "Y":
+							y=readId();
 							break;
 						default:
 							System.out.println("Wrong material: "+ readData());

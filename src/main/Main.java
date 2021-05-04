@@ -19,7 +19,7 @@ public class Main
 		   
 		Game g = new Game();
 		
-		MapCreator mp = new MapCreator("m1.txt",output);
+		MapCreator mp = new MapCreator("map.txt",output);
 		Controler controler = new Controler(g,output);
 		output.ActivateInput(controler);
     }
