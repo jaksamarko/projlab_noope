@@ -2,8 +2,11 @@ package view;
 
 import java.util.HashMap;
 
+import com.sun.marlin.DCollinearSimplifier;
+
 import interfaces.ControlerAPI;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.geometry.VPos;
@@ -148,6 +151,47 @@ public class WindowJavaFX extends Application {
 		    }
 		});
 		
+		
+        
+        btn[0][0].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                logic.move();
+            }
+        });
+        
+        btn[0][1].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        btn[1][0].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        btn[1][1].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        btn[2][0].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        btn[2][1].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+  
+		
 		GUILogic.setWindow(this);
 	}
 	
@@ -190,8 +234,8 @@ public class WindowJavaFX extends Application {
 	
 	public void drawLine(Vec2 start, Vec2 end)
 	{
-		gc.setFill(Color.BLACK);
-	    gc.setLineWidth(1.0);
+		gc.setFill(Color.RED);
+	    gc.setLineWidth(3.0);
 	    
 	    gc.strokeLine(start.x, start.y, end.x, end.y);
 	}
@@ -208,6 +252,10 @@ public class WindowJavaFX extends Application {
         gc.setFill(Color.BLACK);
         gc.setFont(new Font(gc.getFont().getName(), 60));
         gc.fillText(text, pos.x, pos.y);
+	}
+	public void drawBG()
+	{
+		gc.drawImage(imgs.get("bg"), 0,0,gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 	
 }

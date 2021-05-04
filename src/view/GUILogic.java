@@ -118,30 +118,30 @@ public class GUILogic implements ViewAPI
 	{
 		Vec2 asteroidPos = PosTransform(node.pos);
 		if(node.realAsteroid == selected)
-			window.drawCircle(AsteroidCenter(asteroidPos), 150);
+			window.drawCircle(AsteroidCenter(asteroidPos).add(new Vec2(-10,-10)), 150);
 		window.drawAsteroid(AsteroidCenter(asteroidPos));
 		if(node.realAsteroid.GetLayers()>0)
-			window.drawText(asteroidPos, ""+node.realAsteroid.GetLayers());
+			window.drawText(asteroidPos.add(new Vec2(10,10)), ""+node.realAsteroid.GetLayers());
 		else
 		{
 			Resource resource = node.realAsteroid.GetResource();
 			if(resource == null)
-				window.drawText(asteroidPos, "no"+node.realAsteroid.GetLayers());
+				window.drawText(asteroidPos.add(new Vec2(10,10)), "no");
 			else if(resource instanceof Coal)
 			{
-				window.drawCoal(asteroidPos);
+				window.drawCoal(asteroidPos.add(new Vec2(-20,-20)));
 			}
 			else if(resource instanceof Iron)
 			{
-				window.drawIron(asteroidPos);
+				window.drawIron(asteroidPos.add(new Vec2(-20,-20)));
 			}
 			else if(resource instanceof Ice)
 			{
-				window.drawIce(asteroidPos);
+				window.drawIce(asteroidPos.add(new Vec2(-20,-20)));
 			}
 			else if(resource instanceof Uranium)
 			{
-				window.drawUranium(asteroidPos);
+				window.drawUranium(asteroidPos.add(new Vec2(-20,-20)));
 			}
 		}
 	}
@@ -161,6 +161,7 @@ public class GUILogic implements ViewAPI
 	{	
 		window.clearCanvas();
 		UpdateDrawData();
+		window.drawBG();
 		DrawLines();
 		for(AsterNode node: asterNodes)
 			DrawAsteroid(node);
