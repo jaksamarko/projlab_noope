@@ -41,6 +41,8 @@ public class GUILogic implements ViewAPI
 	public void DrawAsteroid(AsterNode node)
 	{
 		WindowJavaFX.instance.gc.drawImage(WindowJavaFX.instance.imgs.get("asteroid"), node.pos.x, node.pos.y);
+		
+		
 	}
 	
 	public void DrawPortal(PortalNode node)
