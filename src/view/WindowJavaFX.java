@@ -163,7 +163,7 @@ public class WindowJavaFX extends Application {
         btn[0][1].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                
+            	
             }
         });
         btn[1][0].setOnAction(new EventHandler<ActionEvent>() {
