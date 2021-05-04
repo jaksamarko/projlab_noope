@@ -15,7 +15,7 @@ public class Main
 	{
 		
 		
-		   GUILogic output = new GUILogic();
+	    GUILogic output = new GUILogic();
 		   
 		Game g = new Game();
 		
