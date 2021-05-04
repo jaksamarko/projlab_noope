@@ -40,8 +40,7 @@ public class GUILogic implements ViewAPI
 	
 	public void DrawAsteroid(AsterNode node)
 	{
-		float x = 1.0f;
-		WindowJavaFX.instance.gc.drawImage(WindowJavaFX.instance.imgs.get("asteroid"), 0, 0);
+		WindowJavaFX.instance.gc.drawImage(WindowJavaFX.instance.imgs.get("asteroid"), node.pos.x, node.pos.y);
 	}
 	
 	public void DrawPortal(PortalNode node)
@@ -57,8 +56,9 @@ public class GUILogic implements ViewAPI
 	@Override
 	public void printStatus()
 	{
+		
 		WindowJavaFX.instance.gc.fillOval(22.5, 22.5, 221.0, 221.0);
-		/*window.ClearCanvas();
+		
 		UpdateDrawData();
 		DrawLines();
 		for(AsterNode node: asterNodes)
@@ -66,7 +66,7 @@ public class GUILogic implements ViewAPI
 		for(PortalNode node: portalNodes)
 			DrawPortal(node);
 		
-		DrawPlayerInventoryUI(activePlayer);*/
+		DrawPlayerInventoryUI(activePlayer);
 		//TODO
 	}
 	
