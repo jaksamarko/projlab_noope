@@ -141,12 +141,7 @@ public class MapCreator {
 						case "Ice":
 							res = new Ice();
 						break;
-						case "X":
-							x=readId();
-							break;
-						case "Y":
-							y=readId();
-							break;
+						
 						default:
 							System.out.println("Wrong material: "+ readData());
 					}
@@ -154,6 +149,12 @@ public class MapCreator {
 						res.asteroid = aster;
 					aster.SetResource(res);
 				break;
+				case "X":
+					x=readId();
+					break;
+				case "Y":
+					y=readId();
+					break;
 				case "layers":
 					for(int i=Integer.parseInt(readData());i<Asteroid.defLayers;i++)
 						aster.RemoveLayer();
