@@ -26,8 +26,8 @@ public class Window
 	{
 		gui = _gui;
 		Application.launch(WindowJavaFX.class);
+		WindowJavaFX.instance.setWindow(this);
 	}
-	
 	
 	public void ActivateInput(ControlerAPI _control)
 	{

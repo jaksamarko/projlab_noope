@@ -36,6 +36,9 @@ public class WindowJavaFX extends Application {
 	private double WindowW = 1280, WindowH = 720;
 	private double SidebarSize = 192;
 	
+	private Window window = null;
+	void setWindow(Window _window) {window = _window;}
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.setMinWidth(WindowW);
