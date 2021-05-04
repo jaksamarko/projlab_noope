@@ -11,8 +11,8 @@ public class Main
 	public static void main(String[] args)
 	{
 		Game g = new Game();
-		MapCreator mp = new MapCreator("m1.txt");
 		GUILogic output = new GUILogic();
+		MapCreator mp = new MapCreator("m1.txt",output);
 		Controler controler = new Controler(g,output);
 		output.ActivateInput(controler);
     }

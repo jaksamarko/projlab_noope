@@ -5,11 +5,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+import view.AsterNode;
+import view.GUILogic;
+import view.Vec2;
+
 public class MapCreator {
 	private final String types[] = {"Asteroid","Settler","Ufo","Portal","Robot"};
 	
 	private final String params[] = {
 			//For asteroid
+			"X","Y",
 			"layers",
 			"res","neigh",
 			//For settler/robot
@@ -22,10 +27,12 @@ public class MapCreator {
 	
 	private HashMap<String,HashMap<Integer, Object>> objects = new HashMap<String, HashMap<Integer, Object>>();
 	private String ln="";
+	private GUILogic guiInst;
 	BufferedReader bf;
-	public MapCreator(String filename) {
+	public MapCreator(String filename,GUILogic ginstance) {
 		for(String type: types) {
 			objects.put(type,new HashMap<Integer,Object>());
+			guiInst = ginstance;
 		}
 		
 		try {
@@ -116,6 +123,7 @@ public class MapCreator {
 	
 	private Asteroid createAsteroid() throws IOException {
 		Asteroid aster = new Asteroid(readId(),false);
+		int x=0,y=0;
 		while(readLineUntil("new")) {
 			switch(selectFromKeys(params)) {
 				case "res":
@@ -133,6 +141,10 @@ public class MapCreator {
 						case "Ice":
 							res = new Ice();
 						break;
+						case "X":
+							break;
+						case "Y":
+							break;
 						default:
 							System.out.println("Wrong material: "+ readData());
 					}
@@ -146,6 +158,7 @@ public class MapCreator {
 				break;
 			}
 		}
+		guiInst.asterNodes.add(new AsterNode(aster,new Vec2(x,y)));
 		return aster;
 	}
 	
@@ -157,29 +170,19 @@ public class MapCreator {
 				case "inv":
 					switch(readData()) {
 						case "Portal":
-							//for(int i=0;i<readId();i++) {
 								inv.InsertPortal();
-							//}
 							break;
 						case "Iron":
-							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Iron());
-							//}
 							break;
 						case "Coal":
-							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Coal());
-							//}
 							break;
 						case "Ice":
-							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Ice());
-							//}
 							break;
 						case "Uranium":
-							//for(int i=0;i<readId();i++) {
 								inv.InsertItem(new Uranium());
-							//}
 							break;
 					}
 				break;
