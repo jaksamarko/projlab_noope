@@ -2,8 +2,11 @@ package view;
 
 import java.util.HashMap;
 
+import interfaces.ControlerAPI;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,16 +16,18 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class WindowJavaFX extends Application {
-	public static WindowJavaFX instance;
 	
 	private final String[][] btnNames = {{"Move","PutBack","craftPortal"},{"Dig","createRobot","placePortal"}};
 	public Button[][] btn; //2*3-as elrendezés,btnNames-ből kitalálod melyik, melyik
@@ -36,8 +41,10 @@ public class WindowJavaFX extends Application {
 	private double WindowW = 1280, WindowH = 720;
 	private double SidebarSize = 192;
 	
-	private Window window = null;
-	void setWindow(Window _window) {window = _window;}
+	private GUILogic logic = null;
+	void setGUILogic(GUILogic _logic)
+	{logic = _logic;}
+	
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -94,17 +101,113 @@ public class WindowJavaFX extends Application {
 		stage.setScene(scene);
         stage.show();
         
-        instance=this;
+        //instance=this;
         imgs = new HashMap<String,Image>();
         for(String str:imgNames) {
         	imgs.put(str, new Image("file:Textures/"+str+".png"));
         }
         
-		instance.gc.drawImage(instance.imgs.get("asteroid"), 0, 0);
-		instance.scene.addEventHandler(KeyEvent.KEY_PRESSED, (key)->{
-        	if(key.getCode()==KeyCode.W) {
-        		
+		scene.addEventHandler(KeyEvent.KEY_PRESSED, (key)->{
+        	if(key.getCode()==KeyCode.W) 
+        	{
+        		logic.moveCamera(new Vec2(0,10));
+        		logic.printStatus();
+        	}
+        	if(key.getCode()==KeyCode.S) 
+        	{
+        		logic.moveCamera(new Vec2(0,-10));
+        		logic.printStatus();
+        	}
+        	if(key.getCode()==KeyCode.D) 
+        	{
+        		logic.moveCamera(new Vec2(-10,0));
+        		logic.printStatus();
+        	}
+        	if(key.getCode()==KeyCode.A) 
+        	{
+        		logic.moveCamera(new Vec2(10,0));
+        		logic.printStatus();
+        	}
+        	if(key.getCode()==KeyCode.F) 
+        	{
+        		logic.zoomIn(2.0f);
+        		logic.printStatus();
+        	}
+        	if(key.getCode()==KeyCode.G) 
+        	{
+        		logic.zoomIn(0.5f);
+        		logic.printStatus();
         	}
         });
+		
+		scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent mouseEvent) {
+		        //System.out.println("mouse click detected! " + mouseEvent.getX() +" "+mouseEvent.getY());
+		    	logic.clickSelect(new Vec2((int)mouseEvent.getX(),(int) mouseEvent.getY()));
+		    }
+		});
+		
+		GUILogic.setWindow(this);
 	}
+	
+	private ControlerAPI control = null;
+	void ActivateInput(ControlerAPI _control)
+	{
+		control = _control;
+	}
+	
+	public void moveA(int ID){control.moveA(ID);}
+	public void moveG(int ID){control.moveG(ID);}
+	
+	public void clearCanvas()
+	{
+		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+	}
+	
+	public void drawAsteroid(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("asteroid"), pos.x, pos.y);
+	}
+	public void drawCoal(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("coal"), pos.x, pos.y);
+	}
+	public void drawIron(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("iron"), pos.x, pos.y);
+	}
+	public void drawIce(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("ice"), pos.x, pos.y);
+	}
+	public void drawUranium(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("uranium"), pos.x, pos.y);
+	}
+	
+	//{"asteroid","bg","btn","coal","cursor","iron","portal","robot","settler","ufo","uranium"};
+	
+	public void drawLine(Vec2 start, Vec2 end)
+	{
+		gc.setFill(Color.BLACK);
+	    gc.setLineWidth(1.0);
+	    
+	    gc.strokeLine(start.x, start.y, end.x, end.y);
+	}
+	
+	public void drawCircle(Vec2 pos, double rad)
+	{
+		gc.setFill(Color.RED);
+		gc.fillOval(pos.x, pos.y, rad, rad);
+	}
+	public void drawText(Vec2 pos, String text)
+	{
+		gc.setTextAlign(TextAlignment.CENTER);
+        gc.setTextBaseline(VPos.CENTER);
+        gc.setFill(Color.BLACK);
+        gc.setFont(new Font(gc.getFont().getName(), 60));
+        gc.fillText(text, pos.x, pos.y);
+	}
+	
 }

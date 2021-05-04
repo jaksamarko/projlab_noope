@@ -169,4 +169,20 @@ public class ObjectStore
 				return r;
 		return null;
 	}
+	
+	public static boolean isExists(Asteroid aster)
+	{
+		NullReset();
+		return instance.asteroids.contains(aster);
+	}
+	
+	public static Asteroid TravelableToAsteroid(Travelable ta)
+	{
+		for(Asteroid a: instance.asteroids)
+		{
+			if(a == ta)
+				return a;
+		}
+		return null;
+	}
 }

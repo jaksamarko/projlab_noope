@@ -24,20 +24,7 @@ public class Window
 	
 	public Window(GUILogic _gui)
 	{
-		gui = _gui;
-		Thread thread = new Thread("New Thread") {
-	      public void run(){
-	    	  Application.launch(WindowJavaFX.class);
-	      }
-	   };
-	   thread.start();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//WindowJavaFX.instance.setWindow(this);
+		
 	}
 	
 	public void ActivateInput(ControlerAPI _control)
