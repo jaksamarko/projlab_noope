@@ -29,6 +29,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.Material;
 
 public class WindowJavaFX extends Application {
 	
@@ -181,7 +182,7 @@ public class WindowJavaFX extends Application {
         btn[0][1].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-            	
+            	control.putback(Material.Coal);
             }
         });
         
@@ -189,7 +190,7 @@ public class WindowJavaFX extends Application {
         btn[0][2].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                
+                control.createportal();
             }
         });
         
@@ -197,7 +198,7 @@ public class WindowJavaFX extends Application {
         btn[0][3].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                
+                control.placeportal();
             }
         });
         
@@ -205,7 +206,7 @@ public class WindowJavaFX extends Application {
         btn[1][0].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                
+                control.drill();
             }
         });
         
@@ -213,7 +214,7 @@ public class WindowJavaFX extends Application {
         btn[1][1].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                
+                control.mine();
             }
         });
         
@@ -221,7 +222,7 @@ public class WindowJavaFX extends Application {
         btn[1][2].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                
+                control.createrobot();
             }
         });
         
@@ -275,6 +276,11 @@ public class WindowJavaFX extends Application {
 		gc.drawImage(imgs.get("uranium"), pos.x, pos.y);
 	}
 	
+	public void drawPortal(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("portal"), pos.x, pos.y);
+	}
+	
 	//{"asteroid","bg","btn","coal","cursor","iron","portal","robot","settler","ufo","uranium"};
 	
 	public void drawLine(Vec2 start, Vec2 end)
@@ -308,4 +314,16 @@ public class WindowJavaFX extends Application {
 				gc.drawImage(bgImg, i+(vPos.x+w)%w,j+(vPos.y+h)%h, w, h);
 	}
 	
+	public void printPlayerInfo(String ln)
+	{
+		playerInfo.setText(playerInfo.getText() + ln);
+	}
+	public void erasePlayerInfo()
+	{
+		playerInfo.setText("");
+	}
+	public void printlnLog(String ln)
+	{
+		log.setText(log.getText() + "\n" + ln);
+	}
 }

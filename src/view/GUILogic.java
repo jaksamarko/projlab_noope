@@ -148,6 +148,15 @@ public class GUILogic implements ViewAPI
 				window.drawUranium(asteroidPos.add(new Vec2(-20,-20)));
 			}
 		}
+		if(node.realAsteroid.GetPortal()!= null)
+		{
+			if(node.realAsteroid.GetPortal() == selected)
+			{
+				window.drawCircle((asteroidPos.add(new Vec2(44, -110))), 100);
+			}
+			window.drawPortal(asteroidPos.add(new Vec2(60, -110)));
+		}
+		
 	}
 	
 	public void DrawPortal(PortalNode node)
@@ -196,14 +205,23 @@ public class GUILogic implements ViewAPI
 	public void clickSelect(Vec2 clickPos)
 	{
 		Vec2 transformed = InvPosTransform(clickPos);
-		//System.out.println(transformed.x + ", "+transformed.y);
+		double minDistance = 10000000.0;
 		for(AsterNode a: asterNodes)
 		{
-			if(transformed.distance(a.pos) < 50.0)
+			double distance = transformed.distance(a.pos);
+			if(distance < minDistance)
 			{
 				selected = a.realAsteroid;
-				break;
+				minDistance = distance;
+				
 			}
+			if(a.realAsteroid.GetPortal()!= null)
+				distance = transformed.distance(a.pos.add(new Vec2(60, -110)));
+				if(distance < minDistance)
+				{
+					selected = a.realAsteroid.GetPortal();
+					minDistance = distance;
+				}
 		}
 		printStatus();
 	}
@@ -225,7 +243,7 @@ public class GUILogic implements ViewAPI
 
 	@Override
 	public void logEvent(String text) {
-		// TODO 
+		window.printlnLog(text);
 		
 	}
 	
