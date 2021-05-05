@@ -4,6 +4,7 @@ package model;
  * A játék teljesítéséhez szolgáló nyersanyagok egyike. 
  * Ha egy teljesen kifúrt, napközelben lévõ aszteroidában van, felrobban.
  */
+@SuppressWarnings("serial")
 public class Uranium extends Resource {
 	public static int MaxLives = 3;
 	private int lives;

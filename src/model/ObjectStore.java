@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import model.*;
 /**
  * Játékbeli össze objektum itt össze van gyüjtve. Főkép kirajzolás miatt létezik
  * Singleton módon van megvalósítva

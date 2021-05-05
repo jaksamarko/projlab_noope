@@ -4,6 +4,7 @@ package model;
  * A játék során segítse a telepesek közlekedését és az adott kapu párjához tartozó aszteroidára továbbítsa a játékost.
  * Illetve az õ dolga összekapcsolnia magát más kapuval, ha van már a játékban párosítatlan kapu.
  */
+@SuppressWarnings("serial")
 public class Portal extends ID implements Travelable, java.io.Serializable
 {
 	public Portal GetPair() {return pair;}

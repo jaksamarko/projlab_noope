@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Játékbeli resource-ok tárolását úgy végzi el, hogy betartatja az ahhoz támasztott szabályokat.
  */
+@SuppressWarnings("serial")
 public class ResourceBox<T extends Resource> implements java.io.Serializable
 {
 	private static transient int StorageCapacityPerType= 10; 

@@ -29,6 +29,10 @@ public class GUILogic implements ViewAPI
 		zoom = zoom / amount;
 	}
 	
+	public Vec2 getPos() {
+		return pos;
+	}
+	
 	public GUILogic()
 	{
 		window = null;

@@ -4,6 +4,7 @@ package model;
  *
  */
 
+@SuppressWarnings("serial")
 public class Iron extends Resource {
 	/**
 	 * A nyersanyag kibányászása. A sikerességéről a boolean visszatérési érték informál.

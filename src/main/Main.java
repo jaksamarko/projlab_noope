@@ -1,10 +1,7 @@
 package main;
 import control.Controler;
-import javafx.application.Application;
-import javafx.application.Platform;
 import model.*;
 import view.GUILogic;
-import view.WindowJavaFX;
 
 public class Main
 {
@@ -19,7 +16,7 @@ public class Main
 		   
 		Game g = new Game();
 		
-		MapCreator mp = new MapCreator("map.txt",output);
+		/*MapCreator mp = */new MapCreator("map.txt",output);
 		Controler controler = new Controler(g,output);
 		output.ActivateInput(controler);
     }

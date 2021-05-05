@@ -2,10 +2,9 @@ package view;
 
 import java.util.HashMap;
 
-import com.sun.marlin.DCollinearSimplifier;
-
 import interfaces.ControlerAPI;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -20,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -32,17 +32,18 @@ import javafx.stage.Stage;
 
 public class WindowJavaFX extends Application {
 	
-	private final String[][] btnNames = {{"Move","PutBack","craftPortal"},{"Dig","createRobot","placePortal"}};
+	private final String[][] btnNames = {{"Move","PutBack","craftPortal","placePortal"},{"Drill","Mine","createRobot","Exit"}};
 	public Button[][] btn; //2*3-as elrendezés,btnNames-ből kitalálod melyik, melyik
 	public TextArea playerInfo, log;
 	public GraphicsContext gc;
 	public Scene scene;
 	
-	private final String[] imgNames = {"asteroid","bg","btn","coal","cursor","iron","portal","robot","settler","ufo","uranium"};
+	private final String[] imgNames = {"asteroid","bg","btn","coal","cursor","iron","ice","portal","robot","settler","ufo","uranium"};
 	public HashMap<String,Image> imgs;
 	
-	private double WindowW = 1280, WindowH = 720;
-	private double SidebarSize = 192;
+	private final double WindowW = 1280, WindowH = 720;
+	private final double SidebarSize = 192;
+	private final int CameraSpeed = 25;
 	
 	private GUILogic logic = null;
 	void setGUILogic(GUILogic _logic)
@@ -65,6 +66,7 @@ public class WindowJavaFX extends Application {
         
 		SplitPane splitPane = new SplitPane();
 		Canvas canv = new Canvas();
+		
 		gc = canv.getGraphicsContext2D();
 		
         Pane leftControl  = new Pane(canv);
@@ -75,9 +77,13 @@ public class WindowJavaFX extends Application {
         playerInfo.setMaxHeight(250);
         playerInfo.setMinHeight(250);
         
-        btn = new Button[2][3];
+        playerInfo.setEditable(false);
+        playerInfo.setFocusTraversable(false);
+        
+        btn = new Button[2][4];
         for(int i=0;i<2;i++) {
-        	for(int j=0;j<3;j++) {
+        	for(int j=0;j<4;j++) {
+        		if(btnNames[i][j]==null) continue;
         		btn[i][j] = new Button(btnNames[i][j]);
         		HBox.setHgrow(btn[i][j], Priority.ALWAYS);
         		btn[i][j].setMaxWidth(Double.MAX_VALUE);
@@ -92,6 +98,7 @@ public class WindowJavaFX extends Application {
         HBox btnField = new HBox(btnList1,btnList2);
         
         log = new TextArea();
+        log.setEditable(false);
         VBox.setVgrow(log, Priority.ALWAYS);
         
         VBox rightControl = new VBox(playerInfo,btnField,log);
@@ -113,22 +120,22 @@ public class WindowJavaFX extends Application {
 		scene.addEventHandler(KeyEvent.KEY_PRESSED, (key)->{
         	if(key.getCode()==KeyCode.W) 
         	{
-        		logic.moveCamera(new Vec2(0,10));
+        		logic.moveCamera(new Vec2(0,CameraSpeed));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.S) 
         	{
-        		logic.moveCamera(new Vec2(0,-10));
+        		logic.moveCamera(new Vec2(0,-CameraSpeed));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.D) 
         	{
-        		logic.moveCamera(new Vec2(-10,0));
+        		logic.moveCamera(new Vec2(-CameraSpeed,0));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.A) 
         	{
-        		logic.moveCamera(new Vec2(10,0));
+        		logic.moveCamera(new Vec2(CameraSpeed,0));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.F) 
@@ -143,6 +150,16 @@ public class WindowJavaFX extends Application {
         	}
         });
 		
+		canv.addEventFilter(ScrollEvent.SCROLL, (scroll)->{
+			if(scroll.getDeltaY()>0) {
+				logic.zoomIn(0.5f);
+        		logic.printStatus();
+			} else {
+				logic.zoomIn(2.0f);
+        		logic.printStatus();
+			}
+		});
+		
 		scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent mouseEvent) {
@@ -152,7 +169,7 @@ public class WindowJavaFX extends Application {
 		});
 		
 		
-        
+        //Move
         btn[0][0].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
@@ -160,37 +177,65 @@ public class WindowJavaFX extends Application {
             }
         });
         
+        //Putback
         btn[0][1].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
             	
             }
         });
-        btn[1][0].setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e)
-            {
-                
-            }
-        });
-        btn[1][1].setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e)
-            {
-                
-            }
-        });
+        
+        //craftPortal
         btn[0][2].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
                 
             }
         });
+        
+        //placePortal
+        btn[0][3].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        
+        //Drill
+        btn[1][0].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        
+        //Mine
+        btn[1][1].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        
+      //createRobot
         btn[1][2].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
                 
             }
         });
-  
+        
+        //Exit
+        btn[1][3].setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                Platform.exit();
+            }
+        });
+        
+        
+        
+        
 		
 		GUILogic.setWindow(this);
 	}
@@ -255,7 +300,12 @@ public class WindowJavaFX extends Application {
 	}
 	public void drawBG()
 	{
-		gc.drawImage(imgs.get("bg"), 0,0,gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+		Vec2 vPos = logic.getPos();
+		Image bgImg = imgs.get("bg");
+		int w = (int)bgImg.getWidth(), h = (int)bgImg.getHeight();
+		for(int i=-w;i<gc.getCanvas().getWidth()+w;i+=w)
+			for(int j=-h;j<gc.getCanvas().getHeight()+h;j+=h)
+				gc.drawImage(bgImg, i+(vPos.x+w)%w,j+(vPos.y+h)%h, w, h);
 	}
 	
 }

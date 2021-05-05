@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * de akár portált is létrehozhat, mindezt ez az osztály kezeli.
  */
 
+@SuppressWarnings("serial")
 public class Asteroid extends ID implements Travelable, java.io.Serializable  {
 	public static int defLayers = 3;
 	// getter és setterek

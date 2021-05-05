@@ -7,6 +7,7 @@ import java.util.ArrayList;
  *
  */
 
+@SuppressWarnings("serial")
 public class Inventory implements java.io.Serializable
 {
 	private static transient int PortalStorageCapacity = 3; 

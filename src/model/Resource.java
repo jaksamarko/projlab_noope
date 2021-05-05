@@ -5,6 +5,7 @@ package model;
  * Vannak köztük, amelyek egy teljesen kifúrt, napközelben lévõ aszteroidán bizonyos viselkedést hajtanak végre. 
  * A jég szublimál, az urán felrobban.
  */
+@SuppressWarnings("serial")
 public abstract class Resource implements java.io.Serializable {
 	protected Asteroid asteroid;
 	
