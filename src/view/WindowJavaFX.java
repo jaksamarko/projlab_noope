@@ -178,13 +178,13 @@ public class WindowJavaFX extends Application {
                 
             }
         });
-        btn[2][0].setOnAction(new EventHandler<ActionEvent>() {
+        btn[0][2].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
                 
             }
         });
-        btn[2][1].setOnAction(new EventHandler<ActionEvent>() {
+        btn[1][2].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
                 
