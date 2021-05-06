@@ -157,6 +157,9 @@ public class GUILogic implements ViewAPI
 			window.drawPortal(asteroidPos.add(new Vec2(60, -110)));
 		}
 		
+		
+		//asteroidPos
+		
 	}
 	
 	public void DrawPortal(PortalNode node)
