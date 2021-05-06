@@ -13,8 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -41,6 +43,8 @@ public class WindowJavaFX extends Application {
 	
 	private final String[] imgNames = {"asteroid","bg","btn","coal","cursor","iron","ice","portal","robot","settler","ufo","uranium"};
 	public HashMap<String,Image> imgs;
+	
+	private final String[] matNames = {"Coal","Iron","Ice","Uran"};
 	
 	private final double WindowW = 1280, WindowH = 720;
 	private final double SidebarSize = 192;
@@ -98,11 +102,26 @@ public class WindowJavaFX extends Application {
         
         HBox btnField = new HBox(btnList1,btnList2);
         
+        ToggleGroup group = new ToggleGroup();
+        RadioButton[] rads = new RadioButton[matNames.length];
+        
+        
+        int n=0;
+        for(String str:matNames) {
+        	rads[n] = new RadioButton(str);
+        	rads[n].setToggleGroup(group);
+        	n++;
+        }
+        group.getToggles().get(0).setSelected(true);
+        HBox radField = new HBox(rads);
+        
+        String name = ((RadioButton)group.getSelectedToggle()).getText();
+        
         log = new TextArea();
         log.setEditable(false);
         VBox.setVgrow(log, Priority.ALWAYS);
         
-        VBox rightControl = new VBox(playerInfo,btnField,log);
+        VBox rightControl = new VBox(playerInfo,btnField,radField,log);
         splitPane.getItems().addAll(leftControl, rightControl);
         leftControl.setMinWidth(1280-SidebarSize);
         rightControl.setMinWidth(SidebarSize);
@@ -234,10 +253,6 @@ public class WindowJavaFX extends Application {
             }
         });
         
-        
-        
-        
-		
 		GUILogic.setWindow(this);
 	}
 	
