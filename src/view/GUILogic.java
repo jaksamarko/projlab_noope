@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import interfaces.ControlerAPI;
 import interfaces.ViewAPI;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import model.*;
 
@@ -19,6 +20,11 @@ public class GUILogic implements ViewAPI
 	
 	private Vec2 pos = new Vec2(0,0);
 	private float zoom = 1.0f;
+	private float zoomTo = 1.0f;
+	
+	//For some spicy look
+	private AnimationTimer aTimer;
+	private double portalFloatY;
 	
 	public void moveCamera(Vec2 amount)
 	{
@@ -26,8 +32,13 @@ public class GUILogic implements ViewAPI
 	}
 	public void zoomIn(float amount)
 	{
-		zoom = zoom / amount;
+		zoomTo = zoomTo / amount;
 	}
+	
+	public float getZoomTo() {
+		return zoomTo;
+	}
+	
 	
 	public Vec2 getPos() {
 		return pos;
@@ -37,22 +48,35 @@ public class GUILogic implements ViewAPI
 	{
 		window = null;
 		Thread thread = new Thread("New Thread") {
-		      public void run(){
-		    	  Application.launch(WindowJavaFX.class);
-		      }
-		   };
-		   thread.start();
+			public void run(){
+				Application.launch(WindowJavaFX.class);
+			}
+		};
+		thread.start();
 		while(window == null)
 		{
 			try {
-				Thread.sleep(1);
+				Thread.sleep(250);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
 		window.setGUILogic(this);
+		
+		//spicy stuff
+		portalFloatY=0;
+		aTimer = new AnimationTimer() {
+			
+			@Override
+			public void handle(long arg0) {
+				
+				portalFloatY = Math.sin(arg0/100.0f)*5;
+				zoom+=(zoomTo-zoom)/16.0f;
+				printStatus();
+			}
+		};
+		aTimer.start();
 		
 		asterNodes = new ArrayList<AsterNode>();
 	}
@@ -121,7 +145,7 @@ public class GUILogic implements ViewAPI
 	public void DrawAsteroid(AsterNode node)
 	{
 		Vec2 asteroidPos = PosTransform(node.pos);
-		//window.drawAsteroid(AsteroidCenter(asteroidPos),node.realAsteroid == selected);
+		window.drawAsteroid(AsteroidCenter(asteroidPos),node.realAsteroid == selected);
 		if(node.realAsteroid.GetLayers()>0)
 			window.drawText(asteroidPos.add(new Vec2(10,10)), ""+node.realAsteroid.GetLayers());
 		else
@@ -148,11 +172,7 @@ public class GUILogic implements ViewAPI
 		}
 		if(node.realAsteroid.GetPortal()!= null)
 		{
-			if(node.realAsteroid.GetPortal() == selected)
-			{
-				window.drawCircle((asteroidPos.add(new Vec2(44, -110))), 100);
-			}
-			window.drawPortal(asteroidPos.add(new Vec2(60, -110)));
+			window.drawPortal(asteroidPos.add(new Vec2(60, -110+portalFloatY)),node.realAsteroid.GetPortal() == selected);
 		}
 		
 		

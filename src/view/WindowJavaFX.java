@@ -43,7 +43,7 @@ public class WindowJavaFX extends Application {
 	private ToggleGroup radGroup;
 	
 	private final String[] imgNames = {"asteroid","bg","btn","coal","cursor","iron","ice","portal","robot","settler","ufo","uranium",
-			"asteroidOutline"};
+			"asteroidOutline","portalOutline"};
 	public HashMap<String,Image> imgs;
 	
 	private final String[] matNames = {"Coal","Iron","Ice","Uran"};
@@ -130,7 +130,6 @@ public class WindowJavaFX extends Application {
 		stage.setScene(scene);
         stage.show();
         
-        //instance=this;
         imgs = new HashMap<String,Image>();
         for(String str:imgNames) {
         	imgs.put(str, new Image("file:Textures/"+str+".png"));
@@ -253,6 +252,10 @@ public class WindowJavaFX extends Application {
         });
         
 		GUILogic.setWindow(this);
+		
+		gc.setTextAlign(TextAlignment.CENTER);
+        gc.setTextBaseline(VPos.CENTER);
+        gc.setFont(new Font(gc.getFont().getName(), 60));
 	}
 	
 	public Material getSelectedMaterial() {
@@ -276,7 +279,7 @@ public class WindowJavaFX extends Application {
 	public void drawAsteroid(Vec2 pos, boolean outline)
 	{
 		if(outline) {
-			gc.drawImage(imgs.get("asteroidOutline"), pos.x, pos.y);
+			gc.drawImage(imgs.get("asteroidOutline"), pos.x-2, pos.y-2);
 		}
 		gc.drawImage(imgs.get("asteroid"), pos.x, pos.y);
 	}
@@ -297,8 +300,11 @@ public class WindowJavaFX extends Application {
 		gc.drawImage(imgs.get("uranium"), pos.x, pos.y);
 	}
 	
-	public void drawPortal(Vec2 pos)
+	public void drawPortal(Vec2 pos,boolean outline)
 	{
+		if(outline) {
+			gc.drawImage(imgs.get("portalOutline"), pos.x-2.5, pos.y-2.5);
+		}
 		gc.drawImage(imgs.get("portal"), pos.x, pos.y);
 	}
 	
@@ -319,10 +325,7 @@ public class WindowJavaFX extends Application {
 	}
 	public void drawText(Vec2 pos, String text)
 	{
-		gc.setTextAlign(TextAlignment.CENTER);
-        gc.setTextBaseline(VPos.CENTER);
-        gc.setFill(Color.BLACK);
-        gc.setFont(new Font(gc.getFont().getName(), 60));
+		gc.setFill(Color.BLACK);
         gc.fillText(text, pos.x, pos.y);
 	}
 	public void drawBG()

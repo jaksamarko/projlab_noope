@@ -3,8 +3,8 @@ import java.lang.Math;
 
 public class Vec2 
 {
-	public int x;
-	public int y;
+	public double x;
+	public double y;
 	
 	public Vec2()
 	{
@@ -12,7 +12,7 @@ public class Vec2
 		y = 0;
 	}
 	
-	public Vec2(int _x, int _y)
+	public Vec2(double _x, double _y)
 	{
 		x = _x;
 		y = _y;
@@ -25,10 +25,10 @@ public class Vec2
 	
 	public Vec2 times(float f)
 	{
-		float productX = f * x;
-		int loadIntX = (int) productX;
-		float productY = f * y;
-		int loadIntY = (int) productY;
+		double productX = f * x;
+		double loadIntX = productX;
+		double productY = f * y;
+		double loadIntY = productY;
 		return new Vec2(loadIntX,loadIntY);
 	}
 	
