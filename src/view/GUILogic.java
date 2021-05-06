@@ -121,9 +121,7 @@ public class GUILogic implements ViewAPI
 	public void DrawAsteroid(AsterNode node)
 	{
 		Vec2 asteroidPos = PosTransform(node.pos);
-		if(node.realAsteroid == selected)
-			window.drawCircle(AsteroidCenter(asteroidPos).add(new Vec2(-10,-10)), 150);
-		window.drawAsteroid(AsteroidCenter(asteroidPos));
+		//window.drawAsteroid(AsteroidCenter(asteroidPos),node.realAsteroid == selected);
 		if(node.realAsteroid.GetLayers()>0)
 			window.drawText(asteroidPos.add(new Vec2(10,10)), ""+node.realAsteroid.GetLayers());
 		else

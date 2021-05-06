@@ -42,7 +42,8 @@ public class WindowJavaFX extends Application {
 	public Scene scene;
 	private ToggleGroup radGroup;
 	
-	private final String[] imgNames = {"asteroid","bg","btn","coal","cursor","iron","ice","portal","robot","settler","ufo","uranium"};
+	private final String[] imgNames = {"asteroid","bg","btn","coal","cursor","iron","ice","portal","robot","settler","ufo","uranium",
+			"asteroidOutline"};
 	public HashMap<String,Image> imgs;
 	
 	private final String[] matNames = {"Coal","Iron","Ice","Uran"};
@@ -272,8 +273,11 @@ public class WindowJavaFX extends Application {
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
 	
-	public void drawAsteroid(Vec2 pos)
+	public void drawAsteroid(Vec2 pos, boolean outline)
 	{
+		if(outline) {
+			gc.drawImage(imgs.get("asteroidOutline"), pos.x, pos.y);
+		}
 		gc.drawImage(imgs.get("asteroid"), pos.x, pos.y);
 	}
 	public void drawCoal(Vec2 pos)
