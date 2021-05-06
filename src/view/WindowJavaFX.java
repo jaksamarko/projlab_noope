@@ -40,11 +40,13 @@ public class WindowJavaFX extends Application {
 	public TextArea playerInfo, log;
 	public GraphicsContext gc;
 	public Scene scene;
+	private ToggleGroup radGroup;
 	
 	private final String[] imgNames = {"asteroid","bg","btn","coal","cursor","iron","ice","portal","robot","settler","ufo","uranium"};
 	public HashMap<String,Image> imgs;
 	
 	private final String[] matNames = {"Coal","Iron","Ice","Uran"};
+	private final Material[] mats = {Material.Coal,Material.Iron,Material.Ice,Material.Uranium};
 	
 	private final double WindowW = 1280, WindowH = 720;
 	private final double SidebarSize = 192;
@@ -102,20 +104,16 @@ public class WindowJavaFX extends Application {
         
         HBox btnField = new HBox(btnList1,btnList2);
         
-        ToggleGroup group = new ToggleGroup();
-        RadioButton[] rads = new RadioButton[matNames.length];
+        radGroup = new ToggleGroup();
+        RadioButton[] rads = new RadioButton[mats.length];
         
-        
-        int n=0;
-        for(String str:matNames) {
-        	rads[n] = new RadioButton(str);
-        	rads[n].setToggleGroup(group);
-        	n++;
+        for(int n=0;n<mats.length;n++) {
+        	rads[n] = new RadioButton(matNames[n]);
+        	rads[n].setToggleGroup(radGroup);
+        	rads[n].setUserData(mats[n]);
         }
-        group.getToggles().get(0).setSelected(true);
+        radGroup.getToggles().get(0).setSelected(true);
         HBox radField = new HBox(rads);
-        
-        String name = ((RadioButton)group.getSelectedToggle()).getText();
         
         log = new TextArea();
         log.setEditable(false);
@@ -254,6 +252,10 @@ public class WindowJavaFX extends Application {
         });
         
 		GUILogic.setWindow(this);
+	}
+	
+	public Material getSelectedMaterial() {
+		return (Material)((RadioButton)radGroup.getSelectedToggle()).getUserData();
 	}
 	
 	private ControlerAPI control = null;
