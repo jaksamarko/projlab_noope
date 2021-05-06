@@ -199,7 +199,7 @@ public class WindowJavaFX extends Application {
         btn[0][1].setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-            	control.putback(Material.Coal);
+            	control.putback(getSelectedMaterial());
             }
         });
         
