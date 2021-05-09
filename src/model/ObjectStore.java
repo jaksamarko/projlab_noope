@@ -160,6 +160,15 @@ public class ObjectStore
 		return null;
 	}
 	
+	public static Settler getSettler(int ID)
+	{
+		NullReset();
+		for(Settler s: instance.settlers)
+			if(s.GetID() == ID)
+				return s;
+		return null;
+	}
+	
 	public static Robot getRobot(int ID) 
 	{
 		NullReset(); 
