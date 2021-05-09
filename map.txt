@@ -23,3 +23,11 @@ aster 2
 new Portal 2
 aster 2
 neigh 1
+new Settler 2
+aster 1
+new Settler 3
+aster 1
+new Settler 4
+aster 1
+new Settler 5
+aster 1

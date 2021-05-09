@@ -253,9 +253,7 @@ public class WindowJavaFX extends Application {
         
 		GUILogic.setWindow(this);
 		
-		gc.setTextAlign(TextAlignment.CENTER);
-        gc.setTextBaseline(VPos.CENTER);
-        gc.setFont(new Font(gc.getFont().getName(), 60));
+		
 	}
 	
 	public Material getSelectedMaterial() {
@@ -325,6 +323,20 @@ public class WindowJavaFX extends Application {
 	}
 	public void drawText(Vec2 pos, String text)
 	{
+		gc.setTextAlign(TextAlignment.CENTER);
+        gc.setTextBaseline(VPos.CENTER);
+        gc.setFont(new Font(gc.getFont().getName(), 60));
+        
+		gc.setFill(Color.BLACK);
+        gc.fillText(text, pos.x, pos.y);
+	}
+	
+	public void drawTextS(Vec2 pos, String text)
+	{
+		gc.setTextAlign(TextAlignment.LEFT);
+        gc.setTextBaseline(VPos.TOP);
+        gc.setFont(new Font(gc.getFont().getName(), 40));
+        
 		gc.setFill(Color.BLACK);
         gc.fillText(text, pos.x, pos.y);
 	}
@@ -336,6 +348,20 @@ public class WindowJavaFX extends Application {
 		for(int i=-w;i<gc.getCanvas().getWidth()+w;i+=w)
 			for(int j=-h;j<gc.getCanvas().getHeight()+h;j+=h)
 				gc.drawImage(bgImg, i+(vPos.x+w)%w,j+(vPos.y+h)%h, w, h);
+	}
+	
+	public void drawSettler(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("settler"), pos.x, pos.y);
+	}
+	
+	public void drawRobot(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("robot"), pos.x, pos.y);
+	}
+	public void drawUfo(Vec2 pos)
+	{
+		gc.drawImage(imgs.get("ufo"), pos.x, pos.y);
 	}
 	
 	public void printPlayerInfo(String ln)

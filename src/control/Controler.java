@@ -25,7 +25,7 @@ public class Controler implements ControlerAPI
 	 */
 	private boolean won = false;
 	private boolean lost = false;
-	private boolean sunStormActive = true;
+	private boolean sunStormActive = false;
 	private boolean workersActive = true;
 	
 	/**

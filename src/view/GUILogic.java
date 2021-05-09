@@ -176,14 +176,30 @@ public class GUILogic implements ViewAPI
 		}
 		
 		
+		ArrayList<Unit> units = node.realAsteroid.GetUnits();
+		int radius = 60;
+		int N = units.size();
+		
+		
+		for(int i =0; i<N;i++)
+		{
+			Vec2 pos = new Vec2(Math.cos(360/(float)N*i/180*3.14)*radius,Math.sin(360/(float)N*i/180*3.14)*radius);
+			
+			if(units.get(i) instanceof Settler)
+			{
+				window.drawSettler(asteroidPos.add(pos));
+				window.drawTextS(asteroidPos.add(pos),Integer.toString(units.get(i).GetID()));
+			}
+			else if(units.get(i) instanceof Robot)
+				window.drawRobot(asteroidPos.add(pos));
+			else if(units.get(i) instanceof Ufo)
+				window.drawUfo(asteroidPos.add(pos));
+		}
+		
 		//asteroidPos
 		
 	}
 	
-	public void DrawPortal(PortalNode node)
-	{
-		//TODO
-	}
 	
 	public void DrawPlayerInventoryUI(int activePlayer)
 	{
