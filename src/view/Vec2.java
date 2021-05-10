@@ -1,6 +1,10 @@
 package view;
 import java.lang.Math;
 
+
+/**
+ * pozíciót tároló osztály
+ */
 public class Vec2 
 {
 	public double x;

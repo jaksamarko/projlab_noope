@@ -8,29 +8,52 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import model.*;
 
+/**
+ * Ez az osztály felelős a grafikus megjelenítéshez szükséges logika működetéséhez
+ */
 public class GUILogic implements ViewAPI
 {
+	/**
+	 * Az ablak amire rajzol
+	 */
 	private static WindowJavaFX window;
 	public static void setWindow(WindowJavaFX _window) {window = _window;}
 	
+	/**
+	 * Aszteroidák pozicionális adatok
+	 */
 	public ArrayList<AsterNode> asterNodes;
-	
 	public int activePlayer = 1;
+	
+	/**
+	 * Felületen kiválasztott célpont itt van eltárolva. 
+	 */
 	public Travelable selected = null;
 	
+	/**
+	 * View transzformációk
+	 */
 	private Vec2 pos = new Vec2(0,0);
 	private Vec2 posTo = new Vec2(0,0);
 	private float zoom = 1.0f;
 	private float zoomTo = 1.0f;
 	
-	//For some spicy look
+	/**
+	 * Animációs adatok.
+	 */
 	private AnimationTimer aTimer;
 	private double portalFloatY;
 	
+	/**
+	 * Camera elmozgatása megadott mennyiséggel.
+	 */
 	public void moveCamera(Vec2 amount)
 	{
 		posTo = posTo.add(amount);
 	}
+	/**
+	 * Camera ránagyítása megadott mennyíséggel.
+	 */
 	public void zoomIn(float amount)
 	{
 		float zoomNew = zoomTo * amount;
@@ -47,16 +70,21 @@ public class GUILogic implements ViewAPI
 		return pos;
 	}
 	
+	/**
+	 * Konstrukor, amelyben inicializálódik a vizuális megjelenítő felület
+	 */
+	
 	public GUILogic()
 	{
 		window = null;
+		// Ablak típus amit használtunk igényeli a külön szállon indítást
 		Thread thread = new Thread("New Thread") {
 			public void run(){
 				Application.launch(WindowJavaFX.class);
 			}
 		};
 		thread.start();
-		while(window == null)
+		while(window == null) //Nem teljesesn busy wait
 		{
 			try {
 				Thread.sleep(250);
@@ -65,9 +93,9 @@ public class GUILogic implements ViewAPI
 			}
 		}
 		
-		window.setGUILogic(this);
+		window.setGUILogic(this); //kész ablak beállítása
 		
-		//spicy stuff
+		//Animáció információ beállítása
 		portalFloatY=0;
 		aTimer = new AnimationTimer() {
 			
@@ -86,11 +114,17 @@ public class GUILogic implements ViewAPI
 		asterNodes = new ArrayList<AsterNode>();
 	}
 	
+	/**
+	 * Control megadása a tárolt ablaknak
+	 */
 	public void ActivateInput(ControlerAPI control)
 	{
 		window.ActivateInput(control);
 	}
 	
+	/**
+	 * Model alapján adatok összegyüjtése
+	 */
 	public void UpdateDrawData() 
 	{
 		ArrayList<AsterNode> toRemove = new ArrayList<AsterNode>();
@@ -108,6 +142,10 @@ public class GUILogic implements ViewAPI
 		}
 	}
 	
+	/**
+	 * Aszteroidák közötti vonolak kirajzolása
+	 */
+	
 	public void DrawLines()
 	{
 		for(AsterNode node: asterNodes)
@@ -124,17 +162,28 @@ public class GUILogic implements ViewAPI
 		}
 	}
 	
+	/**
+	 * Aszteroida középpontják kiszámoló metódus
+	 */
+	
 	public Vec2 AsteroidCenter(Vec2 toCenter)
 	{
 		return toCenter.add(new Vec2(-50,-50));
 	}
 	
+	/**
+	 * View transzformot megcsináló metódus
+	 */
 	public Vec2 PosTransform(Vec2 toTransform)
 	{
 		Vec2 toDrawPos = toTransform.add(pos);
 		toDrawPos = toDrawPos.times(zoom);
 		return toDrawPos;
 	}
+	
+	/**
+	 * inverese View transzformot megcsináló metódus
+	 */
 	
 	public Vec2 InvPosTransform(Vec2 o)
 	{
@@ -143,6 +192,9 @@ public class GUILogic implements ViewAPI
 		return re;
 	}
 	
+	/**
+	 * Aszteroida és hozzá tartozó dolgok kirajzolása
+	 */
 	public void DrawAsteroid(AsterNode node)
 	{
 		Vec2 asteroidPos = PosTransform(node.pos);
@@ -201,7 +253,9 @@ public class GUILogic implements ViewAPI
 		
 	}
 	
-	
+	/**
+	 * Jákos inventory kirajzolása ablakra
+	 */
 	public void DrawPlayerInventoryUI()
 	{
 		window.erasePlayerInfo();		
@@ -215,7 +269,10 @@ public class GUILogic implements ViewAPI
 			window.printPlayerInfo(inventoryInfo);		
 		}	
 	}
-
+	
+	/**
+	 * Minden kirajzolása
+	 */
 	@Override
 	public void printStatus()
 	{	
@@ -230,6 +287,9 @@ public class GUILogic implements ViewAPI
 		//TODO
 	}
 	
+	/**
+	 * Játékos változása kirajzolása
+	 */
 	@Override
 	public void printCurrentPlayer(int playerID)
 	{
@@ -238,17 +298,14 @@ public class GUILogic implements ViewAPI
 	}
 
 	@Override
-	public void printLost()
-	{
-		//TODO
-	}
+	public void printLost() {}
 
 	@Override
-	public void printWon()
-	{
-		//TODO
-	}
+	public void printWon() {}
 	
+	/**
+	 * Kattintás hatására kiválasztás változása
+	 */
 	public void clickSelect(Vec2 clickPos)
 	{
 		Vec2 transformed = InvPosTransform(clickPos);
@@ -273,6 +330,9 @@ public class GUILogic implements ViewAPI
 		printStatus();
 	}
 	
+	/**
+	 * Mozgás történsének a megvalósitása
+	 */
 	public void move()
 	{
 		if(selected!=null)
@@ -288,6 +348,9 @@ public class GUILogic implements ViewAPI
 		}
 	}
 
+	/**
+	 * Esemény kiírása ablakra
+	 */
 	@Override
 	public void logEvent(String text) {
 		window.printlnLog(text);
