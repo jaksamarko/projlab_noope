@@ -60,6 +60,7 @@ public class WindowJavaFX extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		//Ablak beállítások
 		stage.setMinWidth(WindowW);
         stage.setMinHeight(WindowH);
         stage.setWidth(WindowW);
@@ -72,6 +73,7 @@ public class WindowJavaFX extends Application {
         stage.setY((scrR.getHeight()-WindowH)/2);
         stage.setTitle("Asteroid mining");
         
+        //Jobb oldali sáv létrehozása és canvas
 		SplitPane splitPane = new SplitPane();
 		Canvas canv = new Canvas();
 		
@@ -81,6 +83,7 @@ public class WindowJavaFX extends Application {
         canv.widthProperty().bind(leftControl.widthProperty());
         canv.heightProperty().bind(leftControl.heightProperty());
         
+        //Játékos információ
         playerInfo = new TextArea();
         playerInfo.setMaxHeight(250);
         playerInfo.setMinHeight(250);
@@ -88,6 +91,7 @@ public class WindowJavaFX extends Application {
         //playerInfo.setEditable(false);
         playerInfo.setFocusTraversable(false);
         
+        //Gombok
         btn = new Button[2][4];
         for(int i=0;i<2;i++) {
         	for(int j=0;j<4;j++) {
@@ -104,7 +108,7 @@ public class WindowJavaFX extends Application {
         HBox.setHgrow(btnList1, Priority.ALWAYS);
         
         HBox btnField = new HBox(btnList1,btnList2);
-        
+        //Putback rész kiválasztása
         radGroup = new ToggleGroup();
         RadioButton[] rads = new RadioButton[mats.length];
         
@@ -115,7 +119,7 @@ public class WindowJavaFX extends Application {
         }
         radGroup.getToggles().get(0).setSelected(true);
         HBox radField = new HBox(rads);
-        
+        //Logger
         log = new TextArea();
         log.setEditable(false);
         VBox.setVgrow(log, Priority.ALWAYS);
@@ -129,12 +133,12 @@ public class WindowJavaFX extends Application {
         
 		stage.setScene(scene);
         stage.show();
-        
+        //Képek betöltése
         imgs = new HashMap<String,Image>();
         for(String str:imgNames) {
         	imgs.put(str, new Image("file:Textures/"+str+".png"));
         }
-        
+        //Irányítás gombokkal, mozgás és zoom
 		scene.addEventHandler(KeyEvent.KEY_PRESSED, (key)->{
         	double speed = CameraSpeed*(1/logic.getZoomTo());
 			if(key.getCode()==KeyCode.W) 
@@ -168,7 +172,7 @@ public class WindowJavaFX extends Application {
         		logic.printStatus();
         	}
         });
-		
+		//Egér görgetés kezelése
 		canv.addEventFilter(ScrollEvent.SCROLL, (scroll)->{
 			if(scroll.getDeltaY()>0) {
 				logic.zoomIn(2.0f);
@@ -178,7 +182,7 @@ public class WindowJavaFX extends Application {
         		logic.printStatus();
 			}
 		});
-		
+		//Egér kattintás kezelése
 		canv.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent mouseEvent) {
@@ -256,7 +260,7 @@ public class WindowJavaFX extends Application {
 		
 		
 	}
-	
+	//Kegkapni a kiváalszott nyersanyagot
 	public Material getSelectedMaterial() {
 		return (Material)((RadioButton)radGroup.getSelectedToggle()).getUserData();
 	}
@@ -274,7 +278,7 @@ public class WindowJavaFX extends Application {
 	{
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 	}
-	
+	//Kirajzolások
 	public void drawAsteroid(Vec2 pos, boolean outline)
 	{
 		if(outline) {
@@ -306,8 +310,6 @@ public class WindowJavaFX extends Application {
 		}
 		gc.drawImage(imgs.get("portal"), pos.x, pos.y);
 	}
-	
-	//{"asteroid","bg","btn","coal","cursor","iron","portal","robot","settler","ufo","uranium"};
 	
 	public void drawLine(Vec2 start, Vec2 end)
 	{
