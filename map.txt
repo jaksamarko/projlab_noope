@@ -7,8 +7,8 @@ X 200
 Y 70
 neigh 1
 new Asteroid 3
-X 100
-Y 150
+X -100
+Y 200
 neigh 1,2
 new Asteroid 4
 X 10
@@ -42,15 +42,33 @@ new Asteroid 11
 X 600
 Y 720
 neigh 6
-new Robot 1
-aster 1
+new Asteroid 12
+X 250
+Y 900
+neigh 6
+new Asteroid 13
+X 400
+Y 1000
+neigh 12
+new Asteroid 14
+X 1200
+Y 60
+neigh 10
+new Asteroid 15
+X 1200
+Y 750
+neigh 10
+new Asteroid 16
+X 1400
+Y 300
+neigh 10
+new Asteroid 17
+X 1800
+Y 250
+neigh 10
 new Settler 1
 aster 2
 new Settler 2
 aster 4
 new Settler 3
-aster 4
-new Settler 4
-aster 5
-new Settler 5
 aster 5

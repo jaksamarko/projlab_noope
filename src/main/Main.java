@@ -10,18 +10,12 @@ public class Main
 	 */
 	public static void main(String[] args)
 	{
-		
-		
 	    GUILogic output = new GUILogic();
-		   
 		Game g = new Game();
-		
 		/*MapCreator mp = */new MapCreator("map.txt",output);
 		Controler controler = new Controler(g,output);
 		output.ActivateInput(controler);
     }
-
-	
 }
 
 

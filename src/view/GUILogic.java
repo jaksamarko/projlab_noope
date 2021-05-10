@@ -25,7 +25,6 @@ public class GUILogic implements ViewAPI
 	//For some spicy look
 	private AnimationTimer aTimer;
 	private double portalFloatY;
-	private double tick;
 	
 	public void moveCamera(Vec2 amount)
 	{
@@ -107,20 +106,16 @@ public class GUILogic implements ViewAPI
 	{
 		for(AsterNode node: asterNodes)
 		{
+			Asteroid aster = node.realAsteroid;
 			for(Travelable neigh:node.realAsteroid.GetNeighbors())
 			{
-				Asteroid aster = ObjectStore.TravelableToAsteroid(neigh);
-				if(aster == null)
+				Asteroid aster2 = ObjectStore.TravelableToAsteroid(neigh);
+				if(aster2 == null)
 					continue;
 				for(AsterNode node2: asterNodes)
 				{
-					Asteroid aster2 = ObjectStore.TravelableToAsteroid(aster);
-					if(aster2 == null)
-						continue;
-					if(aster.GetNeighbors().indexOf(node2.realAsteroid)!=-1)
-					{
+					if(node2.realAsteroid==aster2)
 						window.drawLine(PosTransform(node.pos), PosTransform(node2.pos));
-					}
 				}
 			}
 		}
