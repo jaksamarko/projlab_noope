@@ -19,6 +19,7 @@ public class GUILogic implements ViewAPI
 	public Travelable selected = null;
 	
 	private Vec2 pos = new Vec2(0,0);
+	private Vec2 posTo = new Vec2(0,0);
 	private float zoom = 1.0f;
 	private float zoomTo = 1.0f;
 	
@@ -28,7 +29,7 @@ public class GUILogic implements ViewAPI
 	
 	public void moveCamera(Vec2 amount)
 	{
-		pos = pos.add(amount);
+		posTo = posTo.add(amount);
 	}
 	public void zoomIn(float amount)
 	{
@@ -72,6 +73,9 @@ public class GUILogic implements ViewAPI
 			public void handle(long arg0) {
 				portalFloatY = Math.sin((float)arg0/100000000.0f)*5;
 				zoom+=(zoomTo-zoom)/16.0f;
+				
+				pos.x+=(posTo.x-pos.x)/8.0f;
+				pos.y+=(posTo.y-pos.y)/8.0f;
 				printStatus();
 			}
 		};
