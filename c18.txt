@@ -1,5 +1,0 @@
-admin setsunstorm off
-admin setai on
-drill 
-admin forceendturn
-

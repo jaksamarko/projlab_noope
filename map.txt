@@ -1,15 +1,7 @@
 new Asteroid 1
 X 50
 Y 50
-layers 0
 neigh 2
-res Uranium
-lives 2
-new Portal 1
-aster 1
-neigh 2
-new Robot 1
-aster 1
 new Asteroid 2
 X 200
 Y 70
@@ -18,16 +10,47 @@ new Asteroid 3
 X 100
 Y 150
 neigh 1,2
+new Asteroid 4
+X 10
+Y 600
+neigh 1,2
+new Asteroid 5
+X 140
+Y 300
+neigh 3,4
+new Asteroid 6
+X 620
+Y 400
+neigh 4,5,6
+new Asteroid 7
+X 400
+Y 230
+neigh 5,6,7
+new Asteroid 8
+X 390
+Y 400
+neigh 6,7,8
+new Asteroid 9
+X 600
+Y 380
+neigh 6
+new Asteroid 10
+X 800
+Y 200
+neigh 6
+new Asteroid 11
+X 600
+Y 720
+neigh 6
+new Robot 1
+aster 1
 new Settler 1
 aster 2
-new Portal 2
-aster 2
-neigh 1
 new Settler 2
-aster 1
+aster 4
 new Settler 3
-aster 1
+aster 4
 new Settler 4
-aster 1
+aster 5
 new Settler 5
-aster 1
+aster 5

@@ -1,5 +1,0 @@
-admin setsunstorm off
-admin setai on
-admin forceendturn
-admin forceendturn
-admin forceendturn

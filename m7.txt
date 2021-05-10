@@ -1,5 +1,0 @@
-new Asteroid 1
-layers 1
-res Coal
-new Settler 1
-aster 1

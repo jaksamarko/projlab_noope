@@ -85,7 +85,7 @@ public class WindowJavaFX extends Application {
         playerInfo.setMaxHeight(250);
         playerInfo.setMinHeight(250);
         
-        playerInfo.setEditable(false);
+        //playerInfo.setEditable(false);
         playerInfo.setFocusTraversable(false);
         
         btn = new Button[2][4];

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Random;
 
 import view.AsterNode;
 import view.GUILogic;
@@ -124,10 +125,10 @@ public class MapCreator {
 	private Asteroid createAsteroid() throws IOException {
 		Asteroid aster = new Asteroid(readId(),false);
 		int x=0,y=0;
+		Resource res = null;
 		while(readLineUntil("new")) {
 			switch(selectFromKeys(params)) {
 				case "res":
-					Resource res = null;
 					switch(readData()) {
 						case "Coal":
 							res = new Coal();
@@ -145,9 +146,6 @@ public class MapCreator {
 						default:
 							System.out.println("Wrong material: "+ readData());
 					}
-					if(res!=null)
-						res.asteroid = aster;
-					aster.SetResource(res);
 				break;
 				case "X":
 					x=readId();
@@ -161,6 +159,26 @@ public class MapCreator {
 				break;
 			}
 		}
+		if(res==null) {
+			Random rand = new Random();
+			switch(rand.nextInt(5)) {
+				case 0:
+					res = new Uranium();
+					break;
+				case 1:
+					res = new Coal();
+				break;
+				case 2:
+					res = new Iron();
+					break;
+				case 3:
+					res = new Ice();
+					break;
+			}
+		}
+		if(res!=null)
+			res.asteroid = aster;
+		aster.SetResource(res);
 		guiInst.asterNodes.add(new AsterNode(aster,new Vec2(x,y)));
 		return aster;
 	}

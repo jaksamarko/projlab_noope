@@ -1,7 +1,0 @@
-new Asteroid 1
-layers 1
-resource Iron
-new Settler 1
-aster 1
-new Robot 1
-aster 1

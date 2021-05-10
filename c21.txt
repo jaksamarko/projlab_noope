@@ -1,3 +1,0 @@
-admin setsunstorm off
-admin setai off
-putback iron

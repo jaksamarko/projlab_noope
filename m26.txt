@@ -1,5 +1,0 @@
-new Asteroid 1
-res Ice
-layers 0
-new Settler 1
-aster 1

@@ -1,9 +1,0 @@
-new Asteroid 1
-neigh 2
-new Asteroid 2
-neigh 1
-layers 0
-res Uranium
-lives 1
-new Settler 1
-aster 1
