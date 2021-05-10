@@ -201,17 +201,18 @@ public class GUILogic implements ViewAPI
 	}
 	
 	
-	public void DrawPlayerInventoryUI(int activePlayer)
+	public void DrawPlayerInventoryUI()
 	{
-		window.erasePlayerInfo();
-		Settler s = ObjectStore.getSettler(activePlayer);
-		if(s != null) 
+		window.erasePlayerInfo();		
+		ObjectStore os = ObjectStore.getInstance();
+		for(Settler s: os.settlers)
 		{
 			int[] counts = s.GetInvetory().getCounts();
 			int portalCount = s.GetInvetory().GetPortalCount();
+			window.printPlayerInfo(String.format("Player: %d\n", s.GetID()));
 			String inventoryInfo = String.format("Inventory:\n Coal: %d\n Iron: %d\n Ice: %d\n Uranium: %d\n Portals: %d\n", counts[0], counts[1], counts[2], counts[3], portalCount);
 			window.printPlayerInfo(inventoryInfo);		
-		}
+		}	
 	}
 
 	@Override
@@ -224,7 +225,7 @@ public class GUILogic implements ViewAPI
 		for(AsterNode node: asterNodes)
 			DrawAsteroid(node);
 		
-		DrawPlayerInventoryUI(activePlayer);
+		DrawPlayerInventoryUI();
 		//TODO
 	}
 	
