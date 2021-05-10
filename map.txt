@@ -2,6 +2,7 @@ new Asteroid 1
 X 50
 Y 50
 neigh 2
+res Iron
 new Asteroid 2
 X 200
 Y 70
@@ -10,6 +11,7 @@ new Asteroid 3
 X -100
 Y 200
 neigh 1,2
+res Uranium
 new Asteroid 4
 X 10
 Y 600
@@ -26,6 +28,7 @@ new Asteroid 7
 X 400
 Y 230
 neigh 5,6,7
+res Uranium
 new Asteroid 8
 X 390
 Y 400
@@ -34,14 +37,17 @@ new Asteroid 9
 X 600
 Y 380
 neigh 6
+res Coal
 new Asteroid 10
 X 800
 Y 200
 neigh 6
+res Ice
 new Asteroid 11
 X 600
 Y 720
 neigh 6
+res Uranium
 new Asteroid 12
 X 250
 Y 900
@@ -50,25 +56,50 @@ new Asteroid 13
 X 400
 Y 1000
 neigh 12
+res Ice
 new Asteroid 14
 X 1200
 Y 60
 neigh 10
+res Iron
 new Asteroid 15
 X 1200
 Y 750
 neigh 10
+res Coal
 new Asteroid 16
 X 1400
 Y 300
 neigh 10
+res Iron
 new Asteroid 17
 X 1800
 Y 250
 neigh 10
+new Asteroid 18
+X 250
+Y 1800
+neigh 9
+res Uranium
+new Asteroid 19
+X 450
+Y 1800
+neigh 18
+res Iron
+new Asteroid 20
+X 600
+Y 2200
+neigh 18
+res Coal
 new Settler 1
-aster 2
+aster 15
 new Settler 2
 aster 4
 new Settler 3
 aster 5
+new Ufo 1
+aster 7
+new Ufo 2
+aster 13
+new Ufo 3
+aster 18

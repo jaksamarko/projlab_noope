@@ -33,7 +33,9 @@ public class GUILogic implements ViewAPI
 	}
 	public void zoomIn(float amount)
 	{
-		zoomTo = zoomTo / amount;
+		float zoomNew = zoomTo * amount;
+		if(zoomNew>.2&&zoomNew<4)
+			zoomTo = zoomNew;
 	}
 	
 	public float getZoomTo() {
@@ -111,14 +113,11 @@ public class GUILogic implements ViewAPI
 		for(AsterNode node: asterNodes)
 		{
 			Asteroid aster = node.realAsteroid;
-			for(Travelable neigh:node.realAsteroid.GetNeighbors())
-			{
-				Asteroid aster2 = ObjectStore.TravelableToAsteroid(neigh);
-				if(aster2 == null)
-					continue;
+			for(Travelable neigh:aster.GetNeighbors())
+			{	
 				for(AsterNode node2: asterNodes)
 				{
-					if(node2.realAsteroid==aster2)
+					if(node2.realAsteroid==(Asteroid)neigh)
 						window.drawLine(PosTransform(node.pos), PosTransform(node2.pos));
 				}
 			}

@@ -51,7 +51,7 @@ public class WindowJavaFX extends Application {
 	
 	private final double WindowW = 1280, WindowH = 720;
 	private final double SidebarSize = 192;
-	private final int CameraSpeed = 25;
+	private final int CameraSpeed = 35;
 	
 	private GUILogic logic = null;
 	void setGUILogic(GUILogic _logic)
@@ -136,44 +136,45 @@ public class WindowJavaFX extends Application {
         }
         
 		scene.addEventHandler(KeyEvent.KEY_PRESSED, (key)->{
-        	if(key.getCode()==KeyCode.W) 
+        	double speed = CameraSpeed*(1/logic.getZoomTo());
+			if(key.getCode()==KeyCode.W) 
         	{
-        		logic.moveCamera(new Vec2(0,CameraSpeed));
+        		logic.moveCamera(new Vec2(0,speed));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.S) 
         	{
-        		logic.moveCamera(new Vec2(0,-CameraSpeed));
+        		logic.moveCamera(new Vec2(0,-speed));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.D) 
         	{
-        		logic.moveCamera(new Vec2(-CameraSpeed,0));
+        		logic.moveCamera(new Vec2(-speed,0));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.A) 
         	{
-        		logic.moveCamera(new Vec2(CameraSpeed,0));
+        		logic.moveCamera(new Vec2(speed,0));
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.F) 
         	{
-        		logic.zoomIn(2.0f);
+        		logic.zoomIn(0.5f);
         		logic.printStatus();
         	}
         	if(key.getCode()==KeyCode.G) 
         	{
-        		logic.zoomIn(0.5f);
+        		logic.zoomIn(2.0f);
         		logic.printStatus();
         	}
         });
 		
 		canv.addEventFilter(ScrollEvent.SCROLL, (scroll)->{
 			if(scroll.getDeltaY()>0) {
-				logic.zoomIn(0.5f);
+				logic.zoomIn(2.0f);
         		logic.printStatus();
 			} else {
-				logic.zoomIn(2.0f);
+				logic.zoomIn(0.5f);
         		logic.printStatus();
 			}
 		});
