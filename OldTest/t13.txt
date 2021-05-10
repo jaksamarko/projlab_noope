@@ -1,0 +1,79 @@
+Asteroid(1) material: Uranium (exposed 0 times); layers: 0; near sun: false
+	Neighbors: 2
+	Robots: 1
+
+Asteroid(2) material: None; layers: 3; near sun: false
+	Neighbors: 1
+	Settlers: 1
+
+Player (1) inventory
+	Coal count: 0
+	Iron count: 0
+	Ice count: 0
+	Uranium count: 0
+	Portal count: 0
+
+Current Player: 1
+sunStorm: false
+workers active: true
+Asteroid(1) material: Uranium (exposed 0 times); layers: 0; near sun: true
+	Neighbors: 2
+	Robots: 1
+
+Asteroid(2) material: None; layers: 3; near sun: false
+	Neighbors: 1
+	Settlers: 1
+
+Player (1) inventory
+	Coal count: 0
+	Iron count: 0
+	Ice count: 0
+	Uranium count: 0
+	Portal count: 0
+
+End Turn
+Asteroid(1) material: Uranium (exposed 1 times); layers: 0; near sun: true
+	Neighbors: 2
+	Robots: 1
+
+Asteroid(2) material: None; layers: 3; near sun: false
+	Neighbors: 1
+	Settlers: 1
+
+Player (1) inventory
+	Coal count: 0
+	Iron count: 0
+	Ice count: 0
+	Uranium count: 0
+	Portal count: 0
+
+Asteroid(1) material: Uranium (exposed 1 times); layers: 0; near sun: true
+	Neighbors: 2
+	Robots: 1
+	
+Asteroid(2) material: None; layers: 3; near sun: false
+	Neighbors: 1
+	Settlers: 1
+
+Player (1) inventory
+	Coal count: 0
+	Iron count: 0
+	Ice count: 0
+	Uranium count: 0
+	Portal count: 0
+
+End Turn
+Asteroid(1) material: Uranium (exposed 2 times); layers: 0; near sun: true
+	Neighbors: 2
+
+Asteroid(2) material: None; layers: 2; near sun: false
+	Neighbors: 1
+	Settlers: 1
+	Robots: 1
+
+Player (1) inventory
+	Coal count: 0
+	Iron count: 0
+	Ice count: 0
+	Uranium count: 0
+	Portal count: 0

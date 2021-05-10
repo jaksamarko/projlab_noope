@@ -1,0 +1,28 @@
+Asteroid(1) material: None; layers: 0; near sun: false
+	Neighbors: 
+	Settlers: 1
+	Robots: 1
+
+Player (1) inventory
+	Coal count: 0
+	Iron count: 0
+	Ice count: 0
+	Uranium count: 0
+	Portal count: 0
+
+Current Player: 1
+sunStorm: true
+workers active: true
+End Turn
+
+Asteroid(1) material: None; layers: 0; near sun: false
+	Neighbors: 
+	Settlers: 1
+	Robots: 1
+
+Player (1) inventory
+	Coal count: 0
+	Iron count: 0
+	Ice count: 0
+	Uranium count: 0
+	Portal count: 0

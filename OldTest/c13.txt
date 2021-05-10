@@ -1,0 +1,6 @@
+admin setsunstorm off
+admin setai on
+admin setnearsun 1 on
+admin forceendturn
+admin setnearsun 1 on
+admin forceendturn

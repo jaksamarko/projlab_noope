@@ -1,0 +1,8 @@
+Asteroid(1) material: Iron; layers: 0; near sun: false
+	Neighbors: 
+
+End Turn
+Game Lost
+
+Asteroid(1) material: Iron; layers: 0; near sun: false
+	Neighbors: 

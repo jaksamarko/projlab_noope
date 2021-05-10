@@ -1,0 +1,5 @@
+admin setsunstorm off
+admin setai off	
+admin setnearsun 2 on
+admin forceendturn
+move A.2

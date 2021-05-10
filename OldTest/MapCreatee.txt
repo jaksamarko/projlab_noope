@@ -1,0 +1,26 @@
+new Asteroid 1
+neigh 2
+layers 0
+res Uranium
+lives 1
+new Asteroid 2
+neigh 1,3
+new Asteroid 3
+neigh 2
+layers 0
+new Settler 1
+aster 1
+inv Portal
+new Portal 4
+neigh 3
+new Portal 3
+neigh 4
+aster 2
+new Portal 1
+aster 1
+neigh 2
+new Portal 2
+aster 3
+neigh 1
+new Robot 1
+aster 3

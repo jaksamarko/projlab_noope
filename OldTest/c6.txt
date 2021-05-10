@@ -1,0 +1,3 @@
+admin setsunstorm on
+admin setai off	
+mine

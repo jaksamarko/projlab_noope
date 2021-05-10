@@ -1,0 +1,22 @@
+new Asteroid 1
+layers 0
+res Iron
+neigh 2
+new Asteroid 2
+neigh 1
+layers 0
+res Iron
+new Settler 1
+aster 1
+inv Uranium
+inv Iron
+inv Coal
+inv Ice
+inv Portal
+inv Portal
+new Portal 1
+neigh 2
+aster 1
+new Portal 2
+neigh 1
+aster 2
